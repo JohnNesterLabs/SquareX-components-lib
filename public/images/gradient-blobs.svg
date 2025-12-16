@@ -1,0 +1,24 @@
+<svg width="1637" height="1217" viewBox="0 0 1637 1217" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gradient Blob 1 -->
+  <ellipse cx="1219.85" cy="133.66" rx="337.82" ry="291.71" fill="url(#gradient1)" opacity="0.6"/>
+  <!-- Gradient Blob 2 -->
+  <ellipse cx="238.87" cy="188.5" rx="318.33" ry="287.05" fill="url(#gradient2)" opacity="0.5"/>
+  <!-- Gradient Blob 3 -->
+  <ellipse cx="464.07" cy="769.95" rx="318.33" ry="287.05" fill="url(#gradient3)" opacity="0.4"/>
+  
+  <defs>
+    <linearGradient id="gradient1" x1="882.03" y1="-158.06" x2="1557.68" y2="425.37" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E8E9F5" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#D1D4E8" stop-opacity="0.6"/>
+    </linearGradient>
+    <linearGradient id="gradient2" x1="-79.46" y1="-96.67" x2="557.19" y2="477.44" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E0E2F0" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#C8CCE0" stop-opacity="0.5"/>
+    </linearGradient>
+    <linearGradient id="gradient3" x1="145.74" y1="484.88" x2="782.39" y2="1058.98" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#E5E7F2" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#D4D7E5" stop-opacity="0.4"/>
+    </linearGradient>
+  </defs>
+</svg>
+

@@ -1,0 +1,36 @@
+/* Icon Base Styles */
+.icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+  /* SVG icons are scalable - size is handled via inline styles or props */
+  object-fit: contain;
+}
+
+/* Variant Styles */
+.variant_default {
+  opacity: 1;
+}
+
+.variant_hover {
+  opacity: 0.8;
+}
+
+.variant_active {
+  opacity: 1;
+  filter: brightness(0) saturate(100%) invert(27%) sepia(51%) saturate(2878%) hue-rotate(238deg) brightness(94%) contrast(92%);
+}
+
+.variant_disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.variant_filled {
+  /* Filled variant styling */
+}
+
+.variant_outlined {
+  /* Outlined variant styling */
+}
+

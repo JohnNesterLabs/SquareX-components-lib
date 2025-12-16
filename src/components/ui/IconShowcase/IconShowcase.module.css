@@ -1,0 +1,83 @@
+/* IconShowcase Container */
+.container {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+
+/* Layout: Grid */
+.layout_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 24px;
+}
+
+/* Layout: List */
+.layout_list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Icon Item */
+.iconItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  transition: all 0.2s ease;
+}
+
+.iconItem:hover {
+  border-color: #4432bf;
+  box-shadow: 0 2px 8px rgba(68, 50, 191, 0.1);
+}
+
+/* Icon Wrapper */
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+/* Icon */
+.icon {
+  display: block;
+}
+
+/* Label */
+.label {
+  font-family: 'Host Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #2f353b;
+  text-align: center;
+}
+
+/* Variant Label */
+.variantLabel {
+  font-family: 'Host Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  color: #768494;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Empty State */
+.emptyState {
+  font-family: 'Host Grotesk', sans-serif;
+  font-size: 14px;
+  color: #768494;
+  text-align: center;
+  padding: 32px;
+}
+
