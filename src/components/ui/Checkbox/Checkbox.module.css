@@ -1,0 +1,233 @@
+/* Checkbox Container */
+.checkboxContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* Checkbox Wrapper */
+.checkboxWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hidden Input */
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Base Checkbox Styles */
+.checkbox {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #d6dadf;
+  border-radius: 4px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  flex-shrink: 0;
+}
+
+.checkbox:focus {
+  outline: none;
+}
+
+.checkbox:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* Size Variants */
+.size_small {
+  width: 14px;
+  height: 14px;
+  border-width: 1px;
+}
+
+.size_medium {
+  width: 16px;
+  height: 16px;
+  border-width: 1.5px;
+}
+
+.size_large {
+  width: 20px;
+  height: 20px;
+  border-width: 2px;
+}
+
+/* Checked State */
+.checkboxChecked {
+  background-color: #4432bf;
+  border: none;
+}
+
+/* Check Icon */
+.checkboxCheck {
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkIconWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.checkIconInner {
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.checkIcon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(200%) hue-rotate(240deg) brightness(100%) contrast(100%);
+}
+
+.size_small .checkIconInner {
+  width: 10px;
+  height: 10px;
+}
+
+.size_large .checkIconInner {
+  width: 14px;
+  height: 14px;
+}
+
+/* State: Default */
+.state_default {
+  border-color: #d6dadf;
+}
+
+.state_default:hover:not(.checkboxDisabled) {
+  border-color: #c8ced4;
+  background-color: #f5f5f5;
+}
+
+/* State: Hover */
+.state_hover {
+  border-color: #c8ced4;
+  background-color: #f5f5f5;
+}
+
+.state_hover.checkboxChecked {
+  background-color: #291e73;
+  border: none;
+}
+
+/* State: Focus */
+.state_focus {
+  border-color: #4432bf;
+  border-width: 2px;
+  box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.2);
+}
+
+.state_focus.checkboxChecked {
+  background-color: #4432bf;
+  border: none;
+  box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.2);
+}
+
+/* State: Pressed */
+.state_pressed {
+  border-color: #4432bf;
+  border-width: 2px;
+  background-color: #f1f3f4;
+}
+
+.state_pressed.checkboxChecked {
+  background-color: #4432bf;
+  border: none;
+}
+
+/* Disabled State */
+.checkboxDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #d6dadf;
+  background-color: #f5f5f5;
+}
+
+.checkboxDisabled.checkboxChecked {
+  background-color: #dad6f2;
+  border: none;
+}
+
+.checkboxDisabled:hover {
+  border-color: #d6dadf;
+  background-color: #f5f5f5;
+}
+
+.checkboxDisabled.checkboxChecked:hover {
+  background-color: #dad6f2;
+  border: none;
+}
+
+/* Label */
+.label {
+  font-family: 'Host Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2f353b;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+
+.checkboxDisabled + .label,
+.checkboxDisabled ~ .label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Interactive states for default */
+.checkbox:not(.checkboxDisabled):not(.checkboxChecked):hover {
+  border-color: #c8ced4;
+  background-color: #f5f5f5;
+}
+
+.checkbox:not(.checkboxDisabled):not(.checkboxChecked):active {
+  border-color: #4432bf;
+  border-width: 2px;
+  background-color: #f1f3f4;
+}
+
+.checkbox:not(.checkboxDisabled).checkboxChecked:hover {
+  background-color: #291e73;
+}
+
+.checkbox:not(.checkboxDisabled).checkboxChecked:active {
+  background-color: #4432bf;
+}
+

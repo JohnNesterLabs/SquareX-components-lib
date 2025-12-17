@@ -19,6 +19,8 @@ import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
 import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 import IconShowcase from './ui/IconShowcase/IconShowcase';
+import Checkbox from './ui/Checkbox/Checkbox';
+import CheckboxTest from './ui/Checkbox/CheckboxTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -39,6 +41,7 @@ const ComponentLibrary = () => {
     { id: 'categories', label: 'Categories' },
     { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
+    { id: 'checkbox', label: 'Checkbox' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1107,6 +1110,138 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderCheckboxComponent = () => {
+    const checkboxStates = [
+      { key: 'default', label: 'Default' },
+      { key: 'hover', label: 'Hover' },
+      { key: 'focus', label: 'Focus' },
+      { key: 'pressed', label: 'Pressed' },
+      { key: 'disabled', label: 'Disabled' },
+    ];
+
+    const checkboxSizes = [
+      { key: 'small', label: 'Small' },
+      { key: 'medium', label: 'Medium' },
+      { key: 'large', label: 'Large' },
+    ];
+
+    return (
+      <>
+        {/* Checkbox Test Component */}
+        <div className="component-section">
+          <h2 className="component-section-title">Checkbox Test Component</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell" style={{ width: '100%' }}>
+                  <CheckboxTest />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Checkbox States - Unchecked */}
+        <div className="component-section">
+          <h2 className="component-section-title">Checkbox Component - Unchecked States</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              {checkboxStates.map((state) => (
+                <div key={state.key} className="component-inputfield-row">
+                  <div className="component-inputfield-cell">
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
+                      {checkboxSizes.map((size) => (
+                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                          <Checkbox
+                            checked={false}
+                            disabled={state.key === 'disabled'}
+                            state={state.key}
+                            size={size.key}
+                            onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                          />
+                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Checkbox States - Checked */}
+        <div className="component-section">
+          <h2 className="component-section-title">Checkbox Component - Checked States</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              {checkboxStates.map((state) => (
+                <div key={state.key} className="component-inputfield-row">
+                  <div className="component-inputfield-cell">
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
+                      {checkboxSizes.map((size) => (
+                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                          <Checkbox
+                            checked={true}
+                            disabled={state.key === 'disabled'}
+                            state={state.key}
+                            size={size.key}
+                            onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                          />
+                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Checkbox with Labels */}
+        <div className="component-section">
+          <h2 className="component-section-title">Checkbox Component - With Labels</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell">
+                  <div className="component-inputfield-state-label">With Label</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' }}>
+                    <Checkbox
+                      checked={false}
+                      label="Unchecked checkbox"
+                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                    />
+                    <Checkbox
+                      checked={true}
+                      label="Checked checkbox"
+                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                    />
+                    <Checkbox
+                      checked={false}
+                      disabled={true}
+                      label="Disabled checkbox"
+                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                    />
+                    <Checkbox
+                      checked={true}
+                      disabled={true}
+                      label="Disabled checked checkbox"
+                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <header className="component-library-header">
@@ -1137,6 +1272,7 @@ const ComponentLibrary = () => {
           {activeTab === 'categories' && renderCategoriesComponent()}
           {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()}
           {activeTab === 'icons' && renderIconsComponent()}
+          {activeTab === 'checkbox' && renderCheckboxComponent()}
         </div>
       </div>
     </div>
