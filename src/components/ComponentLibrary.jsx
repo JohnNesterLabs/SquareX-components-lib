@@ -23,6 +23,8 @@ import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
 import Radio from './ui/Radio/Radio';
 import RadioTest from './ui/Radio/RadioTest';
+import Toggle from './ui/Toggle/Toggle';
+import ToggleTest from './ui/Toggle/ToggleTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -45,6 +47,7 @@ const ComponentLibrary = () => {
     { id: 'icons', label: 'Icons' },
     { id: 'checkbox', label: 'Checkbox' },
     { id: 'radio', label: 'Radio' },
+    { id: 'toggle', label: 'Toggle' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1380,6 +1383,142 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderToggleComponent = () => {
+    const toggleStates = [
+      { key: 'default', label: 'Default' },
+      { key: 'hover', label: 'Hover' },
+      { key: 'focus', label: 'Focus' },
+      { key: 'pressed', label: 'Pressed' },
+      { key: 'disabled', label: 'Disabled' },
+    ];
+
+    const toggleSizes = [
+      { key: 'small', label: 'Small' },
+      { key: 'medium', label: 'Medium' },
+      { key: 'large', label: 'Large' },
+    ];
+
+    return (
+      <>
+        {/* Toggle Test Component */}
+        <div className="component-section">
+          <h2 className="component-section-title">Toggle Test Component</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell" style={{ width: '100%' }}>
+                  <ToggleTest />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Toggle States - OFF */}
+        <div className="component-section">
+          <h2 className="component-section-title">Toggle Component - OFF States</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              {toggleStates.map((state) => (
+                <div key={state.key} className="component-inputfield-row">
+                  <div className="component-inputfield-cell">
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
+                      {toggleSizes.map((size) => (
+                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                          <Toggle
+                            checked={false}
+                            disabled={state.key === 'disabled'}
+                            state={state.key}
+                            size={size.key}
+                            name={`toggle-off-${state.key}-${size.key}`}
+                            value={`value-${size.key}`}
+                            onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+                          />
+                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Toggle States - ON */}
+        <div className="component-section">
+          <h2 className="component-section-title">Toggle Component - ON States</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              {toggleStates.map((state) => (
+                <div key={state.key} className="component-inputfield-row">
+                  <div className="component-inputfield-cell">
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
+                      {toggleSizes.map((size) => (
+                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                          <Toggle
+                            checked={true}
+                            disabled={state.key === 'disabled'}
+                            state={state.key}
+                            size={size.key}
+                            name={`toggle-on-${state.key}-${size.key}`}
+                            value={`value-${size.key}`}
+                            onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+                          />
+                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Toggle with Labels */}
+        <div className="component-section">
+          <h2 className="component-section-title">Toggle Component - With Labels</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell">
+                  <div className="component-inputfield-state-label">Toggle Examples</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' }}>
+                    <Toggle
+                      checked={false}
+                      label="Notifications"
+                      onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+                    />
+                    <Toggle
+                      checked={true}
+                      label="Email alerts"
+                      onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+                    />
+                    <Toggle
+                      checked={false}
+                      disabled={true}
+                      label="Disabled toggle"
+                      onChange={(e) => console.log('Should not fire')}
+                    />
+                    <Toggle
+                      checked={true}
+                      disabled={true}
+                      label="Disabled checked toggle"
+                      onChange={(e) => console.log('Should not fire')}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <header className="component-library-header">
@@ -1412,6 +1551,7 @@ const ComponentLibrary = () => {
           {activeTab === 'icons' && renderIconsComponent()}
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
+          {activeTab === 'toggle' && renderToggleComponent()}
         </div>
       </div>
     </div>

@@ -1,0 +1,223 @@
+/* Toggle Container */
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* Toggle Wrapper */
+.toggleWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hidden Input */
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Base Toggle Styles (Track) */
+.toggle {
+  box-sizing: border-box;
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: #d6dadf;
+  border: none;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+
+.toggle:focus {
+  outline: none;
+}
+
+.toggle:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* Toggle Thumb (Slider) */
+.toggleThumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  position: absolute;
+  left: 2px;
+  transition: all 0.2s ease;
+  box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+/* Size Variants */
+.size_small {
+  width: 28px;
+  height: 16px;
+  border-radius: 8px;
+  padding: 1.5px;
+}
+
+.size_small .toggleThumb {
+  width: 13px;
+  height: 13px;
+  left: 1.5px;
+}
+
+.size_medium {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.size_medium .toggleThumb {
+  width: 16px;
+  height: 16px;
+  left: 2px;
+}
+
+.size_large {
+  width: 44px;
+  height: 24px;
+  border-radius: 12px;
+  padding: 2px;
+}
+
+.size_large .toggleThumb {
+  width: 20px;
+  height: 20px;
+  left: 2px;
+}
+
+/* Checked State - Track */
+.toggleChecked {
+  background-color: #4432bf;
+}
+
+/* Checked State - Thumb Position */
+.toggleChecked .toggleThumb {
+  transform: translateX(16px);
+}
+
+.size_small.toggleChecked .toggleThumb {
+  transform: translateX(12px);
+}
+
+.size_large.toggleChecked .toggleThumb {
+  transform: translateX(20px);
+}
+
+/* State: Default */
+.state_default {
+  background-color: #d6dadf;
+}
+
+.state_default:hover:not(.toggleDisabled) {
+  background-color: #c8ced4;
+}
+
+.state_default.toggleChecked {
+  background-color: #4432bf;
+}
+
+.state_default.toggleChecked:hover:not(.toggleDisabled) {
+  background-color: #291e73;
+}
+
+/* State: Hover */
+.state_hover {
+  background-color: #c8ced4;
+}
+
+.state_hover.toggleChecked {
+  background-color: #291e73;
+}
+
+/* State: Focus */
+.state_focus {
+  box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.2);
+}
+
+.state_focus.toggleChecked {
+  background-color: #4432bf;
+  box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.2);
+}
+
+/* State: Pressed */
+.state_pressed {
+  background-color: #c8ced4;
+}
+
+.state_pressed.toggleChecked {
+  background-color: #4432bf;
+}
+
+/* Disabled State */
+.toggleDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #d6dadf;
+}
+
+.toggleDisabled.toggleChecked {
+  background-color: #dad6f2;
+}
+
+.toggleDisabled:hover {
+  background-color: #d6dadf;
+}
+
+.toggleDisabled.toggleChecked:hover {
+  background-color: #dad6f2;
+}
+
+/* Label */
+.label {
+  font-family: 'Host Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2f353b;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+
+.toggleDisabled + .label,
+.toggleDisabled ~ .label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Interactive states for default */
+.toggle:not(.toggleDisabled):not(.toggleChecked):hover {
+  background-color: #c8ced4;
+}
+
+.toggle:not(.toggleDisabled):not(.toggleChecked):active {
+  background-color: #c8ced4;
+}
+
+.toggle:not(.toggleDisabled).toggleChecked:hover {
+  background-color: #291e73;
+}
+
+.toggle:not(.toggleDisabled).toggleChecked:active {
+  background-color: #4432bf;
+}
+
