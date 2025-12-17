@@ -21,6 +21,8 @@ import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 import IconShowcase from './ui/IconShowcase/IconShowcase';
 import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
+import Radio from './ui/Radio/Radio';
+import RadioTest from './ui/Radio/RadioTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -42,6 +44,7 @@ const ComponentLibrary = () => {
     { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
     { id: 'checkbox', label: 'Checkbox' },
+    { id: 'radio', label: 'Radio' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1242,6 +1245,141 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderRadioComponent = () => {
+    const radioStates = [
+      { key: 'default', label: 'Default' },
+      { key: 'hover', label: 'Hover' },
+      { key: 'focus', label: 'Focus' },
+      { key: 'pressed', label: 'Pressed' },
+      { key: 'disabled', label: 'Disabled' },
+    ];
+
+    const radioSizes = [
+      { key: 'small', label: 'Small' },
+      { key: 'medium', label: 'Medium' },
+      { key: 'large', label: 'Large' },
+    ];
+
+    return (
+      <>
+        {/* Radio Test Component */}
+        <div className="component-section">
+          <h2 className="component-section-title">Radio Test Component</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell" style={{ width: '100%' }}>
+                  <RadioTest />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Radio States - Unselected */}
+        <div className="component-section">
+          <h2 className="component-section-title">Radio Component - Unselected States</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              {radioStates.map((state) => (
+                <div key={state.key} className="component-inputfield-row">
+                  <div className="component-inputfield-cell">
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
+                      {radioSizes.map((size) => (
+                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                          <Radio
+                            checked={false}
+                            disabled={state.key === 'disabled'}
+                            state={state.key}
+                            size={size.key}
+                            name={`radio-${state.key}-${size.key}`}
+                            value={`value-${size.key}`}
+                            onChange={(e) => console.log('Radio changed:', e.target.value)}
+                          />
+                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Radio States - Selected */}
+        <div className="component-section">
+          <h2 className="component-section-title">Radio Component - Selected States</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              {radioStates.map((state) => (
+                <div key={state.key} className="component-inputfield-row">
+                  <div className="component-inputfield-cell">
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
+                      {radioSizes.map((size) => (
+                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
+                          <Radio
+                            checked={true}
+                            disabled={state.key === 'disabled'}
+                            state={state.key}
+                            size={size.key}
+                            name={`radio-selected-${state.key}-${size.key}`}
+                            value={`value-${size.key}`}
+                            onChange={(e) => console.log('Radio changed:', e.target.value)}
+                          />
+                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Radio with Labels */}
+        <div className="component-section">
+          <h2 className="component-section-title">Radio Component - With Labels</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell">
+                  <div className="component-inputfield-state-label">Radio Group</div>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' }}>
+                    <Radio
+                      checked={false}
+                      name="radio-group"
+                      value="option1"
+                      label="Option 1"
+                      onChange={(e) => console.log('Radio changed:', e.target.value)}
+                    />
+                    <Radio
+                      checked={true}
+                      name="radio-group"
+                      value="option2"
+                      label="Option 2"
+                      onChange={(e) => console.log('Radio changed:', e.target.value)}
+                    />
+                    <Radio
+                      checked={false}
+                      name="radio-group"
+                      value="option3"
+                      label="Option 3"
+                      onChange={(e) => console.log('Radio changed:', e.target.value)}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <header className="component-library-header">
@@ -1273,6 +1411,7 @@ const ComponentLibrary = () => {
           {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()}
           {activeTab === 'icons' && renderIconsComponent()}
           {activeTab === 'checkbox' && renderCheckboxComponent()}
+          {activeTab === 'radio' && renderRadioComponent()}
         </div>
       </div>
     </div>

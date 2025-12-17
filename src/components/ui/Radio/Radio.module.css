@@ -1,0 +1,254 @@
+/* Radio Container */
+.radioContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+/* Radio Wrapper */
+.radioWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hidden Input */
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+}
+
+/* Base Radio Styles */
+.radio {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #d6dadf;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background-color: transparent;
+  flex-shrink: 0;
+}
+
+.radio:focus {
+  outline: none;
+}
+
+.radio:focus-visible {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* Size Variants */
+.size_small {
+  width: 14px;
+  height: 14px;
+  border-width: 1px;
+}
+
+.size_medium {
+  width: 16px;
+  height: 16px;
+  border-width: 1px;
+}
+
+.size_large {
+  width: 20px;
+  height: 20px;
+  border-width: 1.5px;
+}
+
+/* Checked State */
+.radioChecked {
+  border-color: #4432bf;
+  border-width: 1.5px;
+}
+
+.size_small.radioChecked {
+  border-width: 1px;
+}
+
+.size_large.radioChecked {
+  border-width: 2px;
+}
+
+/* Radio Dot (inner circle when checked) */
+.radioDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4432bf;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-shrink: 0;
+}
+
+.size_small .radioDot {
+  width: 6px;
+  height: 6px;
+}
+
+.size_large .radioDot {
+  width: 10px;
+  height: 10px;
+}
+
+/* State: Default */
+.state_default {
+  border-color: #d6dadf;
+}
+
+.state_default:hover:not(.radioDisabled) {
+  border-color: #c8ced4;
+  background-color: #f5f5f5;
+}
+
+/* State: Hover */
+.state_hover {
+  border-color: #c8ced4;
+  background-color: #f5f5f5;
+}
+
+.state_hover.radioChecked {
+  border-color: #4432bf;
+  background-color: transparent;
+}
+
+.state_hover.radioChecked .radioDot {
+  background-color: #291e73;
+}
+
+/* State: Focus */
+.state_focus {
+  border-color: #4432bf;
+  border-width: 2px;
+  box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.2);
+}
+
+.state_focus.radioChecked {
+  border-color: #4432bf;
+  border-width: 2px;
+  box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.2);
+}
+
+.size_small.state_focus {
+  border-width: 1.5px;
+}
+
+.size_large.state_focus {
+  border-width: 2.5px;
+}
+
+/* State: Pressed */
+.state_pressed {
+  border-color: #4432bf;
+  border-width: 2px;
+  background-color: #f1f3f4;
+}
+
+.state_pressed.radioChecked {
+  border-color: #4432bf;
+  border-width: 2px;
+  background-color: transparent;
+}
+
+.size_small.state_pressed {
+  border-width: 1.5px;
+}
+
+.size_large.state_pressed {
+  border-width: 2.5px;
+}
+
+/* Disabled State */
+.radioDisabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #d6dadf;
+  background-color: #f5f5f5;
+}
+
+.radioDisabled.radioChecked {
+  border-color: #d6dadf;
+  background-color: transparent;
+}
+
+.radioDisabled.radioChecked .radioDot {
+  background-color: #dad6f2;
+}
+
+.radioDisabled:hover {
+  border-color: #d6dadf;
+  background-color: #f5f5f5;
+}
+
+.radioDisabled.radioChecked:hover {
+  border-color: #d6dadf;
+  background-color: transparent;
+}
+
+.radioDisabled.radioChecked:hover .radioDot {
+  background-color: #dad6f2;
+}
+
+/* Label */
+.label {
+  font-family: 'Host Grotesk', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #2f353b;
+  cursor: pointer;
+  user-select: none;
+  margin: 0;
+}
+
+.radioDisabled + .label,
+.radioDisabled ~ .label {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Interactive states for default */
+.radio:not(.radioDisabled):not(.radioChecked):hover {
+  border-color: #c8ced4;
+  background-color: #f5f5f5;
+}
+
+.radio:not(.radioDisabled):not(.radioChecked):active {
+  border-color: #4432bf;
+  border-width: 2px;
+  background-color: #f1f3f4;
+}
+
+.radio:not(.radioDisabled).radioChecked:hover {
+  border-color: #291e73;
+}
+
+.radio:not(.radioDisabled).radioChecked:hover .radioDot {
+  background-color: #291e73;
+}
+
+.radio:not(.radioDisabled).radioChecked:active {
+  border-color: #4432bf;
+}
+
+.radio:not(.radioDisabled).radioChecked:active .radioDot {
+  background-color: #4432bf;
+}
+
