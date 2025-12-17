@@ -19,6 +19,7 @@ import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
 import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 import IconShowcase from './ui/IconShowcase/IconShowcase';
+import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
 const ComponentLibrary = () => {
@@ -971,38 +972,26 @@ const ComponentLibrary = () => {
   );
 
   const renderIconsComponent = () => {
-    // Icon sizes to display (matching Figma design)
+    // Icon sizes to display (matching Figma design - all icons show all 7 sizes)
     const iconSizes = [48, 40, 32, 24, 20, 16, 14];
     
-    // All available icons with their display names and file paths
-    // Icons are shown with multiple size variants (matching Figma design)
-    const allIcons = [
-      { name: 'archive', label: 'Archive', filePath: 'archive.svg', variantCount: 7 },
-      { name: 'check', label: 'Check', filePath: 'check.svg', variantCount: 7 },
-      { name: 'chevron', label: 'Chevron', filePath: 'chevron.svg', variantCount: 7 },
-      { name: 'dot', label: 'Dot', filePath: 'dot.svg', variantCount: 7 },
-      { name: 'ellipse', label: 'Ellipse', filePath: 'Ellipse 4181.svg', variantCount: 7 },
-      { name: 'file', label: 'File', filePath: 'File.svg', variantCount: 7 },
-      { name: 'icon', label: 'Icon', filePath: 'Icon.svg', variantCount: 7 },
-      { name: 'loader', label: 'Loader', filePath: 'Loader.svg', variantCount: 7 },
-      { name: 'search', label: 'Search', filePath: 'search.svg', variantCount: 7 },
-      { name: 'star', label: 'Star', filePath: 'Star.svg', variantCount: 7 },
-      { name: 'vector', label: 'Vector', filePath: 'Vector.svg', variantCount: 7 },
-      { name: 'x', label: 'X', filePath: 'X.svg', variantCount: 7 },
-    ];
+    // All available icons from public/icon folder (358 icons)
+    // Each icon displays all 7 size variants (48px down to 14px)
+    // Icons are loaded from the auto-generated iconList.js file
+    const allIcons = iconListData;
 
     return (
       <>
         {/* All Icons Grid - Matching Figma Design */}
         <div className="component-section">
-          <h2 className="component-section-title">All Icons</h2>
+          <h2 className="component-section-title">All Icons ({allIcons.length} icons)</h2>
           <div className="component-inputfield-container">
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ width: '100%' }}>
                   <div style={{ 
                     display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
+                    gridTemplateColumns: 'repeat(4, 1fr)', 
                     gap: '24px', 
                     padding: '24px',
                     background: '#f5f5f5'
@@ -1040,9 +1029,10 @@ const ComponentLibrary = () => {
                           <div style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '12px',
+                            gap: '8px',
                             flexWrap: 'wrap',
-                            justifyContent: 'flex-start'
+                            justifyContent: 'flex-start',
+                            minHeight: '80px'
                           }}>
                             {sizesToShow.map((size, index) => (
                               <div
@@ -1051,22 +1041,25 @@ const ComponentLibrary = () => {
                                   display: 'flex',
                                   alignItems: 'center',
                                   justifyContent: 'center',
-                                  minWidth: `${Math.min(size + 12, 60)}px`,
-                                  minHeight: `${Math.min(size + 12, 60)}px`,
+                                  width: `${Math.min(size + 16, 64)}px`,
+                                  height: `${Math.min(size + 16, 64)}px`,
                                   background: '#f5f5f5',
-                                  borderRadius: '6px',
-                                  padding: '6px',
-                                  boxSizing: 'border-box'
+                                  borderRadius: '4px',
+                                  padding: '8px',
+                                  boxSizing: 'border-box',
+                                  flexShrink: 0
                                 }}
                               >
                                 <img
-                                  src={`/icons/${icon.filePath}`}
+                                  src={`/${icon.filePath}`}
                                   alt={`${icon.label} ${size}px`}
                                   style={{ 
                                     width: `${size}px`, 
                                     height: `${size}px`,
                                     objectFit: 'contain',
-                                    display: 'block'
+                                    display: 'block',
+                                    maxWidth: '100%',
+                                    maxHeight: '100%'
                                   }}
                                   onError={(e) => {
                                     e.target.style.display = 'none';
