@@ -1,0 +1,69 @@
+.tableTestContainer {
+  width: 100%;
+  padding: 24px;
+  background: var(--bg-default, #ffffff);
+}
+
+.tableTestHeader {
+  margin-bottom: 24px;
+}
+
+.tableTestHeader h3 {
+  font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-slate-800, #2f353b);
+  margin: 0 0 12px 0;
+}
+
+.tableTestInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tableTestInfo p {
+  font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  color: var(--color-slate-600, #5e6a76);
+  margin: 0;
+}
+
+.tableTestInfo p strong {
+  color: var(--color-slate-800, #2f353b);
+  font-weight: 600;
+}
+
+.assignedToCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.personIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-slate-500, #768494);
+  flex-shrink: 0;
+}
+
+.statusCell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.statusActive {
+  font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-green-600, #0f7b0f);
+}
+
+.statusInactive {
+  font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-slate-500, #768494);
+}
+

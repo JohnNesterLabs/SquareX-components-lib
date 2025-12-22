@@ -25,6 +25,8 @@ import Radio from './ui/Radio/Radio';
 import RadioTest from './ui/Radio/RadioTest';
 import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
+import Table from './ui/Table/Table';
+import TableTest from './ui/Table/TableTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -48,6 +50,7 @@ const ComponentLibrary = () => {
     { id: 'checkbox', label: 'Checkbox' },
     { id: 'radio', label: 'Radio' },
     { id: 'toggle', label: 'Toggle' },
+    { id: 'table', label: 'Table' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1519,6 +1522,26 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderTableComponent = () => {
+    return (
+      <>
+        {/* Table Test Component */}
+        <div className="component-section">
+          <h2 className="component-section-title">Table Component Test</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell" style={{ width: '100%' }}>
+                  <TableTest />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <header className="component-library-header">
@@ -1552,6 +1575,7 @@ const ComponentLibrary = () => {
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
           {activeTab === 'toggle' && renderToggleComponent()}
+          {activeTab === 'table' && renderTableComponent()}
         </div>
       </div>
     </div>
