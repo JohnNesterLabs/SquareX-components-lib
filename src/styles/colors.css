@@ -1,0 +1,337 @@
+/* Color Primitives (Base tokens)
+ * Single source of truth for raw color values.
+ * These map closely to the Figma “Color Primitives / Purple, Slate, Gray, etc”.
+ */
+
+:root {
+  /* Purple scale (matches Figma Purple 050–1000) */
+  --color-purple-050: #f3eef9;
+  --color-purple-100: #e7dcf2;
+  --color-purple-150: #dbcbec;
+  --color-purple-200: #cfb9e5;
+  --color-purple-300: #b897d9;
+  --color-purple-400: #a074cc;
+  --color-purple-500: #8851bf;
+  --color-purple-600: #6d4199;
+  --color-purple-700: #523173;
+  --color-purple-800: #36204c;
+  --color-purple-900: #291839;
+  --color-purple-950: #1b1026;
+  --color-purple-1000: #0e0813;
+
+  /* Violet scale (matches Figma Violet 050–1000 from screenshot) */
+  --color-violet-050: #eceaf9;
+  --color-violet-100: #dad6f2;
+  --color-violet-150: #c7c1ec;
+  --color-violet-200: #b4ade5;
+  --color-violet-300: #8f84d9;
+  --color-violet-400: #695bcc;
+  --color-violet-500: #4432bf;
+  --color-violet-600: #362899;
+  --color-violet-700: #291e73;
+  --color-violet-800: #1b144c;
+  --color-violet-900: #140f39;
+  --color-violet-950: #0e0a26;
+  --color-violet-1000: #070513;
+
+  /* Slate scale (matches Figma Slate 050–1000 from screenshot) */
+  --color-slate-050: #f1f3f4;
+  --color-slate-100: #e4e6ea;
+  --color-slate-150: #d6dadf;
+  --color-slate-200: #c8ced4;
+  --color-slate-300: #adb5bf;
+  --color-slate-400: #919da9;
+  --color-slate-500: #768494;
+  --color-slate-600: #5e6a76;
+  --color-slate-700: #474f59;
+  --color-slate-800: #2f353b;
+  --color-slate-900: #23282c;
+  --color-slate-950: #181a1e;
+  --color-slate-1000: #0c0d0f;
+
+  /* Gray scale (matches Figma Gray 050–1000 from screenshot) */
+  --color-gray-050: #f6f6f6;
+  --color-gray-100: #ededed;
+  --color-gray-150: #e4e4e4;
+  --color-gray-200: #dbdbdb;
+  --color-gray-300: #cacaca;
+  --color-gray-400: #b8b8b8;
+  --color-gray-500: #a6a6a6;
+  --color-gray-600: #858585;
+  --color-gray-700: #646464;
+  --color-gray-800: #424242;
+  --color-gray-900: #323232;
+  --color-gray-950: #212121;
+  --color-gray-1000: #111111;
+
+  /* Green scale (matches Figma Green 050–1000 from screenshot) */
+  --color-green-050: #e7f7ef;
+  --color-green-100: #d0efde;
+  --color-green-150: #b8e7ce;
+  --color-green-200: #a1dfbe;
+  --color-green-300: #72ce9d;
+  --color-green-400: #43be7d;
+  --color-green-500: #14ae5c;
+  --color-green-600: #108b4a;
+  --color-green-700: #0c6837;
+  --color-green-800: #084625;
+  --color-green-900: #06341c;
+  --color-green-950: #042312;
+  --color-green-1000: #021109;
+
+  /* Red scale (matches Figma Red 050–1000 from screenshot) */
+  --color-red-050: #fde9e9;
+  --color-red-100: #fbd3d2;
+  --color-red-150: #f9bdbc;
+  --color-red-200: #f7a7a5;
+  --color-red-300: #f47a79;
+  --color-red-400: #f04e4c;
+  --color-red-500: #ec221f;
+  --color-red-600: #bd1b19;
+  --color-red-700: #8e1413;
+  --color-red-800: #5e0e0c;
+  --color-red-900: #470a09;
+  --color-red-950: #2f0706;
+  --color-red-1000: #180303;
+
+  /* Yellow scale (matches Figma Yellow 050–1000 from screenshot) */
+  --color-yellow-050: #fefae6;
+  --color-yellow-100: #fef4ce;
+  --color-yellow-150: #fdefb5;
+  --color-yellow-200: #fdea9d;
+  --color-yellow-300: #fcdf6c;
+  --color-yellow-400: #fbd53b;
+  --color-yellow-500: #faca0a;
+  --color-yellow-600: #c8a208;
+  --color-yellow-700: #967906;
+  --color-yellow-800: #645104;
+  --color-yellow-900: #4b3d03;
+  --color-yellow-950: #322802;
+  --color-yellow-1000: #191401;
+
+  /* Blue scale (matches Figma Blue 050–1000 from screenshot) */
+  --color-blue-050: #e7f3fe;
+  --color-blue-100: #cee8fd;
+  --color-blue-150: #b6ddfc;
+  --color-blue-200: #9ed1fb;
+  --color-blue-300: #6dbaf9;
+  --color-blue-400: #3da3f7;
+  --color-blue-500: #0c8cf5;
+  --color-blue-600: #0a70c4;
+  --color-blue-700: #075493;
+  --color-blue-800: #053862;
+  --color-blue-900: #0424a4;
+  --color-blue-950: #021c31;
+  --color-blue-1000: #010e19;
+
+  /* White & Black */
+  --color-white-1000: #ffffff;
+  --color-black-1000: #000000;
+
+  /* Alpha helpers (match Figma “Alphas / …” rows) */
+  /* Alphas / Slate (using Slate/500 #768494 at 8% & 16%) */
+  --color-slate-alpha-100: rgba(118, 132, 148, 0.08);
+  --color-slate-alpha-200: rgba(118, 132, 148, 0.16);
+
+  /* Alphas / Gray (using Gray/500 #a6a6a6 at 8% & 16%) */
+  --color-gray-alpha-100: rgba(166, 166, 166, 0.08);
+  --color-gray-alpha-200: rgba(166, 166, 166, 0.16);
+
+  /* Alphas / Purple (using Purple/500 #8851bf at 8% & 16%) */
+  --color-purple-alpha-100: rgba(136, 81, 191, 0.08);
+  --color-purple-alpha-200: rgba(136, 81, 191, 0.16);
+
+  /* Alphas / Violet (using Violet/500 #4432bf at 8% & 16%) */
+  --color-violet-alpha-100: rgba(68, 50, 191, 0.08);
+  --color-violet-alpha-200: rgba(68, 50, 191, 0.16);
+
+  /* Alphas / Green (using Green/500 #14ae5c at 8% & 16%) */
+  --color-green-alpha-100: rgba(20, 174, 92, 0.08);
+  --color-green-alpha-200: rgba(20, 174, 92, 0.16);
+
+  /* Alphas / Red (using Red/500 #ec221f at 8% & 16%) */
+  --color-red-alpha-100: rgba(236, 34, 31, 0.08);
+  --color-red-alpha-200: rgba(236, 34, 31, 0.16);
+
+  /* Alphas / Yellow (using Yellow token #e5a000 at 8% & 16%) */
+  --color-yellow-alpha-100: rgba(229, 160, 0, 0.08);
+  --color-yellow-alpha-200: rgba(229, 160, 0, 0.16);
+
+  /* Alphas / White (various opacities of #ffffff) */
+  --color-white-alpha-100: rgba(255, 255, 255, 0.05); /* 5% */
+  --color-white-alpha-200: rgba(255, 255, 255, 0.1);  /* 10% */
+  --color-white-alpha-300: rgba(255, 255, 255, 0.2);  /* 20% */
+  --color-white-alpha-400: rgba(255, 255, 255, 0.4);  /* 40% */
+  --color-white-alpha-500: rgba(255, 255, 255, 0.7);  /* 70% */
+  --color-white-alpha-600: rgba(255, 255, 255, 0.8);  /* 80% */
+  --color-white-alpha-700: rgba(255, 255, 255, 0.85); /* 85% */
+  --color-white-alpha-800: rgba(255, 255, 255, 0.9);  /* 90% */
+  --color-white-alpha-900: rgba(255, 255, 255, 0.95); /* 95% */
+
+  /* Alphas / Black (various opacities of #0c0c0d from Figma) */
+  --color-black-alpha-100: rgba(12, 12, 13, 0.05); /* 5% */
+  --color-black-alpha-200: rgba(12, 12, 13, 0.1);  /* 10% */
+  --color-black-alpha-300: rgba(12, 12, 13, 0.2);  /* 20% */
+  --color-black-alpha-400: rgba(12, 12, 13, 0.4);  /* 40% */
+  --color-black-alpha-500: rgba(12, 12, 13, 0.7);  /* 70% */
+  --color-black-alpha-600: rgba(12, 12, 13, 0.8);  /* 80% */
+  --color-black-alpha-700: rgba(12, 12, 13, 0.85); /* 85% */
+  --color-black-alpha-800: rgba(12, 12, 13, 0.9);  /* 90% */
+  --color-black-alpha-900: rgba(12, 12, 13, 0.95); /* 95% */
+}
+
+/* Semantic tokens (Layer 2)
+ * These are the names you actually use in components.
+ * They are defined in terms of the base primitives above.
+ *
+ * Structure follows the Figma examples:
+ * - Background / Default
+ * - Background / Neutral
+ * - Brand Purple
+ * - Action Violet
+ *
+ * Light and dark themes are expressed via [data-theme] on <html> or <body>.
+ */
+
+/* Light theme (default) */
+:root,
+:root[data-theme='light'] {
+  /* Background / Default */
+  --bg-default: var(--color-slate-050);              /* Background / Default / Default */
+  --bg-default-hover: var(--color-slate-150);        /* Background / Default / Hover */
+  --bg-default-secondary: var(--color-slate-200);    /* Background / Default / Secondary */
+  --bg-default-secondary-hover: var(--color-slate-300);
+  --bg-default-tertiary: var(--color-slate-500);
+  --bg-default-tertiary-hover: var(--color-slate-700);
+  --bg-default-subtle-low: var(--color-slate-alpha-100);
+  --bg-default-subtle-medium: var(--color-slate-alpha-200);
+
+  /* Background / Neutral */
+  --bg-neutral-default: var(--color-slate-600);
+  --bg-neutral-hover: var(--color-slate-800);
+  --bg-neutral-secondary: var(--color-slate-300);
+  --bg-neutral-secondary-hover: var(--color-slate-400);
+  --bg-neutral-tertiary: var(--color-slate-050);
+  --bg-neutral-tertiary-hover: var(--color-slate-150);
+  --bg-neutral-subtle-low: var(--color-slate-alpha-100);
+  --bg-neutral-subtle-medium: var(--color-slate-alpha-200);
+
+  /* Brand Purple (Background / Brand Purple - Light) */
+  --brand-purple-default: var(--color-purple-500);           /* Default: Purple/500 */
+  --brand-purple-default-hover: var(--color-purple-600);     /* Default Hover: Purple/600 */
+  --brand-purple-secondary: var(--color-purple-300);         /* Secondary: Purple/300 */
+  --brand-purple-secondary-hover: var(--color-purple-400);   /* Secondary Hover: Purple/400 */
+  --brand-purple-tertiary: var(--color-purple-150);          /* Tertiary: Purple/150 */
+  --brand-purple-tertiary-hover: var(--color-purple-200);    /* Tertiary Hover: Purple/200 */
+  --brand-purple-subtle: var(--color-purple-alpha-100);      /* Subtle: Alphas/Purple/100 */
+
+  /* Action Violet (Background / Action Violet - Light) */
+  --action-violet-default: var(--color-violet-500);          /* Default: Violet/500 */
+  --action-violet-default-hover: var(--color-violet-700);    /* Default Hover: Violet/700 */
+  --action-violet-secondary: var(--color-violet-300);        /* Secondary: Violet/300 */
+  --action-violet-secondary-hover: var(--color-violet-400);  /* Secondary Hover: Violet/400 */
+  --action-violet-tertiary: var(--color-violet-100);         /* Tertiary: Violet/100 */
+  --action-violet-tertiary-hover: var(--color-violet-150);   /* Tertiary Hover: Violet/150 */
+  --action-violet-subtle-low: var(--color-violet-alpha-100); /* Subtle Low: Alphas/Violet/100 */
+  --action-violet-disabled: #dad6f2;
+
+  /* Info (Background / Info - Light) */
+  --bg-info-default: var(--color-blue-500);           /* Default: Blue/500 */
+  --bg-info-default-hover: var(--color-blue-600);     /* Default Hover: Blue/600 */
+  --bg-info-secondary: var(--color-blue-300);         /* Secondary: Blue/300 */
+  --bg-info-secondary-hover: var(--color-blue-400);   /* Secondary Hover: Blue/400 */
+  --bg-info-tertiary: var(--color-blue-100);          /* Tertiary: Blue/100 */
+  --bg-info-tertiary-hover: var(--color-blue-200);    /* Tertiary Hover: Blue/200 */
+
+  /* Gray (Background / Gray - Light) */
+  --bg-gray-default: var(--color-gray-500);           /* Default: Gray/500 */
+  --bg-gray-hover: var(--color-gray-600);             /* Hover: Gray/600 */
+  --bg-gray-secondary: var(--color-gray-300);         /* Secondary: Gray/300 */
+  --bg-gray-secondary-hover: var(--color-gray-400);   /* Secondary Hover: Gray/400 */
+  --bg-gray-tertiary: var(--color-gray-050);          /* Tertiary: Gray/050 */
+  --bg-gray-tertiary-hover: var(--color-gray-100);    /* Tertiary Hover: Gray/100 */
+
+  /* Text */
+  --text-primary: var(--color-slate-900);
+  --text-secondary: var(--color-slate-600);
+  --text-muted: var(--color-slate-500);
+  --text-inverse: #ffffff;
+
+  /* Border */
+  --border-default: var(--color-slate-200);
+  --border-strong: var(--color-slate-400);
+  --border-subtle: var(--color-slate-alpha-200);
+  --border-focus: var(--action-violet-default);
+}
+
+/* Dark theme */
+:root[data-theme='dark'] {
+  /* Background / Default */
+  --bg-default: var(--color-gray-950);
+  --bg-default-hover: var(--color-gray-800);
+  --bg-default-secondary: var(--color-gray-600);
+  --bg-default-secondary-hover: var(--color-gray-500);
+  --bg-default-tertiary: var(--color-gray-400);
+  --bg-default-tertiary-hover: var(--color-gray-500);
+  --bg-default-subtle-low: var(--color-gray-alpha-100);
+  --bg-default-subtle-medium: var(--color-gray-alpha-200);
+
+  /* Background / Neutral (matches Figma table: Slate values in dark theme) */
+  --bg-neutral-default: var(--color-slate-400);          /* Slate/400 */
+  --bg-neutral-hover: var(--color-slate-500);            /* Slate/500 */
+  --bg-neutral-secondary: var(--color-slate-700);        /* Slate/700 */
+  --bg-neutral-secondary-hover: var(--color-slate-800);  /* Slate/800 */
+  --bg-neutral-tertiary: var(--color-slate-800);         /* Slate/800 */
+  --bg-neutral-tertiary-hover: var(--color-slate-900);   /* Slate/900 */
+  --bg-neutral-subtle-low: var(--color-slate-900);       /* Slate/900 */
+  --bg-neutral-subtle-medium: var(--color-slate-900);    /* Slate/900 */
+
+  /* Brand Purple (Background / Brand Purple - Dark) */
+  --brand-purple-default: var(--color-purple-300);           /* Default: Purple/300 */
+  --brand-purple-default-hover: var(--color-purple-400);     /* Default Hover: Purple/400 */
+  --brand-purple-secondary: var(--color-purple-600);         /* Secondary: Purple/600 */
+  --brand-purple-secondary-hover: var(--color-purple-500);   /* Secondary Hover: Purple/500 */
+  --brand-purple-tertiary: var(--color-purple-800);          /* Tertiary: Purple/800 */
+  --brand-purple-tertiary-hover: var(--color-purple-700);    /* Tertiary Hover: Purple/700 */
+  --brand-purple-subtle: var(--color-purple-alpha-100);      /* Subtle: Alphas/Purple/100 */
+
+  /* Action Violet (Background / Action Violet - Dark) */
+  --action-violet-default: var(--color-violet-300);          /* Default: Violet/300 */
+  --action-violet-default-hover: var(--color-violet-400);    /* Default Hover: Violet/400 */
+  --action-violet-secondary: var(--color-violet-600);        /* Secondary: Violet/600 */
+  --action-violet-secondary-hover: var(--color-violet-700);  /* Secondary Hover: Violet/700 */
+  --action-violet-tertiary: var(--color-violet-800);         /* Tertiary: Violet/800 */
+  --action-violet-tertiary-hover: var(--color-violet-900);   /* Tertiary Hover: Violet/900 */
+  --action-violet-subtle-low: var(--color-violet-alpha-100); /* Subtle Low: Alphas/Violet/100 */
+  --action-violet-disabled: #6d4199;
+
+  /* Info (Background / Info - Dark) */
+  --bg-info-default: var(--color-blue-200);           /* Default: Blue/200 */
+  --bg-info-default-hover: var(--color-blue-300);     /* Default Hover: Blue/300 */
+  --bg-info-secondary: var(--color-blue-700);         /* Secondary: Blue/700 */
+  --bg-info-secondary-hover: var(--color-blue-600);   /* Secondary Hover: Blue/600 */
+  --bg-info-tertiary: var(--color-blue-900);          /* Tertiary: Blue/900 */
+  --bg-info-tertiary-hover: var(--color-blue-800);    /* Tertiary Hover: Blue/800 */
+
+  /* Gray (Background / Gray - Dark) */
+  --bg-gray-default: var(--color-gray-400);           /* Default: Gray/400 */
+  --bg-gray-hover: var(--color-gray-500);             /* Hover: Gray/500 */
+  --bg-gray-secondary: var(--color-gray-700);         /* Secondary: Gray/700 */
+  --bg-gray-secondary-hover: var(--color-gray-800);   /* Secondary Hover: Gray/800 */
+  --bg-gray-tertiary: var(--color-gray-800);          /* Tertiary: Gray/800 */
+  --bg-gray-tertiary-hover: var(--color-gray-900);    /* Tertiary Hover: Gray/900 */
+
+  /* Text */
+  --text-primary: #f5f5f5;
+  --text-secondary: var(--color-gray-300);
+  --text-muted: var(--color-gray-400);
+  --text-inverse: var(--color-gray-950);
+
+  /* Border */
+  --border-default: var(--color-gray-700);
+  --border-strong: var(--color-gray-500);
+  --border-subtle: var(--color-gray-alpha-200);
+  --border-focus: var(--action-violet-default);
+}
+
+
