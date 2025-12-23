@@ -168,6 +168,18 @@ const Table = ({
     }
   };
 
+  // Custom sort icon renderer
+  const renderSorterIcon = ({ sortOrder }) => {
+    if (sortOrder === 'ascend') {
+      return <Icon name="SortAscending" size={14} className={styles.sortIcon} />;
+    }
+    if (sortOrder === 'descend') {
+      return <Icon name="SortDescending" size={14} className={styles.sortIcon} />;
+    }
+    // Unsorted state
+    return <Icon name="CaretUpDown" size={14} className={styles.sortIcon} />;
+  };
+
   // Convert columns to Ant Design format
   const antdColumns = useMemo(() => {
     // Add drag handle column (after selection column)
@@ -187,6 +199,7 @@ const Table = ({
         sorter: column.sortable ? true : false,
         render: column.render || ((text) => text),
         className: styles.tableCell,
+        sorterIcon: column.sortable ? renderSorterIcon : undefined,
       };
 
       // Add sorted state

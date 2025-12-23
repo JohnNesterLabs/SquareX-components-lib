@@ -71,8 +71,17 @@
   text-align: center;
 }
 
-/* Sort Icons */
+/* Sort Icons - Custom styling */
+.tableContainer .ant-table-column-sorters {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 .tableContainer .ant-table-column-sorter {
+  display: inline-flex !important;
+  align-items: center;
+  margin-left: 4px;
   color: var(--color-slate-500, #768494);
   transition: color 0.2s ease;
 }
@@ -83,6 +92,18 @@
 
 .tableContainer .ant-table-column-sorters:hover {
   color: var(--color-slate-800, #2f353b);
+}
+
+/* Hide default Ant Design sort icons (arrows) */
+.tableContainer .ant-table-column-sorter .anticon {
+  display: none !important;
+}
+
+/* Ensure custom icons are visible */
+.tableContainer .ant-table-column-sorter img {
+  display: block;
+  width: 14px;
+  height: 14px;
 }
 
 /* Custom Checkbox Styling */
