@@ -1,7 +1,6 @@
 .tableTestContainer {
   width: 100%;
   padding: 24px;
-  background: var(--bg-default, #ffffff);
 }
 
 .tableTestHeader {

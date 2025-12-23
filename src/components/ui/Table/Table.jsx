@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
 import Checkbox from '../Checkbox/Checkbox';
+import Icon from '../Icon/Icon';
 import styles from './Table.module.css';
 
 /**
@@ -163,35 +164,31 @@ const Table = ({
     setDragOverRowIndex(null);
   }, [data, draggedRowIndex, selectedRows, onRowReorder]);
 
-  // Render sort icon
+  // Render sort icon using Icon component
   const renderSortIcon = (columnKey) => {
     if (sortConfig.key !== columnKey) {
+      // Unsorted state - show CaretUpDown icon
       return (
         <span className={styles.sortIcon}>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 2L2 6H10L6 2Z" fill="currentColor" opacity="0.3"/>
-            <path d="M6 10L10 6H2L6 10Z" fill="currentColor" opacity="0.3"/>
-          </svg>
+          <Icon name="CaretUpDown" size={14} />
         </span>
       );
     }
 
     if (sortConfig.direction === 'asc') {
+      // Ascending sort - show SortAscending icon
       return (
         <span className={styles.sortIcon}>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 2L2 6H10L6 2Z" fill="currentColor"/>
-          </svg>
+          <Icon name="SortAscending" size={14} />
         </span>
       );
     }
 
     if (sortConfig.direction === 'desc') {
+      // Descending sort - show SortDescending icon
       return (
         <span className={styles.sortIcon}>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 10L10 6H2L6 10Z" fill="currentColor"/>
-          </svg>
+          <Icon name="SortDescending" size={14} />
         </span>
       );
     }
@@ -235,8 +232,8 @@ const Table = ({
                   style={{ cursor: column.sortable ? 'pointer' : 'default' }}
                 >
                   <div className={styles.thContent}>
-                    <span>{column.label}</span>
                     {column.sortable && renderSortIcon(column.key)}
+                    <span>{column.label}</span>
                   </div>
                 </th>
               ))}
@@ -277,14 +274,7 @@ const Table = ({
                   {/* Drag handle cell */}
                   <td className={styles.tdDragHandle}>
                     <div className={styles.dragHandle}>
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="3" cy="3" r="1" fill="currentColor"/>
-                        <circle cx="9" cy="3" r="1" fill="currentColor"/>
-                        <circle cx="3" cy="6" r="1" fill="currentColor"/>
-                        <circle cx="9" cy="6" r="1" fill="currentColor"/>
-                        <circle cx="3" cy="9" r="1" fill="currentColor"/>
-                        <circle cx="9" cy="9" r="1" fill="currentColor"/>
-                      </svg>
+                      <Icon name="DotsSixVertical" size={12} />
                     </div>
                   </td>
                   

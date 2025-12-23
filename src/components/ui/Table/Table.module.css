@@ -1,9 +1,8 @@
 .tableContainer {
   width: 100%;
-  border: 1px solid var(--color-slate-200, #c8ced4);
-  border-radius: 8px;
+  border: 1px solid var(--color-slate-150, #d6dadf);
+  border-radius: 12px;
   overflow: hidden;
-  background: var(--bg-default, #ffffff);
 }
 
 .tableWrapper {
@@ -25,11 +24,11 @@
   top: 0;
   z-index: 10;
   background: var(--bg-default, #ffffff);
-  border-bottom: 1px solid var(--color-slate-200, #c8ced4);
+  border-bottom: 1px solid var(--color-slate-150, #d6dadf);
 }
 
 .thead tr {
-  border-bottom: 1px solid var(--color-slate-200, #c8ced4);
+  border-bottom: 1px solid var(--color-slate-150, #d6dadf);
 }
 
 .th {
@@ -69,14 +68,22 @@
 .thContent {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
 .sortIcon {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   color: var(--color-slate-500, #768494);
   transition: color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.sortIcon img {
+  display: block;
+  width: 14px;
+  height: 14px;
 }
 
 .thSortable:hover .sortIcon {
@@ -84,12 +91,9 @@
 }
 
 /* Body Styles */
-.tbody {
-  background: var(--bg-default, #ffffff);
-}
 
 .tr {
-  border-bottom: 1px solid var(--color-slate-200, #c8ced4);
+  border-bottom: 1px solid var(--color-slate-150, #d6dadf);
   transition: background-color 0.2s ease, opacity 0.2s ease;
   cursor: move;
 }
@@ -152,8 +156,19 @@
   cursor: grabbing;
 }
 
+.dragHandle img {
+  display: block;
+  width: 12px;
+  height: 12px;
+  color: inherit;
+}
+
 .tr:hover .dragHandle {
   color: var(--color-slate-600, #5e6a76);
+}
+
+.tr:hover .dragHandle img {
+  filter: brightness(0.7);
 }
 
 /* Scrollbar Styles */

@@ -23,8 +23,9 @@ const Icon = ({
   alt = '',
   ...props
 }) => {
-  // Normalize icon name (remove extension if provided)
-  const normalizedName = name?.replace(/\.svg$/, '').toLowerCase();
+  // Normalize icon name (remove extension if provided, keep original case)
+  const iconName = name?.replace(/\.svg$/, '');
+  const normalizedName = iconName?.toLowerCase();
   
   // Handle size - can be string ('small', 'medium', 'large') or number (14, 16, 20, etc.)
   const getSizeValue = () => {
@@ -44,9 +45,10 @@ const Icon = ({
   // Build icon path - use single SVG file (not size-specific)
   const getIconPath = () => {
     // Check if variant-specific icon exists
-    const variantPath = `/icons/variants/${normalizedName}/${variant}.svg`;
+    const variantPath = `/icon/variants/${normalizedName}/${variant}.svg`;
     // Fallback to base icon (single SVG file, scalable)
-    const basePath = `/icons/${normalizedName}.svg`;
+    // Use original name (with original case) to match file names like "CaretUpDown.svg"
+    const basePath = `/icon/${iconName}.svg`;
     
     // For now, use base path (variants can be added later)
     // In production, you could check if variant exists and use it
