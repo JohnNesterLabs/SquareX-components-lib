@@ -33,10 +33,14 @@
 }
 
 .personIcon {
-  width: 16px;
-  height: 16px;
   color: var(--color-slate-500, #768494);
   flex-shrink: 0;
+}
+
+.personIcon img {
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 .statusCell {
