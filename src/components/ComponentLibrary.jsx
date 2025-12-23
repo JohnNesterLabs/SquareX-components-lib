@@ -25,6 +25,8 @@ import Radio from './ui/Radio/Radio';
 import RadioTest from './ui/Radio/RadioTest';
 import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
+import Table from './ui/Table/Table';
+import TableTest from './ui/Table/TableTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -48,6 +50,7 @@ const ComponentLibrary = () => {
     { id: 'checkbox', label: 'Checkbox' },
     { id: 'radio', label: 'Radio' },
     { id: 'toggle', label: 'Toggle' },
+    { id: 'table', label: 'Table' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -981,135 +984,99 @@ const ComponentLibrary = () => {
   );
 
   const renderIconsComponent = () => {
-    // Icon sizes to display (matching Figma design - all icons show all 7 sizes)
-    const iconSizes = [48, 40, 32, 24, 20, 16, 14];
+    // Icon sizes to display (8 sizes matching first image: 48, 40, 32, 24, 20, 16, 14, 12)
+    const iconSizes = [48, 40, 32, 24, 20, 16, 14, 12];
     
     // All available icons from public/icon folder (358 icons)
-    // Each icon displays all 7 size variants (48px down to 14px)
-    // Icons are loaded from the auto-generated iconList.js file
+    // Each icon displays all 8 size variants
     const allIcons = iconListData;
 
     return (
       <>
-        {/* All Icons Grid - Matching Figma Design */}
+        {/* All Icons Grid - Matching First Image Design */}
         <div className="component-section">
           <h2 className="component-section-title">All Icons ({allIcons.length} icons)</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell" style={{ width: '100%' }}>
-                  <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(4, 1fr)', 
-                    gap: '24px', 
-                    padding: '24px',
-                    background: '#f5f5f5'
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(3, 1fr)', 
+            gap: '16px', 
+            padding: '16px',
+            background: '#ffffff'
+          }}>
+            {allIcons.map((icon) => {
+              // Show all 8 sizes
+              const sizesToShow = iconSizes;
+              
+              return (
+                <div 
+                  key={icon.name} 
+                  style={{ 
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px',
+                    padding: '16px',
+                    border: '1px dashed #4432bf',
+                    borderRadius: '8px',
+                    background: '#ffffff'
+                  }}
+                >
+                  {/* Icon Name with Purple Diamond */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    fontFamily: "'Host Grotesk', sans-serif",
+                    fontSize: '14px',
+                    fontWeight: 500,
+                    color: '#2f353b'
                   }}>
-                    {allIcons.map((icon) => {
-                      // Get sizes to show for this icon (based on variantCount)
-                      const sizesToShow = iconSizes.slice(0, icon.variantCount);
-                      
-                      return (
-                        <div 
-                          key={icon.name} 
+                    {/* Purple Diamond Icon */}
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M6 0L12 6L6 12L0 6L6 0Z" fill="#4432bf"/>
+                    </svg>
+                    <span>{icon.label}</span>
+                  </div>
+                  
+                  {/* Icon Size Variants - Displayed in a row (largest to smallest) */}
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '4px',
+                    flexWrap: 'nowrap',
+                    justifyContent: 'flex-start',
+                    overflowX: 'auto'
+                  }}>
+                    {sizesToShow.map((size) => (
+                      <div
+                        key={size}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          width: `${size}px`,
+                          height: `${size}px`,
+                          flexShrink: 0
+                        }}
+                      >
+                        <img
+                          src={`/${icon.filePath}`}
+                          alt={`${icon.label} ${size}px`}
                           style={{ 
-                            display: 'flex',
-                            flexDirection: 'column',
-                            gap: '16px',
-                            padding: '24px',
-                            border: '2px dashed #4432bf',
-                            borderRadius: '8px',
-                            background: '#fff',
-                            minHeight: '200px'
+                            width: `${size}px`, 
+                            height: `${size}px`,
+                            objectFit: 'contain',
+                            display: 'block'
                           }}
-                        >
-                          {/* Icon Name */}
-                          <div style={{
-                            fontFamily: "'Host Grotesk', sans-serif",
-                            fontSize: '16px',
-                            fontWeight: 600,
-                            color: '#2f353b',
-                            marginBottom: '4px'
-                          }}>
-                            {icon.label}
-                          </div>
-                          
-                          {/* Icon Size Variants - Displayed in a row (largest to smallest) */}
-                          <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            flexWrap: 'wrap',
-                            justifyContent: 'flex-start',
-                            minHeight: '80px'
-                          }}>
-                            {sizesToShow.map((size, index) => (
-                              <div
-                                key={size}
-                                style={{
-                                  display: 'flex',
-                                  alignItems: 'center',
-                                  justifyContent: 'center',
-                                  width: `${Math.min(size + 16, 64)}px`,
-                                  height: `${Math.min(size + 16, 64)}px`,
-                                  background: '#f5f5f5',
-                                  borderRadius: '4px',
-                                  padding: '8px',
-                                  boxSizing: 'border-box',
-                                  flexShrink: 0
-                                }}
-                              >
-                                <img
-                                  src={`/${icon.filePath}`}
-                                  alt={`${icon.label} ${size}px`}
-                                  style={{ 
-                                    width: `${size}px`, 
-                                    height: `${size}px`,
-                                    objectFit: 'contain',
-                                    display: 'block',
-                                    maxWidth: '100%',
-                                    maxHeight: '100%'
-                                  }}
-                                  onError={(e) => {
-                                    e.target.style.display = 'none';
-                                  }}
-                                />
-                              </div>
-                            ))}
-                          </div>
-                          
-                          {/* Variant Count Label */}
-                          <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '6px',
-                            marginTop: 'auto',
-                            paddingTop: '8px'
-                          }}>
-                            <span style={{
-                              fontFamily: "'Host Grotesk', sans-serif",
-                              fontSize: '12px',
-                              fontWeight: 400,
-                              color: '#768494'
-                            }}>
-                              {icon.variantCount} Variants
-                            </span>
-                            <span style={{
-                              color: '#4432bf',
-                              fontSize: '16px',
-                              fontWeight: 600,
-                              lineHeight: '1'
-                            }}>
-                              +
-                            </span>
-                          </div>
-                        </div>
-                      );
-                    })}
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </>
@@ -1135,74 +1102,91 @@ const ComponentLibrary = () => {
       <>
         {/* Checkbox Test Component */}
         <div className="component-section">
-          <h2 className="component-section-title">Checkbox Test Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell" style={{ width: '100%' }}>
-                  <CheckboxTest />
-                </div>
+          <CheckboxTest />
+        </div>
+
+        {/* Checkbox States - Unchecked & Checked in Grid */}
+        <div className="component-section">
+          <h2 className="component-section-title">Checkbox Component - All States</h2>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(2, 1fr)', 
+            gap: '24px'
+          }}>
+            {/* Unchecked States */}
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Unchecked</h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: `120px repeat(${checkboxSizes.length}, 1fr)`, 
+                gap: '12px',
+                alignItems: 'center'
+              }}>
+                {/* Header row */}
+                <div></div>
+                {checkboxSizes.map((size) => (
+                  <div key={size.key} style={{ textAlign: 'center', fontSize: '12px', fontWeight: 600, color: '#768494' }}>
+                    {size.label}
+                  </div>
+                ))}
+                {/* State rows */}
+                {checkboxStates.map((state) => (
+                  <React.Fragment key={state.key}>
+                    <div style={{ fontSize: '14px', fontWeight: 500, color: '#2f353b' }}>
+                      {state.label}
+                    </div>
+                    {checkboxSizes.map((size) => (
+                      <div key={size.key} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '12px' }}>
+                        <Checkbox
+                          checked={false}
+                          disabled={state.key === 'disabled'}
+                          state={state.key}
+                          size={size.key}
+                          onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                        />
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Checkbox States - Unchecked */}
-        <div className="component-section">
-          <h2 className="component-section-title">Checkbox Component - Unchecked States</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {checkboxStates.map((state) => (
-                <div key={state.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
-                      {checkboxSizes.map((size) => (
-                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                          <Checkbox
-                            checked={false}
-                            disabled={state.key === 'disabled'}
-                            state={state.key}
-                            size={size.key}
-                            onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
-                          />
-                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
-                        </div>
-                      ))}
-                    </div>
+            {/* Checked States */}
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Checked</h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: `120px repeat(${checkboxSizes.length}, 1fr)`, 
+                gap: '12px',
+                alignItems: 'center'
+              }}>
+                {/* Header row */}
+                <div></div>
+                {checkboxSizes.map((size) => (
+                  <div key={size.key} style={{ textAlign: 'center', fontSize: '12px', fontWeight: 600, color: '#768494' }}>
+                    {size.label}
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Checkbox States - Checked */}
-        <div className="component-section">
-          <h2 className="component-section-title">Checkbox Component - Checked States</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {checkboxStates.map((state) => (
-                <div key={state.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
-                      {checkboxSizes.map((size) => (
-                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                          <Checkbox
-                            checked={true}
-                            disabled={state.key === 'disabled'}
-                            state={state.key}
-                            size={size.key}
-                            onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
-                          />
-                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
-                        </div>
-                      ))}
+                ))}
+                {/* State rows */}
+                {checkboxStates.map((state) => (
+                  <React.Fragment key={state.key}>
+                    <div style={{ fontSize: '14px', fontWeight: 500, color: '#2f353b' }}>
+                      {state.label}
                     </div>
-                  </div>
-                </div>
-              ))}
+                    {checkboxSizes.map((size) => (
+                      <div key={size.key} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '12px' }}>
+                        <Checkbox
+                          checked={true}
+                          disabled={state.key === 'disabled'}
+                          state={state.key}
+                          size={size.key}
+                          onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+                        />
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -1210,38 +1194,29 @@ const ComponentLibrary = () => {
         {/* Checkbox with Labels */}
         <div className="component-section">
           <h2 className="component-section-title">Checkbox Component - With Labels</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell">
-                  <div className="component-inputfield-state-label">With Label</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' }}>
-                    <Checkbox
-                      checked={false}
-                      label="Unchecked checkbox"
-                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
-                    />
-                    <Checkbox
-                      checked={true}
-                      label="Checked checkbox"
-                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
-                    />
-                    <Checkbox
-                      checked={false}
-                      disabled={true}
-                      label="Disabled checkbox"
-                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
-                    />
-                    <Checkbox
-                      checked={true}
-                      disabled={true}
-                      label="Disabled checked checkbox"
-                      onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '400px' }}>
+            <Checkbox
+              checked={false}
+              label="Unchecked checkbox"
+              onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+            />
+            <Checkbox
+              checked={true}
+              label="Checked checkbox"
+              onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+            />
+            <Checkbox
+              checked={false}
+              disabled={true}
+              label="Disabled checkbox"
+              onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+            />
+            <Checkbox
+              checked={true}
+              disabled={true}
+              label="Disabled checked checkbox"
+              onChange={(e) => console.log('Checkbox changed:', e.target.checked)}
+            />
           </div>
         </div>
       </>
@@ -1267,78 +1242,95 @@ const ComponentLibrary = () => {
       <>
         {/* Radio Test Component */}
         <div className="component-section">
-          <h2 className="component-section-title">Radio Test Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell" style={{ width: '100%' }}>
-                  <RadioTest />
-                </div>
+          <RadioTest />
+        </div>
+
+        {/* Radio States - Unselected & Selected in Grid */}
+        <div className="component-section">
+          <h2 className="component-section-title">Radio Component - All States</h2>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(2, 1fr)', 
+            gap: '24px'
+          }}>
+            {/* Unselected States */}
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Unselected</h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: `120px repeat(${radioSizes.length}, 1fr)`, 
+                gap: '12px',
+                alignItems: 'center'
+              }}>
+                {/* Header row */}
+                <div></div>
+                {radioSizes.map((size) => (
+                  <div key={size.key} style={{ textAlign: 'center', fontSize: '12px', fontWeight: 600, color: '#768494' }}>
+                    {size.label}
+                  </div>
+                ))}
+                {/* State rows */}
+                {radioStates.map((state) => (
+                  <React.Fragment key={state.key}>
+                    <div style={{ fontSize: '14px', fontWeight: 500, color: '#2f353b' }}>
+                      {state.label}
+                    </div>
+                    {radioSizes.map((size) => (
+                      <div key={size.key} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '12px' }}>
+                        <Radio
+                          checked={false}
+                          disabled={state.key === 'disabled'}
+                          state={state.key}
+                          size={size.key}
+                          name={`radio-${state.key}-${size.key}`}
+                          value={`value-${size.key}`}
+                          onChange={(e) => console.log('Radio changed:', e.target.value)}
+                        />
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Radio States - Unselected */}
-        <div className="component-section">
-          <h2 className="component-section-title">Radio Component - Unselected States</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {radioStates.map((state) => (
-                <div key={state.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
-                      {radioSizes.map((size) => (
-                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                          <Radio
-                            checked={false}
-                            disabled={state.key === 'disabled'}
-                            state={state.key}
-                            size={size.key}
-                            name={`radio-${state.key}-${size.key}`}
-                            value={`value-${size.key}`}
-                            onChange={(e) => console.log('Radio changed:', e.target.value)}
-                          />
-                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
-                        </div>
-                      ))}
-                    </div>
+            {/* Selected States */}
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Selected</h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: `120px repeat(${radioSizes.length}, 1fr)`, 
+                gap: '12px',
+                alignItems: 'center'
+              }}>
+                {/* Header row */}
+                <div></div>
+                {radioSizes.map((size) => (
+                  <div key={size.key} style={{ textAlign: 'center', fontSize: '12px', fontWeight: 600, color: '#768494' }}>
+                    {size.label}
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Radio States - Selected */}
-        <div className="component-section">
-          <h2 className="component-section-title">Radio Component - Selected States</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {radioStates.map((state) => (
-                <div key={state.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
-                      {radioSizes.map((size) => (
-                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                          <Radio
-                            checked={true}
-                            disabled={state.key === 'disabled'}
-                            state={state.key}
-                            size={size.key}
-                            name={`radio-selected-${state.key}-${size.key}`}
-                            value={`value-${size.key}`}
-                            onChange={(e) => console.log('Radio changed:', e.target.value)}
-                          />
-                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
-                        </div>
-                      ))}
+                ))}
+                {/* State rows */}
+                {radioStates.map((state) => (
+                  <React.Fragment key={state.key}>
+                    <div style={{ fontSize: '14px', fontWeight: 500, color: '#2f353b' }}>
+                      {state.label}
                     </div>
-                  </div>
-                </div>
-              ))}
+                    {radioSizes.map((size) => (
+                      <div key={size.key} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '12px' }}>
+                        <Radio
+                          checked={true}
+                          disabled={state.key === 'disabled'}
+                          state={state.key}
+                          size={size.key}
+                          name={`radio-selected-${state.key}-${size.key}`}
+                          value={`value-${size.key}`}
+                          onChange={(e) => console.log('Radio changed:', e.target.value)}
+                        />
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -1346,37 +1338,28 @@ const ComponentLibrary = () => {
         {/* Radio with Labels */}
         <div className="component-section">
           <h2 className="component-section-title">Radio Component - With Labels</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell">
-                  <div className="component-inputfield-state-label">Radio Group</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' }}>
-                    <Radio
-                      checked={false}
-                      name="radio-group"
-                      value="option1"
-                      label="Option 1"
-                      onChange={(e) => console.log('Radio changed:', e.target.value)}
-                    />
-                    <Radio
-                      checked={true}
-                      name="radio-group"
-                      value="option2"
-                      label="Option 2"
-                      onChange={(e) => console.log('Radio changed:', e.target.value)}
-                    />
-                    <Radio
-                      checked={false}
-                      name="radio-group"
-                      value="option3"
-                      label="Option 3"
-                      onChange={(e) => console.log('Radio changed:', e.target.value)}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '400px' }}>
+            <Radio
+              checked={false}
+              name="radio-group"
+              value="option1"
+              label="Option 1"
+              onChange={(e) => console.log('Radio changed:', e.target.value)}
+            />
+            <Radio
+              checked={true}
+              name="radio-group"
+              value="option2"
+              label="Option 2"
+              onChange={(e) => console.log('Radio changed:', e.target.value)}
+            />
+            <Radio
+              checked={false}
+              name="radio-group"
+              value="option3"
+              label="Option 3"
+              onChange={(e) => console.log('Radio changed:', e.target.value)}
+            />
           </div>
         </div>
       </>
@@ -1402,78 +1385,95 @@ const ComponentLibrary = () => {
       <>
         {/* Toggle Test Component */}
         <div className="component-section">
-          <h2 className="component-section-title">Toggle Test Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell" style={{ width: '100%' }}>
-                  <ToggleTest />
-                </div>
+          <ToggleTest />
+        </div>
+
+        {/* Toggle States - OFF & ON in Grid */}
+        <div className="component-section">
+          <h2 className="component-section-title">Toggle Component - All States</h2>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(2, 1fr)', 
+            gap: '24px'
+          }}>
+            {/* OFF States */}
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>OFF</h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: `120px repeat(${toggleSizes.length}, 1fr)`, 
+                gap: '12px',
+                alignItems: 'center'
+              }}>
+                {/* Header row */}
+                <div></div>
+                {toggleSizes.map((size) => (
+                  <div key={size.key} style={{ textAlign: 'center', fontSize: '12px', fontWeight: 600, color: '#768494' }}>
+                    {size.label}
+                  </div>
+                ))}
+                {/* State rows */}
+                {toggleStates.map((state) => (
+                  <React.Fragment key={state.key}>
+                    <div style={{ fontSize: '14px', fontWeight: 500, color: '#2f353b' }}>
+                      {state.label}
+                    </div>
+                    {toggleSizes.map((size) => (
+                      <div key={size.key} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '12px' }}>
+                        <Toggle
+                          checked={false}
+                          disabled={state.key === 'disabled'}
+                          state={state.key}
+                          size={size.key}
+                          name={`toggle-off-${state.key}-${size.key}`}
+                          value={`value-${size.key}`}
+                          onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+                        />
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Toggle States - OFF */}
-        <div className="component-section">
-          <h2 className="component-section-title">Toggle Component - OFF States</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {toggleStates.map((state) => (
-                <div key={state.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
-                      {toggleSizes.map((size) => (
-                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                          <Toggle
-                            checked={false}
-                            disabled={state.key === 'disabled'}
-                            state={state.key}
-                            size={size.key}
-                            name={`toggle-off-${state.key}-${size.key}`}
-                            value={`value-${size.key}`}
-                            onChange={(e) => console.log('Toggle changed:', e.target.checked)}
-                          />
-                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
-                        </div>
-                      ))}
-                    </div>
+            {/* ON States */}
+            <div>
+              <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>ON</h3>
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: `120px repeat(${toggleSizes.length}, 1fr)`, 
+                gap: '12px',
+                alignItems: 'center'
+              }}>
+                {/* Header row */}
+                <div></div>
+                {toggleSizes.map((size) => (
+                  <div key={size.key} style={{ textAlign: 'center', fontSize: '12px', fontWeight: 600, color: '#768494' }}>
+                    {size.label}
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Toggle States - ON */}
-        <div className="component-section">
-          <h2 className="component-section-title">Toggle Component - ON States</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {toggleStates.map((state) => (
-                <div key={state.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap', padding: '16px', alignItems: 'center' }}>
-                      {toggleSizes.map((size) => (
-                        <div key={size.key} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '8px' }}>
-                          <Toggle
-                            checked={true}
-                            disabled={state.key === 'disabled'}
-                            state={state.key}
-                            size={size.key}
-                            name={`toggle-on-${state.key}-${size.key}`}
-                            value={`value-${size.key}`}
-                            onChange={(e) => console.log('Toggle changed:', e.target.checked)}
-                          />
-                          <span style={{ fontSize: '12px', color: '#768494' }}>{size.label}</span>
-                        </div>
-                      ))}
+                ))}
+                {/* State rows */}
+                {toggleStates.map((state) => (
+                  <React.Fragment key={state.key}>
+                    <div style={{ fontSize: '14px', fontWeight: 500, color: '#2f353b' }}>
+                      {state.label}
                     </div>
-                  </div>
-                </div>
-              ))}
+                    {toggleSizes.map((size) => (
+                      <div key={size.key} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '12px' }}>
+                        <Toggle
+                          checked={true}
+                          disabled={state.key === 'disabled'}
+                          state={state.key}
+                          size={size.key}
+                          name={`toggle-on-${state.key}-${size.key}`}
+                          value={`value-${size.key}`}
+                          onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+                        />
+                      </div>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -1481,39 +1481,41 @@ const ComponentLibrary = () => {
         {/* Toggle with Labels */}
         <div className="component-section">
           <h2 className="component-section-title">Toggle Component - With Labels</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell">
-                  <div className="component-inputfield-state-label">Toggle Examples</div>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', padding: '16px' }}>
-                    <Toggle
-                      checked={false}
-                      label="Notifications"
-                      onChange={(e) => console.log('Toggle changed:', e.target.checked)}
-                    />
-                    <Toggle
-                      checked={true}
-                      label="Email alerts"
-                      onChange={(e) => console.log('Toggle changed:', e.target.checked)}
-                    />
-                    <Toggle
-                      checked={false}
-                      disabled={true}
-                      label="Disabled toggle"
-                      onChange={(e) => console.log('Should not fire')}
-                    />
-                    <Toggle
-                      checked={true}
-                      disabled={true}
-                      label="Disabled checked toggle"
-                      onChange={(e) => console.log('Should not fire')}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '400px' }}>
+            <Toggle
+              checked={false}
+              label="Notifications"
+              onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+            />
+            <Toggle
+              checked={true}
+              label="Email alerts"
+              onChange={(e) => console.log('Toggle changed:', e.target.checked)}
+            />
+            <Toggle
+              checked={false}
+              disabled={true}
+              label="Disabled toggle"
+              onChange={(e) => console.log('Should not fire')}
+            />
+            <Toggle
+              checked={true}
+              disabled={true}
+              label="Disabled checked toggle"
+              onChange={(e) => console.log('Should not fire')}
+            />
           </div>
+        </div>
+      </>
+    );
+  };
+
+  const renderTableComponent = () => {
+    return (
+      <>
+        {/* Table Test Component */}
+        <div className="component-section">
+          <TableTest />
         </div>
       </>
     );
@@ -1527,16 +1529,18 @@ const ComponentLibrary = () => {
       </header>
 
       <div className="component-library-content">
-        <div className="component-tabs">
-          {tabs.map((tab) => (
-            <button
-              key={tab.id}
-              className={`component-tab ${activeTab === tab.id ? 'active' : ''}`}
-              onClick={() => setActiveTab(tab.id)}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div className="component-sidebar">
+          <div className="component-sidebar-scroll">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={`component-tab ${activeTab === tab.id ? 'active' : ''}`}
+                onClick={() => setActiveTab(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="component-tab-content">
@@ -1552,6 +1556,7 @@ const ComponentLibrary = () => {
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
           {activeTab === 'toggle' && renderToggleComponent()}
+          {activeTab === 'table' && renderTableComponent()}
         </div>
       </div>
     </div>
