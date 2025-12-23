@@ -1523,13 +1523,12 @@ const ComponentLibrary = () => {
 
   return (
     <div className="component-library">
-      <header className="component-library-header">
-        <h1>Component Library</h1>
-        <p>All Components - All Variants</p>
-      </header>
-
       <div className="component-library-content">
         <div className="component-sidebar">
+          <div className="component-sidebar-header">
+            <h1>Component Library</h1>
+            <p>All Components - All Variants</p>
+          </div>
           <div className="component-sidebar-scroll">
             {tabs.map((tab) => (
               <button
