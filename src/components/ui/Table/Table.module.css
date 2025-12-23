@@ -32,9 +32,9 @@
 }
 
 .th {
-  padding: 12px 16px;
+  padding: 15px 16px;
   text-align: left;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-slate-800, #2f353b);
   background: var(--bg-default, #ffffff);
@@ -122,7 +122,7 @@
 
 .td {
   padding: 16px;
-  font-size: 14px;
+  font-size: 12px;
   color: var(--color-slate-800, #2f353b);
   vertical-align: middle;
 }
