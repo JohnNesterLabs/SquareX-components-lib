@@ -256,7 +256,6 @@ const TableTest = () => {
   return (
     <div className={styles.tableTestContainer}>
       <div className={styles.tableTestHeader}>
-        <h3>Table Component Test</h3>
         <div className={styles.tableTestInfo}>
           <p>
             <strong>Features:</strong> Drag rows to reorder • Click column headers to sort • Use checkboxes to select rows
