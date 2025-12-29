@@ -1,17 +1,143 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
-import Checkbox from '../Checkbox/Checkbox';
+import React, { useState, useMemo, createContext, useContext, useRef, useCallback } from 'react';
+import { Table as AntTable, Checkbox } from 'antd';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
 import Icon from '../Icon/Icon';
 import styles from './Table.module.css';
+import './Table.antd.css';
+
+// Context to share sortable props
+const SortableRowContext = createContext(null);
 
 /**
- * Table Component
+ * Sortable Row Component
+ */
+const SortableRow = ({ children, id, rowKey, row }) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  };
+
+  return (
+    <SortableRowContext.Provider value={{ attributes, listeners }}>
+      <tr
+        ref={setNodeRef}
+        style={style}
+        className={`${isDragging ? styles.rowDragging : ''}`}
+      >
+        {children}
+      </tr>
+    </SortableRowContext.Provider>
+  );
+};
+
+/**
+ * Drag Handle Cell Component
+ */
+const DragHandleCell = () => {
+  const context = useContext(SortableRowContext);
+  if (!context) return null;
+
+  const { attributes, listeners } = context;
+
+  return (
+    <td className={styles.dragHandleCell}>
+      <div className={styles.dragHandle} {...listeners} {...attributes}>
+        <Icon name="DotsSixVertical" size={12} />
+      </div>
+    </td>
+  );
+};
+
+/**
+ * Column Resize Handle Component
+ */
+const ResizeHandle = ({ columnKey, onResizeStart, onResize, onResizeEnd }) => {
+  const handleRef = useRef(null);
+  const [isResizing, setIsResizing] = useState(false);
+
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsResizing(true);
+    
+    const startX = e.clientX;
+    const startWidth = handleRef.current?.parentElement?.offsetWidth || 0;
+
+    const handleMouseMove = (moveEvent) => {
+      const diff = moveEvent.clientX - startX;
+      const newWidth = Math.max(50, startWidth + diff); // Minimum width of 50px
+      if (onResize) {
+        onResize(columnKey, newWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+      if (onResizeEnd) {
+        onResizeEnd(columnKey);
+      }
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+
+    if (onResizeStart) {
+      onResizeStart(columnKey);
+    }
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  }, [columnKey, onResize, onResizeStart, onResizeEnd]);
+
+  return (
+    <div
+      ref={handleRef}
+      className={`${styles.resizeHandle} ${isResizing ? styles.resizing : ''}`}
+      onMouseDown={handleMouseDown}
+      title="Drag to resize column"
+    >
+      <div className={styles.resizeHandleLine} />
+    </div>
+  );
+};
+
+/**
+ * Table Component (Ant Design with Drag and Drop)
  * 
- * A feature-rich table component with:
+ * A feature-rich table component built on Ant Design with:
+ * - Row selection with checkboxes
+ * - Column sorting
  * - Drag and drop row reordering
  * - Fixed header with scrollable body
- * - Column sorting
- * - Select all checkbox
- * - Individual row checkboxes
+ * - Custom styling to match design system
  * 
  * @param {Array} columns - Array of column definitions: { key, label, sortable, render }
  * @param {Array} data - Array of row data objects
@@ -32,168 +158,332 @@ const Table = ({
   className = '',
   ...props
 }) => {
-  const [selectedRows, setSelectedRows] = useState(new Set());
-  const [sortConfig, setSortConfig] = useState({ key: null, direction: null });
-  const [draggedRowIndex, setDraggedRowIndex] = useState(null);
-  const [dragOverRowIndex, setDragOverRowIndex] = useState(null);
-  const dragStartY = useRef(null);
-  const selectAllCheckboxRef = useRef(null);
+  const [selectedRowKeys, setSelectedRowKeys] = useState([]);
+  const [sortedInfo, setSortedInfo] = useState({});
+  const [items, setItems] = useState(data);
+  const [columnWidths, setColumnWidths] = useState({});
 
-  // Handle select all checkbox
-  const handleSelectAll = useCallback((checked) => {
-    if (checked) {
-      const allRowIds = new Set(data.map((row) => row[rowKey]));
-      setSelectedRows(allRowIds);
-      if (onRowSelect) {
-        onRowSelect(Array.from(allRowIds));
-      }
-    } else {
-      setSelectedRows(new Set());
-      if (onRowSelect) {
-        onRowSelect([]);
-      }
-    }
-  }, [data, rowKey, onRowSelect]);
+  // Update items when data prop changes
+  React.useEffect(() => {
+    setItems(data);
+  }, [data]);
 
-  // Handle individual row checkbox
-  const handleRowSelect = useCallback((rowId, checked) => {
-    const newSelected = new Set(selectedRows);
-    if (checked) {
-      newSelected.add(rowId);
-    } else {
-      newSelected.delete(rowId);
+  // Remove Ant Design's ::before pseudo-element (column separator)
+  React.useEffect(() => {
+    const removeColumnSeparators = () => {
+      const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+      if (!tableContainer) return;
+
+      // Find all table header cells
+      const headerCells = tableContainer.querySelectorAll(
+        '.ant-table-thead > tr > th'
+      );
+
+      headerCells.forEach((cell) => {
+        // Try to access and remove the ::before pseudo-element
+        // Since we can't directly access ::before, we'll add inline styles
+        const computedStyle = window.getComputedStyle(cell, '::before');
+        if (computedStyle.content !== 'none' && computedStyle.content !== '') {
+          // Add a style element to override
+          const styleId = 'remove-table-separator';
+          let styleElement = document.getElementById(styleId);
+          if (!styleElement) {
+            styleElement = document.createElement('style');
+            styleElement.id = styleId;
+            styleElement.textContent = `
+              .${styles.tableContainer} .ant-table-thead > tr > th::before {
+                display: none !important;
+                content: none !important;
+                width: 0 !important;
+                height: 0 !important;
+                background: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          }
+        }
+      });
+    };
+
+    // Remove immediately
+    removeColumnSeparators();
+
+    // Also remove after delays to catch any delayed renders
+    const timeouts = [
+      setTimeout(removeColumnSeparators, 50),
+      setTimeout(removeColumnSeparators, 100),
+      setTimeout(removeColumnSeparators, 200),
+    ];
+
+    // Use MutationObserver to catch dynamic additions
+    const observer = new MutationObserver(removeColumnSeparators);
+    const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+    if (tableContainer) {
+      observer.observe(tableContainer, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class'],
+      });
     }
-    setSelectedRows(newSelected);
+
+    return () => {
+      timeouts.forEach(clearTimeout);
+      observer.disconnect();
+      const styleElement = document.getElementById('remove-table-separator');
+      if (styleElement) {
+        styleElement.remove();
+      }
+    };
+  }, [items, columns]);
+
+  // Remove default Ant Design sort icons from the right side
+  React.useEffect(() => {
+    const removeRightSortIcons = () => {
+      const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+      if (!tableContainer) return;
+
+      // Find all sort icon elements on the right side
+      const sortIcons = tableContainer.querySelectorAll(
+        '.ant-table-column-sorter, .ant-table-column-sorter-full, .ant-table-column-sorter-inner'
+      );
+      
+      sortIcons.forEach((icon) => {
+        // Only remove if it's not our custom left icon
+        const isLeftIcon = icon.closest(`.${styles.sortIconLeft}`);
+        if (!isLeftIcon) {
+          icon.style.display = 'none';
+          icon.style.visibility = 'hidden';
+          icon.style.opacity = '0';
+          icon.style.width = '0';
+          icon.style.height = '0';
+          icon.style.margin = '0';
+          icon.style.padding = '0';
+        }
+      });
+    };
+
+    // Remove immediately
+    removeRightSortIcons();
+
+    // Also remove after a short delay to catch any delayed renders
+    const timeout = setTimeout(removeRightSortIcons, 100);
+
+    // Use MutationObserver to catch dynamic additions
+    const observer = new MutationObserver(removeRightSortIcons);
+    const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+    if (tableContainer) {
+      observer.observe(tableContainer, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+      });
+    }
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
+  }, [items, columns, sortedInfo]);
+
+  // Configure sensors for drag and drop
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  // Handle row selection
+  const handleRowSelect = (selectedKeys) => {
+    setSelectedRowKeys(selectedKeys);
     if (onRowSelect) {
-      onRowSelect(Array.from(newSelected));
+      onRowSelect(selectedKeys);
     }
-  }, [selectedRows, onRowSelect]);
+  };
 
-  // Check if all rows are selected
-  const isAllSelected = data.length > 0 && selectedRows.size === data.length;
-  const isIndeterminate = selectedRows.size > 0 && selectedRows.size < data.length;
+  // Handle column sorting (now only used for filters/pagination, not sorting)
+  const handleTableChange = (pagination, filters, sorter) => {
+    // Sorting is now handled by the sort icon click, so we ignore sorter here
+    // This handler is kept for potential future use with filters/pagination
+  };
 
-  // Set indeterminate state on select all checkbox
-  useEffect(() => {
-    if (selectAllCheckboxRef.current) {
-      const input = selectAllCheckboxRef.current.querySelector('input[type="checkbox"]');
-      if (input) {
-        input.indeterminate = isIndeterminate;
-      }
+  // Handle drag end
+  const handleDragEnd = (event) => {
+    const { active, over } = event;
+
+    if (active.id !== over?.id) {
+      setItems((items) => {
+        const oldIndex = items.findIndex((item) => item[rowKey] === active.id);
+        const newIndex = items.findIndex((item) => item[rowKey] === over.id);
+
+        const newItems = arrayMove(items, oldIndex, newIndex);
+
+        // Call callback with new order
+        if (onRowReorder) {
+          onRowReorder(newItems);
+        }
+
+        return newItems;
+      });
     }
-  }, [isIndeterminate]);
+  };
 
-  // Handle column sorting
-  const handleSort = useCallback((columnKey) => {
-    const column = columns.find((col) => col.key === columnKey);
-    if (!column || !column.sortable) return;
-
-    let newDirection = 'asc';
-    if (sortConfig.key === columnKey && sortConfig.direction === 'asc') {
-      newDirection = 'desc';
-    } else if (sortConfig.key === columnKey && sortConfig.direction === 'desc') {
-      newDirection = null;
-    }
-
-    const newSortConfig = newDirection
-      ? { key: columnKey, direction: newDirection }
-      : { key: null, direction: null };
-
-    setSortConfig(newSortConfig);
-
-    if (onSort) {
-      onSort(columnKey, newDirection);
-    }
-  }, [columns, sortConfig, onSort]);
-
-  // Drag and drop handlers
-  const handleDragStart = useCallback((e, index) => {
-    setDraggedRowIndex(index);
-    dragStartY.current = e.clientY;
-    e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/html', '');
-    
-    // Add visual feedback
-    e.currentTarget.style.opacity = '0.5';
+  // Handle column resize
+  const handleColumnResize = useCallback((columnKey, newWidth) => {
+    setColumnWidths((prev) => ({
+      ...prev,
+      [columnKey]: newWidth,
+    }));
   }, []);
 
-  const handleDragEnd = useCallback((e) => {
-    e.currentTarget.style.opacity = '';
-    setDraggedRowIndex(null);
-    setDragOverRowIndex(null);
-    dragStartY.current = null;
+  const handleResizeStart = useCallback((columnKey) => {
+    // Optional: Add any visual feedback on resize start
   }, []);
 
-  const handleDragOver = useCallback((e, index) => {
-    e.preventDefault();
-    e.dataTransfer.dropEffect = 'move';
-    
-    if (draggedRowIndex !== null && draggedRowIndex !== index) {
-      setDragOverRowIndex(index);
-    }
-  }, [draggedRowIndex]);
-
-  const handleDragLeave = useCallback(() => {
-    setDragOverRowIndex(null);
+  const handleResizeEnd = useCallback((columnKey) => {
+    // Optional: Add any cleanup or persistence logic
   }, []);
 
-  const handleDrop = useCallback((e, dropIndex) => {
-    e.preventDefault();
-    
-    if (draggedRowIndex === null || draggedRowIndex === dropIndex) {
-      setDraggedRowIndex(null);
-      setDragOverRowIndex(null);
-      return;
+  // Custom sort icon renderer
+  const renderSorterIcon = ({ sortOrder }) => {
+    if (sortOrder === 'ascend') {
+      return <Icon name="SortAscending" size={14} />;
     }
-
-    // Reorder data
-    const newData = [...data];
-    const [draggedItem] = newData.splice(draggedRowIndex, 1);
-    newData.splice(dropIndex, 0, draggedItem);
-
-    // Update selected rows to maintain selection
-    const newSelectedRows = new Set(selectedRows);
-    setSelectedRows(newSelectedRows);
-
-    // Call callback
-    if (onRowReorder) {
-      onRowReorder(newData);
+    if (sortOrder === 'descend') {
+      return <Icon name="SortDescending" size={14} />;
     }
+    // Unsorted state
+    return <Icon name="CaretUpDown" size={14} />;
+  };
 
-    setDraggedRowIndex(null);
-    setDragOverRowIndex(null);
-  }, [data, draggedRowIndex, selectedRows, onRowReorder]);
+  // Convert columns to Ant Design format
+  const antdColumns = useMemo(() => {
+    // Add drag handle column (after selection column)
+    const dragHandleColumn = {
+      title: '',
+      key: 'drag-handle',
+      width: 40,
+      className: styles.dragHandleHeader,
+      render: () => <DragHandleCell />,
+      resizable: false,
+    };
 
-  // Render sort icon using Icon component
-  const renderSortIcon = (columnKey) => {
-    if (sortConfig.key !== columnKey) {
-      // Unsorted state - show CaretUpDown icon
-      return (
-        <span className={styles.sortIcon}>
-          <Icon name="CaretUpDown" size={14} />
+    const dataColumns = columns.map((column) => {
+      // Get width from state or use default/column-defined width
+      const columnWidth = columnWidths[column.key] || column.width || undefined;
+
+      // Determine sort order for this column
+      const sortOrder = column.sortable && sortedInfo.columnKey === column.key 
+        ? sortedInfo.order 
+        : null;
+
+      // Handle sort icon click
+      const handleSortIconClick = (e) => {
+        e.stopPropagation(); // Prevent header click
+        
+        if (!column.sortable) return;
+
+        let newOrder;
+        if (sortedInfo.columnKey === column.key) {
+          // Cycle through: ascend -> descend -> null
+          if (sortedInfo.order === 'ascend') {
+            newOrder = 'descend';
+          } else if (sortedInfo.order === 'descend') {
+            newOrder = null;
+          } else {
+            newOrder = 'ascend';
+          }
+        } else {
+          newOrder = 'ascend';
+        }
+
+        if (newOrder) {
+          setSortedInfo({
+            order: newOrder,
+            columnKey: column.key,
+          });
+          if (onSort) {
+            const direction = newOrder === 'ascend' ? 'asc' : 'desc';
+            onSort(column.key, direction);
+          }
+        } else {
+          setSortedInfo({});
+          if (onSort) {
+            onSort(null, null);
+          }
+        }
+      };
+
+      // Render sort icon on the left
+      const sortIcon = column.sortable ? (
+        <span 
+          className={styles.sortIconLeft}
+          onClick={handleSortIconClick}
+          title="Click to sort"
+        >
+          {renderSorterIcon({ sortOrder })}
         </span>
-      );
-    }
+      ) : null;
 
-    if (sortConfig.direction === 'asc') {
-      // Ascending sort - show SortAscending icon
-      return (
-        <span className={styles.sortIcon}>
-          <Icon name="SortAscending" size={14} />
-        </span>
-      );
-    }
+      const columnConfig = {
+        title: (
+          <div className={styles.columnHeaderContent}>
+            {sortIcon}
+            <span className={styles.columnHeaderLabel}>{column.label}</span>
+            <ResizeHandle
+              columnKey={column.key}
+              onResizeStart={handleResizeStart}
+              onResize={handleColumnResize}
+              onResizeEnd={handleResizeEnd}
+            />
+          </div>
+        ),
+        dataIndex: column.key,
+        key: column.key,
+        width: columnWidth,
+        // Disable default sorter to prevent header click sorting
+        sorter: false,
+        render: column.render || ((text) => text),
+        className: styles.tableCell,
+        // Completely hide default sort icon since we're using custom one on left
+        sorterIcon: () => null,
+        showSorterTooltip: false,
+      };
 
-    if (sortConfig.direction === 'desc') {
-      // Descending sort - show SortDescending icon
-      return (
-        <span className={styles.sortIcon}>
-          <Icon name="SortDescending" size={14} />
-        </span>
-      );
-    }
+      // Note: We're handling sorting manually via the sort icon click,
+      // so we don't need to set sortOrder on the column config
 
-    return null;
+      return columnConfig;
+    });
+
+    return [dragHandleColumn, ...dataColumns];
+  }, [columns, sortedInfo, columnWidths, handleColumnResize, handleResizeStart, handleResizeEnd]);
+
+  // Add selection column
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: handleRowSelect,
+    onSelectAll: (selected, selectedRows, changeRows) => {
+      handleRowSelect(selected ? items.map((row) => row[rowKey]) : []);
+    },
+    columnTitle: (
+      <div className={styles.checkboxHeader}>
+        <Checkbox
+          checked={selectedRowKeys.length === items.length && items.length > 0}
+          indeterminate={
+            selectedRowKeys.length > 0 && selectedRowKeys.length < items.length
+          }
+          onChange={(e) => {
+            handleRowSelect(e.target.checked ? items.map((row) => row[rowKey]) : []);
+          }}
+        />
+      </div>
+    ),
+    columnWidth: 48,
+    fixed: 'left',
   };
 
   const containerClassNames = [
@@ -203,98 +493,76 @@ const Table = ({
     .filter(Boolean)
     .join(' ');
 
+  // Get row IDs for sortable context
+  const rowIds = useMemo(() => items.map((item) => item[rowKey]), [items, rowKey]);
+
+  // Custom row renderer for drag and drop
+  const components = {
+    body: {
+      row: (props) => {
+        // Extract row ID from props - Ant Design passes it in different ways
+        let rowId = props['data-row-key'];
+        
+        // Fallback: try to get from record in children
+        if (!rowId && props.children) {
+          const childrenArray = React.Children.toArray(props.children);
+          for (const child of childrenArray) {
+            if (child?.props?.record?.[rowKey]) {
+              rowId = child.props.record[rowKey];
+              break;
+            }
+          }
+        }
+
+        // Another fallback: try to find in items by index
+        if (!rowId && props['data-row-index'] !== undefined) {
+          const index = props['data-row-index'];
+          if (items[index] && items[index][rowKey]) {
+            rowId = items[index][rowKey];
+          }
+        }
+
+        if (!rowId) {
+          // Last resort: return regular row
+          return <tr {...props}>{props.children}</tr>;
+        }
+
+        return (
+          <SortableRow id={rowId} rowKey={rowKey} row={props}>
+            {props.children}
+          </SortableRow>
+        );
+      },
+    },
+  };
+
   return (
     <div className={containerClassNames} {...props}>
-      <div className={styles.tableWrapper}>
-        <table className={styles.table}>
-          <thead className={styles.thead}>
-            <tr>
-              {/* Select all checkbox column */}
-              <th className={styles.thCheckbox}>
-                <div ref={selectAllCheckboxRef}>
-                  <Checkbox
-                    checked={isAllSelected}
-                    onChange={(e) => handleSelectAll(e.target.checked)}
-                    size="small"
-                  />
-                </div>
-              </th>
-              
-              {/* Drag handle column */}
-              <th className={styles.thDragHandle}></th>
-              
-              {/* Data columns */}
-              {columns.map((column) => (
-                <th
-                  key={column.key}
-                  className={`${styles.th} ${column.sortable ? styles.thSortable : ''}`}
-                  onClick={() => column.sortable && handleSort(column.key)}
-                  style={{ cursor: column.sortable ? 'pointer' : 'default' }}
-                >
-                  <div className={styles.thContent}>
-                    {column.sortable && renderSortIcon(column.key)}
-                    <span>{column.label}</span>
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody className={styles.tbody}>
-            {data.map((row, index) => {
-              const rowId = row[rowKey];
-              const isSelected = selectedRows.has(rowId);
-              const isDragged = draggedRowIndex === index;
-              const isDragOver = dragOverRowIndex === index;
-
-              return (
-                <tr
-                  key={rowId}
-                  className={`
-                    ${styles.tr}
-                    ${isSelected ? styles.trSelected : ''}
-                    ${isDragged ? styles.trDragging : ''}
-                    ${isDragOver ? styles.trDragOver : ''}
-                  `}
-                  draggable
-                  onDragStart={(e) => handleDragStart(e, index)}
-                  onDragEnd={handleDragEnd}
-                  onDragOver={(e) => handleDragOver(e, index)}
-                  onDragLeave={handleDragLeave}
-                  onDrop={(e) => handleDrop(e, index)}
-                >
-                  {/* Checkbox cell */}
-                  <td className={styles.tdCheckbox}>
-                    <Checkbox
-                      checked={isSelected}
-                      onChange={(e) => handleRowSelect(rowId, e.target.checked)}
-                      size="small"
-                    />
-                  </td>
-                  
-                  {/* Drag handle cell */}
-                  <td className={styles.tdDragHandle}>
-                    <div className={styles.dragHandle}>
-                      <Icon name="DotsSixVertical" size={12} />
-                    </div>
-                  </td>
-                  
-                  {/* Data cells */}
-                  {columns.map((column) => (
-                    <td key={column.key} className={styles.td}>
-                      {column.render
-                        ? column.render(row[column.key], row, index)
-                        : row[column.key]}
-                    </td>
-                  ))}
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={rowIds}
+          strategy={verticalListSortingStrategy}
+        >
+          <AntTable
+            className={styles.antTable}
+            columns={antdColumns}
+            dataSource={items}
+            rowKey={rowKey}
+            rowSelection={rowSelection}
+            onChange={handleTableChange}
+            pagination={false}
+            scroll={{ y: 600, x: 'max-content' }}
+            size="middle"
+            components={components}
+          />
+        </SortableContext>
+      </DndContext>
     </div>
   );
 };
 
 export default Table;
-

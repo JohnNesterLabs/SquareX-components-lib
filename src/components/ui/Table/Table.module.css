@@ -1,141 +1,39 @@
+/* Table Container */
 .tableContainer {
   width: 100%;
   border: 1px solid var(--color-slate-150, #d6dadf);
   border-radius: 12px;
   overflow: hidden;
-}
-
-.tableWrapper {
-  width: 100%;
-  max-height: 600px;
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
-/* Header Styles */
-.thead {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: var(--bg-default, #ffffff);
-  border-bottom: 1px solid var(--color-slate-150, #d6dadf);
-}
-
-.thead tr {
-  border-bottom: 1px solid var(--color-slate-150, #d6dadf);
-}
-
-.th {
-  padding: 15px 16px;
-  text-align: left;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--color-slate-800, #2f353b);
-  background: var(--bg-default, #ffffff);
-  white-space: nowrap;
-  user-select: none;
-}
-
-.thCheckbox {
-  padding: 12px 16px;
-  width: 48px;
-  text-align: center;
   background: var(--bg-default, #ffffff);
 }
 
-.thDragHandle {
-  padding: 12px 8px;
-  width: 40px;
-  text-align: center;
-  background: var(--bg-default, #ffffff);
-}
-
-.thSortable {
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.thSortable:hover {
-  background: var(--bg-gray-tertiary, #f1f3f4);
-}
-
-.thContent {
+.checkboxHeader {
   display: flex;
   align-items: center;
-  gap: 4px;
-}
-
-.sortIcon {
-  display: inline-flex;
-  align-items: center;
   justify-content: center;
-  color: var(--color-slate-500, #768494);
-  transition: color 0.2s ease;
-  flex-shrink: 0;
 }
 
-.sortIcon img {
-  display: block;
-  width: 14px;
-  height: 14px;
-}
-
-.thSortable:hover .sortIcon {
-  color: var(--color-slate-800, #2f353b);
-}
-
-/* Body Styles */
-
-.tr {
-  border-bottom: 1px solid var(--color-slate-150, #d6dadf);
-  transition: background-color 0.2s ease, opacity 0.2s ease;
-  cursor: move;
-}
-
-.tr:hover {
-  background: var(--bg-gray-tertiary, #f1f3f4);
-}
-
-.trSelected {
-  background: var(--brand-purple-subtle, rgba(136, 81, 191, 0.08));
-}
-
-.trSelected:hover {
-  background: var(--brand-purple-tertiary, #dbcbec);
-}
-
-.trDragging {
-  opacity: 0.5;
-  background: var(--bg-gray-tertiary, #f1f3f4);
-}
-
-.trDragOver {
-  border-top: 2px solid var(--brand-purple-default, #8851bf);
-  background: var(--brand-purple-subtle, rgba(136, 81, 191, 0.08));
-}
-
-.td {
-  padding: 16px;
+/* Cell Content */
+.tableCell {
   font-size: 12px;
   color: var(--color-slate-800, #2f353b);
-  vertical-align: middle;
 }
 
-.tdCheckbox {
-  padding: 16px;
-  width: 48px;
+/* Fix for Ant Design table wrapper */
+.antTable {
+  background: transparent;
+}
+
+/* Drag Handle Styles */
+.dragHandleHeader {
+  padding: 12px 8px !important;
+  width: 40px;
   text-align: center;
-  vertical-align: middle;
+  background: var(--bg-default, #ffffff) !important;
 }
 
-.tdDragHandle {
-  padding: 16px 8px;
+.dragHandleCell {
+  padding: 16px 8px !important;
   width: 40px;
   text-align: center;
   vertical-align: middle;
@@ -150,6 +48,7 @@
   color: var(--color-slate-400, #919da9);
   cursor: grab;
   transition: color 0.2s ease;
+  user-select: none;
 }
 
 .dragHandle:active {
@@ -163,40 +62,156 @@
   color: inherit;
 }
 
-.tr:hover .dragHandle {
+/* Row Dragging State */
+.rowDragging {
+  opacity: 0.5;
+  background: var(--bg-gray-tertiary, #f1f3f4) !important;
+}
+
+/* Hover effect on drag handle */
+.tableContainer .ant-table-tbody > tr:hover .dragHandle {
   color: var(--color-slate-600, #5e6a76);
 }
 
-.tr:hover .dragHandle img {
-  filter: brightness(0.7);
-}
-
-/* Scrollbar Styles */
-.tableWrapper::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-.tableWrapper::-webkit-scrollbar-track {
-  background: var(--bg-gray-tertiary, #f1f3f4);
-}
-
-.tableWrapper::-webkit-scrollbar-thumb {
-  background: var(--color-slate-300, #adb5bf);
-  border-radius: 4px;
-}
-
-.tableWrapper::-webkit-scrollbar-thumb:hover {
-  background: var(--color-slate-400, #919da9);
-}
-
-/* Empty State */
-.tbody:empty::after {
-  content: 'No data available';
-  display: block;
-  padding: 48px;
-  text-align: center;
+/* Sort Icon Styles */
+.sortIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--color-slate-500, #768494);
-  font-size: 14px;
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+.sortIcon img {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+/* Column Header Content */
+.columnHeaderContent {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  position: relative;
+  padding-right: 16px; /* Add padding to content instead of header cell */
+  min-height: 20px;
+}
+
+/* Ensure column header content takes full width */
+.tableContainer .ant-table-column-title {
+  width: 100%;
+  display: block;
+}
+
+.columnHeaderLabel {
+  flex: 1;
+  min-width: 0;
+  padding-right: 8px;
+}
+
+/* Sort Icon on Left */
+.sortIconLeft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-slate-500, #768494);
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  cursor: pointer; /* Make it clear the icon is clickable */
+  pointer-events: auto; /* Enable clicks on the icon */
+  user-select: none;
+}
+
+.tableContainer .ant-table-thead > tr > th:hover .sortIconLeft {
+  color: var(--color-slate-800, #2f353b);
+}
+
+.sortIconLeft img,
+.sortIconLeft svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+/* Column Resize Handle - Positioned at the absolute right edge of the header cell */
+.resizeHandle {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: col-resize;
+  z-index: 10;
+  background: transparent;
+  transition: all 0.2s ease;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resizeHandleLine {
+  width: 1px;
+  height: 1.6em; /* Match Ant Design's default ::before height */
+  background-color: var(--color-slate-200, #c8ced4);
+  transition: all 0.2s ease;
+  opacity: 0.5;
+  align-self: center;
+}
+
+.resizeHandle:hover {
+  background-color: rgba(136, 81, 191, 0.1);
+}
+
+.resizeHandle:hover .resizeHandleLine {
+  background-color: var(--brand-purple-default, #8851bf);
+  opacity: 1;
+  width: 2px;
+}
+
+.resizeHandle.resizing {
+  background-color: rgba(136, 81, 191, 0.15);
+}
+
+.resizeHandle.resizing .resizeHandleLine {
+  background-color: var(--brand-purple-default, #8851bf);
+  width: 2px;
+  opacity: 1;
+}
+
+/* Ensure column headers are positioned relatively for resize handles */
+.tableContainer .ant-table-thead > tr > th {
+  position: relative;
+  overflow: visible;
+}
+
+/* Also position body cells relatively so resize handle spans full height */
+.tableContainer .ant-table-tbody > tr > td {
+  position: relative;
+}
+
+/* Prevent resize handle from interfering with sort click */
+.tableContainer .ant-table-column-sorters {
+  pointer-events: auto;
+}
+
+.tableContainer .ant-table-thead > tr > th .columnHeaderContent {
+  pointer-events: none;
+}
+
+.tableContainer .ant-table-thead > tr > th .columnHeaderContent .columnHeaderLabel {
+  pointer-events: auto;
+}
+
+.tableContainer .ant-table-thead > tr > th .columnHeaderContent .resizeHandle {
+  pointer-events: auto;
 }
 
