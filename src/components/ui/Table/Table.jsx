@@ -168,6 +168,77 @@ const Table = ({
     setItems(data);
   }, [data]);
 
+  // Remove Ant Design's ::before pseudo-element (column separator)
+  React.useEffect(() => {
+    const removeColumnSeparators = () => {
+      const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+      if (!tableContainer) return;
+
+      // Find all table header cells
+      const headerCells = tableContainer.querySelectorAll(
+        '.ant-table-thead > tr > th'
+      );
+
+      headerCells.forEach((cell) => {
+        // Try to access and remove the ::before pseudo-element
+        // Since we can't directly access ::before, we'll add inline styles
+        const computedStyle = window.getComputedStyle(cell, '::before');
+        if (computedStyle.content !== 'none' && computedStyle.content !== '') {
+          // Add a style element to override
+          const styleId = 'remove-table-separator';
+          let styleElement = document.getElementById(styleId);
+          if (!styleElement) {
+            styleElement = document.createElement('style');
+            styleElement.id = styleId;
+            styleElement.textContent = `
+              .${styles.tableContainer} .ant-table-thead > tr > th::before {
+                display: none !important;
+                content: none !important;
+                width: 0 !important;
+                height: 0 !important;
+                background: none !important;
+                opacity: 0 !important;
+                visibility: hidden !important;
+              }
+            `;
+            document.head.appendChild(styleElement);
+          }
+        }
+      });
+    };
+
+    // Remove immediately
+    removeColumnSeparators();
+
+    // Also remove after delays to catch any delayed renders
+    const timeouts = [
+      setTimeout(removeColumnSeparators, 50),
+      setTimeout(removeColumnSeparators, 100),
+      setTimeout(removeColumnSeparators, 200),
+    ];
+
+    // Use MutationObserver to catch dynamic additions
+    const observer = new MutationObserver(removeColumnSeparators);
+    const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+    if (tableContainer) {
+      observer.observe(tableContainer, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['class'],
+      });
+    }
+
+    return () => {
+      timeouts.forEach(clearTimeout);
+      observer.disconnect();
+      const styleElement = document.getElementById('remove-table-separator');
+      if (styleElement) {
+        styleElement.remove();
+      }
+    };
+  }, [items, columns]);
+
   // Remove default Ant Design sort icons from the right side
   React.useEffect(() => {
     const removeRightSortIcons = () => {
