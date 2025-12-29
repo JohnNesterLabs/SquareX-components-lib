@@ -123,7 +123,9 @@
   flex-shrink: 0;
   width: 14px;
   height: 14px;
-  pointer-events: none; /* Let the header handle clicks */
+  cursor: pointer; /* Make it clear the icon is clickable */
+  pointer-events: auto; /* Enable clicks on the icon */
+  user-select: none;
 }
 
 .tableContainer .ant-table-thead > tr > th:hover .sortIconLeft {

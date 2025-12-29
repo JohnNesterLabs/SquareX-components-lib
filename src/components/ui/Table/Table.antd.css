@@ -144,9 +144,9 @@
   width: 100%;
 }
 
-/* Make the entire header clickable for sorting when sortable */
+/* Remove default cursor pointer from headers - sorting is now icon-only */
 .tableContainer .ant-table-thead > tr > th:not(.ant-table-selection-column):not(.dragHandleHeader) {
-  cursor: pointer;
+  cursor: default;
 }
 
 /* Custom Checkbox Styling */

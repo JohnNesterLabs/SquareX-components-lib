@@ -304,24 +304,10 @@ const Table = ({
     }
   };
 
-  // Handle column sorting
+  // Handle column sorting (now only used for filters/pagination, not sorting)
   const handleTableChange = (pagination, filters, sorter) => {
-    if (sorter && sorter.columnKey) {
-      const direction = sorter.order === 'ascend' ? 'asc' : sorter.order === 'descend' ? 'desc' : null;
-      setSortedInfo({
-        order: sorter.order,
-        columnKey: sorter.columnKey,
-      });
-      
-      if (onSort) {
-        onSort(sorter.columnKey, direction);
-      }
-    } else {
-      setSortedInfo({});
-      if (onSort) {
-        onSort(null, null);
-      }
-    }
+    // Sorting is now handled by the sort icon click, so we ignore sorter here
+    // This handler is kept for potential future use with filters/pagination
   };
 
   // Handle drag end
@@ -394,9 +380,50 @@ const Table = ({
         ? sortedInfo.order 
         : null;
 
+      // Handle sort icon click
+      const handleSortIconClick = (e) => {
+        e.stopPropagation(); // Prevent header click
+        
+        if (!column.sortable) return;
+
+        let newOrder;
+        if (sortedInfo.columnKey === column.key) {
+          // Cycle through: ascend -> descend -> null
+          if (sortedInfo.order === 'ascend') {
+            newOrder = 'descend';
+          } else if (sortedInfo.order === 'descend') {
+            newOrder = null;
+          } else {
+            newOrder = 'ascend';
+          }
+        } else {
+          newOrder = 'ascend';
+        }
+
+        if (newOrder) {
+          setSortedInfo({
+            order: newOrder,
+            columnKey: column.key,
+          });
+          if (onSort) {
+            const direction = newOrder === 'ascend' ? 'asc' : 'desc';
+            onSort(column.key, direction);
+          }
+        } else {
+          setSortedInfo({});
+          if (onSort) {
+            onSort(null, null);
+          }
+        }
+      };
+
       // Render sort icon on the left
       const sortIcon = column.sortable ? (
-        <span className={styles.sortIconLeft}>
+        <span 
+          className={styles.sortIconLeft}
+          onClick={handleSortIconClick}
+          title="Click to sort"
+        >
           {renderSorterIcon({ sortOrder })}
         </span>
       ) : null;
@@ -417,7 +444,8 @@ const Table = ({
         dataIndex: column.key,
         key: column.key,
         width: columnWidth,
-        sorter: column.sortable ? true : false,
+        // Disable default sorter to prevent header click sorting
+        sorter: false,
         render: column.render || ((text) => text),
         className: styles.tableCell,
         // Completely hide default sort icon since we're using custom one on left
@@ -425,10 +453,8 @@ const Table = ({
         showSorterTooltip: false,
       };
 
-      // Add sorted state
-      if (column.sortable && sortedInfo.columnKey === column.key) {
-        columnConfig.sortOrder = sortedInfo.order;
-      }
+      // Note: We're handling sorting manually via the sort icon click,
+      // so we don't need to set sortOrder on the column config
 
       return columnConfig;
     });
