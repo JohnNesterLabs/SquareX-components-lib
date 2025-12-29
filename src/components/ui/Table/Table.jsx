@@ -1,4 +1,4 @@
-import React, { useState, useMemo, createContext, useContext } from 'react';
+import React, { useState, useMemo, createContext, useContext, useRef, useCallback } from 'react';
 import { Table as AntTable, Checkbox } from 'antd';
 import {
   DndContext,
@@ -74,6 +74,62 @@ const DragHandleCell = () => {
 };
 
 /**
+ * Column Resize Handle Component
+ */
+const ResizeHandle = ({ columnKey, onResizeStart, onResize, onResizeEnd }) => {
+  const handleRef = useRef(null);
+  const [isResizing, setIsResizing] = useState(false);
+
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsResizing(true);
+    
+    const startX = e.clientX;
+    const startWidth = handleRef.current?.parentElement?.offsetWidth || 0;
+
+    const handleMouseMove = (moveEvent) => {
+      const diff = moveEvent.clientX - startX;
+      const newWidth = Math.max(50, startWidth + diff); // Minimum width of 50px
+      if (onResize) {
+        onResize(columnKey, newWidth);
+      }
+    };
+
+    const handleMouseUp = () => {
+      setIsResizing(false);
+      if (onResizeEnd) {
+        onResizeEnd(columnKey);
+      }
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+      document.body.style.cursor = '';
+      document.body.style.userSelect = '';
+    };
+
+    if (onResizeStart) {
+      onResizeStart(columnKey);
+    }
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    document.body.style.cursor = 'col-resize';
+    document.body.style.userSelect = 'none';
+  }, [columnKey, onResize, onResizeStart, onResizeEnd]);
+
+  return (
+    <div
+      ref={handleRef}
+      className={`${styles.resizeHandle} ${isResizing ? styles.resizing : ''}`}
+      onMouseDown={handleMouseDown}
+      title="Drag to resize column"
+    >
+      <div className={styles.resizeHandleLine} />
+    </div>
+  );
+};
+
+/**
  * Table Component (Ant Design with Drag and Drop)
  * 
  * A feature-rich table component built on Ant Design with:
@@ -105,11 +161,61 @@ const Table = ({
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [sortedInfo, setSortedInfo] = useState({});
   const [items, setItems] = useState(data);
+  const [columnWidths, setColumnWidths] = useState({});
 
   // Update items when data prop changes
   React.useEffect(() => {
     setItems(data);
   }, [data]);
+
+  // Remove default Ant Design sort icons from the right side
+  React.useEffect(() => {
+    const removeRightSortIcons = () => {
+      const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+      if (!tableContainer) return;
+
+      // Find all sort icon elements on the right side
+      const sortIcons = tableContainer.querySelectorAll(
+        '.ant-table-column-sorter, .ant-table-column-sorter-full, .ant-table-column-sorter-inner'
+      );
+      
+      sortIcons.forEach((icon) => {
+        // Only remove if it's not our custom left icon
+        const isLeftIcon = icon.closest(`.${styles.sortIconLeft}`);
+        if (!isLeftIcon) {
+          icon.style.display = 'none';
+          icon.style.visibility = 'hidden';
+          icon.style.opacity = '0';
+          icon.style.width = '0';
+          icon.style.height = '0';
+          icon.style.margin = '0';
+          icon.style.padding = '0';
+        }
+      });
+    };
+
+    // Remove immediately
+    removeRightSortIcons();
+
+    // Also remove after a short delay to catch any delayed renders
+    const timeout = setTimeout(removeRightSortIcons, 100);
+
+    // Use MutationObserver to catch dynamic additions
+    const observer = new MutationObserver(removeRightSortIcons);
+    const tableContainer = document.querySelector(`.${styles.tableContainer}`);
+    if (tableContainer) {
+      observer.observe(tableContainer, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+      });
+    }
+
+    return () => {
+      clearTimeout(timeout);
+      observer.disconnect();
+    };
+  }, [items, columns, sortedInfo]);
 
   // Configure sensors for drag and drop
   const sensors = useSensors(
@@ -168,16 +274,32 @@ const Table = ({
     }
   };
 
+  // Handle column resize
+  const handleColumnResize = useCallback((columnKey, newWidth) => {
+    setColumnWidths((prev) => ({
+      ...prev,
+      [columnKey]: newWidth,
+    }));
+  }, []);
+
+  const handleResizeStart = useCallback((columnKey) => {
+    // Optional: Add any visual feedback on resize start
+  }, []);
+
+  const handleResizeEnd = useCallback((columnKey) => {
+    // Optional: Add any cleanup or persistence logic
+  }, []);
+
   // Custom sort icon renderer
   const renderSorterIcon = ({ sortOrder }) => {
     if (sortOrder === 'ascend') {
-      return <Icon name="SortAscending" size={14} className={styles.sortIcon} />;
+      return <Icon name="SortAscending" size={14} />;
     }
     if (sortOrder === 'descend') {
-      return <Icon name="SortDescending" size={14} className={styles.sortIcon} />;
+      return <Icon name="SortDescending" size={14} />;
     }
     // Unsorted state
-    return <Icon name="CaretUpDown" size={14} className={styles.sortIcon} />;
+    return <Icon name="CaretUpDown" size={14} />;
   };
 
   // Convert columns to Ant Design format
@@ -189,17 +311,47 @@ const Table = ({
       width: 40,
       className: styles.dragHandleHeader,
       render: () => <DragHandleCell />,
+      resizable: false,
     };
 
     const dataColumns = columns.map((column) => {
+      // Get width from state or use default/column-defined width
+      const columnWidth = columnWidths[column.key] || column.width || undefined;
+
+      // Determine sort order for this column
+      const sortOrder = column.sortable && sortedInfo.columnKey === column.key 
+        ? sortedInfo.order 
+        : null;
+
+      // Render sort icon on the left
+      const sortIcon = column.sortable ? (
+        <span className={styles.sortIconLeft}>
+          {renderSorterIcon({ sortOrder })}
+        </span>
+      ) : null;
+
       const columnConfig = {
-        title: column.label,
+        title: (
+          <div className={styles.columnHeaderContent}>
+            {sortIcon}
+            <span className={styles.columnHeaderLabel}>{column.label}</span>
+            <ResizeHandle
+              columnKey={column.key}
+              onResizeStart={handleResizeStart}
+              onResize={handleColumnResize}
+              onResizeEnd={handleResizeEnd}
+            />
+          </div>
+        ),
         dataIndex: column.key,
         key: column.key,
+        width: columnWidth,
         sorter: column.sortable ? true : false,
         render: column.render || ((text) => text),
         className: styles.tableCell,
-        sorterIcon: column.sortable ? renderSorterIcon : undefined,
+        // Completely hide default sort icon since we're using custom one on left
+        sorterIcon: () => null,
+        showSorterTooltip: false,
       };
 
       // Add sorted state
@@ -211,7 +363,7 @@ const Table = ({
     });
 
     return [dragHandleColumn, ...dataColumns];
-  }, [columns, sortedInfo]);
+  }, [columns, sortedInfo, columnWidths, handleColumnResize, handleResizeStart, handleResizeEnd]);
 
   // Add selection column
   const rowSelection = {

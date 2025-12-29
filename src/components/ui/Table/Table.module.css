@@ -90,3 +90,125 @@
   height: 14px;
 }
 
+/* Column Header Content */
+.columnHeaderContent {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  position: relative;
+  padding-right: 0;
+  min-height: 20px;
+}
+
+/* Ensure column header content takes full width */
+.tableContainer .ant-table-column-title {
+  width: 100%;
+  display: block;
+}
+
+.columnHeaderLabel {
+  flex: 1;
+  min-width: 0;
+  padding-right: 8px;
+}
+
+/* Sort Icon on Left */
+.sortIconLeft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-slate-500, #768494);
+  transition: color 0.2s ease;
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  pointer-events: none; /* Let the header handle clicks */
+}
+
+.tableContainer .ant-table-thead > tr > th:hover .sortIconLeft {
+  color: var(--color-slate-800, #2f353b);
+}
+
+.sortIconLeft img,
+.sortIconLeft svg {
+  display: block;
+  width: 14px;
+  height: 14px;
+}
+
+/* Column Resize Handle - Positioned between columns */
+.resizeHandle {
+  position: absolute;
+  right: -4px;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  cursor: col-resize;
+  z-index: 10;
+  background: transparent;
+  transition: all 0.2s ease;
+  margin: 0;
+  padding: 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resizeHandleLine {
+  width: 1px;
+  height: 100%;
+  background-color: var(--color-slate-200, #c8ced4);
+  transition: all 0.2s ease;
+  opacity: 0.5;
+}
+
+.resizeHandle:hover {
+  background-color: rgba(136, 81, 191, 0.1);
+}
+
+.resizeHandle:hover .resizeHandleLine {
+  background-color: var(--brand-purple-default, #8851bf);
+  opacity: 1;
+  width: 2px;
+}
+
+.resizeHandle.resizing {
+  background-color: rgba(136, 81, 191, 0.15);
+}
+
+.resizeHandle.resizing .resizeHandleLine {
+  background-color: var(--brand-purple-default, #8851bf);
+  width: 2px;
+  opacity: 1;
+}
+
+/* Ensure column headers are positioned relatively for resize handles */
+.tableContainer .ant-table-thead > tr > th {
+  position: relative;
+  overflow: visible;
+}
+
+/* Also position body cells relatively so resize handle spans full height */
+.tableContainer .ant-table-tbody > tr > td {
+  position: relative;
+}
+
+/* Prevent resize handle from interfering with sort click */
+.tableContainer .ant-table-column-sorters {
+  pointer-events: auto;
+}
+
+.tableContainer .ant-table-thead > tr > th .columnHeaderContent {
+  pointer-events: none;
+}
+
+.tableContainer .ant-table-thead > tr > th .columnHeaderContent .columnHeaderLabel {
+  pointer-events: auto;
+}
+
+.tableContainer .ant-table-thead > tr > th .columnHeaderContent .resizeHandle {
+  pointer-events: auto;
+}
+
