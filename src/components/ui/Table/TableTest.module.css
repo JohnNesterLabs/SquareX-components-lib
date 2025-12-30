@@ -43,23 +43,39 @@
   display: block;
 }
 
+.actionCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .statusCell {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+}
+
+.statusDotActive {
+  color: var(--color-green-600, #0f7b0f);
+  flex-shrink: 0;
+}
+
+.statusDotInactive {
+  color: var(--color-slate-500, #768494);
+  flex-shrink: 0;
 }
 
 .statusActive {
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-green-600, #0f7b0f);
 }
 
 .statusInactive {
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 400;
   color: var(--color-slate-500, #768494);
 }
 

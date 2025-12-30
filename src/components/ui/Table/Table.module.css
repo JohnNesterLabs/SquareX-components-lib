@@ -13,6 +13,13 @@
   justify-content: center;
 }
 
+/* .checkboxCell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+} */
+
 /* Cell Content */
 .tableCell {
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
@@ -41,7 +48,7 @@
   line-height: 48px !important;
   box-sizing: border-box !important;
   text-align: center;
-  background: var(--bg-default, #ffffff) !important;
+  /* background: var(--bg-default, #ffffff) !important; */
   vertical-align: middle;
   overflow: hidden;
 }

@@ -1,5 +1,6 @@
 import React, { useState, useMemo, createContext, useContext, useRef, useCallback } from 'react';
-import { Table as AntTable, Checkbox } from 'antd';
+import { Table as AntTable } from 'antd';
+import Checkbox from '../Checkbox/Checkbox';
 import {
   DndContext,
   closestCenter,
@@ -366,6 +367,7 @@ const Table = ({
       title: '',
       key: 'drag-handle',
       width: 40,
+      fixed: 'left',
       className: styles.dragHandleHeader,
       render: () => <DragHandleCell />,
       resizable: false,
@@ -459,32 +461,44 @@ const Table = ({
       return columnConfig;
     });
 
-    return [dragHandleColumn, ...dataColumns];
-  }, [columns, sortedInfo, columnWidths, handleColumnResize, handleResizeStart, handleResizeEnd]);
+    // Create manual checkbox column (2nd position, after drag handle)
+    const checkboxColumn = {
+      title: (
+        <div className={styles.checkboxHeader}>
+          <Checkbox
+            checked={selectedRowKeys.length === items.length && items.length > 0}
+            onChange={(e) => {
+              handleRowSelect(e.target.checked ? items.map((row) => row[rowKey]) : []);
+            }}
+            size="small"
+          />
+        </div>
+      ),
+      key: 'selection',
+      width: 48,
+      fixed: 'left',
+      className: `${styles.tableCell} ${styles.checkboxColumn}`,
+      render: (_, record) => {
+        const isChecked = selectedRowKeys.includes(record[rowKey]);
+        return (
+          <div className={styles.checkboxCell}>
+            <Checkbox
+              checked={isChecked}
+              onChange={(e) => {
+                const newSelectedKeys = e.target.checked
+                  ? [...selectedRowKeys, record[rowKey]]
+                  : selectedRowKeys.filter((key) => key !== record[rowKey]);
+                handleRowSelect(newSelectedKeys);
+              }}
+              size="small"
+            />
+          </div>
+        );
+      },
+    };
 
-  // Add selection column
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: handleRowSelect,
-    onSelectAll: (selected, selectedRows, changeRows) => {
-      handleRowSelect(selected ? items.map((row) => row[rowKey]) : []);
-    },
-    columnTitle: (
-      <div className={styles.checkboxHeader}>
-        <Checkbox
-          checked={selectedRowKeys.length === items.length && items.length > 0}
-          indeterminate={
-            selectedRowKeys.length > 0 && selectedRowKeys.length < items.length
-          }
-          onChange={(e) => {
-            handleRowSelect(e.target.checked ? items.map((row) => row[rowKey]) : []);
-          }}
-        />
-      </div>
-    ),
-    columnWidth: 48,
-    fixed: 'left',
-  };
+    return [dragHandleColumn, checkboxColumn, ...dataColumns];
+  }, [columns, sortedInfo, columnWidths, selectedRowKeys, items, rowKey, handleRowSelect, handleColumnResize, handleResizeStart, handleResizeEnd]);
 
   const containerClassNames = [
     styles.tableContainer,
@@ -552,7 +566,6 @@ const Table = ({
             columns={antdColumns}
             dataSource={items}
             rowKey={rowKey}
-            rowSelection={rowSelection}
             onChange={handleTableChange}
             pagination={false}
             scroll={{ y: 600, x: 'max-content' }}

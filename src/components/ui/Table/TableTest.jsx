@@ -14,115 +14,157 @@ import styles from './TableTest.module.css';
  * - Fixed header with scrollable body
  */
 const TableTest = () => {
-  // Sample data matching the Figma design
+  // Sample data matching the image design
   const [tableData, setTableData] = useState([
     {
       id: '1',
-      policy: '[SAMPLE] Block Malicious Websites',
-      priority: 26,
+      priority: 1,
+      policy: 'Block all malicious site visits',
       assignedTo: 1,
-      status: false,
-      createdAt: '11th Dec 2025 10:44 AM',
-      lastEdited: '7 days ago',
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '2',
-      policy: 'Block Google Site Visit',
       priority: 2,
-      assignedTo: 2,
+      policy: 'Block google site visits',
+      assignedTo: 1,
+      action: false,
       status: false,
-      createdAt: '3rd Dec 2025 03:54 PM',
-      lastEdited: '19 days ago',
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '3',
-      policy: 'TC_02',
-      priority: 25,
+      priority: 3,
+      policy: 'Block Malicious websites',
       assignedTo: 1,
+      action: false,
       status: false,
-      createdAt: '2nd Dec 2025 03:48 PM',
-      lastEdited: '20 days ago',
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '4',
-      policy: 'KAran_block',
-      priority: 3,
+      priority: 4,
+      policy: 'Isolate all Sites',
       assignedTo: 1,
-      status: false,
-      createdAt: '2nd Dec 2025 03:45 PM',
-      lastEdited: '20 days ago',
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '5',
-      policy: 'Block Social Media and Gen AI Sites',
-      priority: 6,
+      priority: 5,
+      policy: 'Monitor all websites',
       assignedTo: 1,
-      status: false,
-      createdAt: '2nd Dec 2025 03:43 PM',
-      lastEdited: '20 days ago',
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '6',
-      policy: 'SiteVisit_Karan_Edge',
-      priority: 24,
+      priority: 6,
+      policy: 'Block all malicious site visits',
       assignedTo: 1,
-      status: false,
-      createdAt: '2nd Dec 2025 03:33 PM',
-      lastEdited: '20 days ago',
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '7',
-      policy: 'Isolate All Sites',
-      priority: 8,
+      priority: 7,
+      policy: 'Block google site visits',
       assignedTo: 1,
+      action: false,
       status: false,
-      createdAt: '1st Dec 2025 05:28 PM',
-      lastEdited: '20 days ago',
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '8',
-      policy: 'Block site visit',
-      priority: 1,
+      priority: 8,
+      policy: 'Block Malicious websites',
       assignedTo: 1,
-      status: false,
-      createdAt: '1st Dec 2025 05:13 PM',
-      lastEdited: '13 days ago',
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '9',
-      policy: 'Monitor WHOIS Properties',
       priority: 9,
+      policy: 'Isolate all Sites',
       assignedTo: 1,
-      status: false,
-      createdAt: '1st Dec 2025 05:10 PM',
-      lastEdited: '21 days ago',
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '10',
-      policy: 'Block Malicious Websites',
-      priority: 7,
-      assignedTo: 2,
+      priority: 10,
+      policy: 'Monitor all websites',
+      assignedTo: 1,
+      action: true,
       status: true,
-      createdAt: '25th Nov 2025 10:00 AM',
-      lastEdited: '18 days ago',
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '11',
-      policy: 'Monitor All Site Visit Proper',
-      priority: 4,
+      priority: 11,
+      policy: 'Block all malicious site visits',
       assignedTo: 1,
+      action: true,
       status: true,
-      createdAt: '1st Dec 2025 05:00 PM',
-      lastEdited: '20 days ago',
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
     {
       id: '12',
-      policy: 'Block Sites Violating Respoi',
-      priority: 5,
+      priority: 12,
+      policy: 'Block google site visits',
       assignedTo: 1,
+      action: true,
       status: true,
-      createdAt: '24th Nov 2025 02:30 PM',
-      lastEdited: '7 days ago',
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
+    },
+    {
+      id: '13',
+      priority: 13,
+      policy: 'Block Malicious websites',
+      assignedTo: 1,
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
+    },
+    {
+      id: '14',
+      priority: 14,
+      policy: 'Isolate all Sites',
+      assignedTo: 1,
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
+    },
+    {
+      id: '15',
+      priority: 15,
+      policy: 'Monitor all websites',
+      assignedTo: 1,
+      action: true,
+      status: true,
+      createdAt: '14th December, 2025',
+      lastEdited: '2 Days Ago',
     },
   ]);
 
@@ -167,11 +209,11 @@ const TableTest = () => {
     setTableData(sortedData);
   };
 
-  // Handle status toggle
-  const handleStatusToggle = (rowId, checked) => {
+  // Handle action toggle
+  const handleActionToggle = (rowId, checked) => {
     setTableData((prevData) =>
       prevData.map((row) =>
-        row.id === rowId ? { ...row, status: checked } : row
+        row.id === rowId ? { ...row, action: checked } : row
       )
     );
   };
@@ -186,39 +228,58 @@ const TableTest = () => {
     );
   };
 
-  // Render status cell with toggle
+  // Render action cell with toggle only (no text)
+  const renderAction = (value, row) => {
+    return (
+      <div className={styles.actionCell}>
+        <Toggle
+          checked={value}
+          onChange={(e) => handleActionToggle(row.id, e.target.checked)}
+          size="small"
+        />
+      </div>
+    );
+  };
+
+  // Render status cell with colored dot and text
   const renderStatus = (value, row) => {
     return (
       <div className={styles.statusCell}>
-        <Toggle
-          checked={value}
-          onChange={(e) => handleStatusToggle(row.id, e.target.checked)}
-          size="small"
+        <Icon 
+          name="Dot" 
+          size={8} 
+          className={value ? styles.statusDotActive : styles.statusDotInactive}
         />
         <span className={value ? styles.statusActive : styles.statusInactive}>
-          {value ? 'ACTIVE' : 'INACTIVE'}
+          {value ? 'Active' : 'Inactive'}
         </span>
       </div>
     );
   };
 
-  // Column definitions
+  // Column definitions - matching image order
   const columns = [
-    {
-      key: 'policy',
-      label: 'Policy',
-      sortable: true,
-    },
     {
       key: 'priority',
       label: 'Priority',
       sortable: true,
     },
     {
+      key: 'policy',
+      label: 'Policy Name',
+      sortable: true,
+    },
+    {
       key: 'assignedTo',
-      label: 'Assigned to',
+      label: 'Assigned To',
       sortable: true,
       render: (value) => renderAssignedTo(value),
+    },
+    {
+      key: 'action',
+      label: 'Action',
+      sortable: false,
+      render: (value, row) => renderAction(value, row),
     },
     {
       key: 'status',
@@ -228,12 +289,12 @@ const TableTest = () => {
     },
     {
       key: 'createdAt',
-      label: 'Created at',
+      label: 'Created At',
       sortable: true,
     },
     {
       key: 'lastEdited',
-      label: 'Last edited',
+      label: 'Last Edited',
       sortable: true,
     },
   ];

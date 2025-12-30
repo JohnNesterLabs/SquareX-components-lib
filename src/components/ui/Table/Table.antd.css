@@ -78,10 +78,25 @@
 /* Drag Handle Header - no hover effect */
 .tableContainer .ant-table-thead > tr > th.dragHandleHeader {
   cursor: default;
+  background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
+}
+
+/* Ensure fixed drag handle column header stays on top and has proper background */
+.tableContainer .ant-table-thead > tr > th.dragHandleHeader.ant-table-cell-fix-left {
+  z-index: 11 !important;
+  background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
+}
+
+/* Ensure fixed drag handle column body cells stay on top and have proper background */
+.tableContainer .ant-table-tbody > tr > td.dragHandleCell.ant-table-cell-fix-left {
+  z-index: 11 !important;
+  background: var(--bg-default, #ffffff) !important;
 }
 
 /* Selection Column Header */
-.tableContainer .ant-table-thead > tr > th.ant-table-selection-column {
+.tableContainer .ant-table-thead > tr > th.ant-table-selection-column,
+.tableContainer .ant-table-thead > tr > th[data-column-key="selection"],
+.tableContainer .ant-table-thead > tr > th.checkboxColumn {
   padding: 0 16px !important;
   width: 48px;
   height: 48px !important;
@@ -98,8 +113,10 @@
 }
 
 /* Ensure fixed checkbox column header stays on top and has proper background */
-.tableContainer .ant-table-thead > tr > th.ant-table-selection-column.ant-table-cell-fix-left {
-  z-index: 11 !important;
+.tableContainer .ant-table-thead > tr > th.ant-table-selection-column.ant-table-cell-fix-left,
+.tableContainer .ant-table-thead > tr > th[data-column-key="selection"].ant-table-cell-fix-left,
+.tableContainer .ant-table-thead > tr > th.checkboxColumn.ant-table-cell-fix-left {
+  z-index: 12 !important;
   background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
 }
 
@@ -158,7 +175,9 @@
 }
 
 /* Selection Column Cell */
-.tableContainer .ant-table-tbody > tr > td.ant-table-selection-column {
+.tableContainer .ant-table-tbody > tr > td.ant-table-selection-column,
+.tableContainer .ant-table-tbody > tr > td[data-column-key="selection"],
+.tableContainer .ant-table-tbody > tr > td.checkboxColumn {
   padding: 0 16px !important;
   width: 48px;
   height: 48px !important;
@@ -174,9 +193,11 @@
 }
 
 /* Ensure fixed checkbox column body cells stay on top and have proper background */
-.tableContainer .ant-table-tbody > tr > td.ant-table-selection-column.ant-table-cell-fix-left {
-  z-index: 11 !important;
-  background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
+.tableContainer .ant-table-tbody > tr > td.ant-table-selection-column.ant-table-cell-fix-left,
+.tableContainer .ant-table-tbody > tr > td[data-column-key="selection"].ant-table-cell-fix-left,
+.tableContainer .ant-table-tbody > tr > td.checkboxColumn.ant-table-cell-fix-left {
+  z-index: 12 !important;
+  background: var(--bg-default, #ffffff) !important;
 }
 
 /* Sort Icons - Custom styling */
@@ -308,4 +329,5 @@
   background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
   border-bottom: none !important;
   transition: background var(--ant-motion-duration-mid) ease;
+  inset-inline-start: 0px !important;
 }
