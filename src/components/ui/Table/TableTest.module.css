@@ -52,30 +52,46 @@
 .statusCell {
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.statusTag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 6px;
+  background-color: var(--bg-gray-tertiary, #f1f3f4);
+  border: 1px solid var(--Border-Default-Secondary, #D6DADF);
+  box-sizing: border-box;
 }
 
 .statusDotActive {
-  color: var(--color-green-600, #0f7b0f);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #15ae5d;
   flex-shrink: 0;
+  display: block;
 }
 
 .statusDotInactive {
-  color: var(--color-slate-500, #768494);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #768494;
   flex-shrink: 0;
+  display: block;
 }
 
-.statusActive {
+.statusText {
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font-size: 12px;
   font-weight: 400;
-  color: var(--color-green-600, #0f7b0f);
-}
-
-.statusInactive {
-  font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--color-slate-500, #768494);
+  color: var(--color-slate-800, #2f353b);
+  line-height: 1;
 }
 

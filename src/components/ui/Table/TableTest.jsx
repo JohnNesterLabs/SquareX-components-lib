@@ -241,18 +241,18 @@ const TableTest = () => {
     );
   };
 
-  // Render status cell with colored dot and text
+  // Render status cell with badge-style tag containing colored dot and text
   const renderStatus = (value, row) => {
     return (
       <div className={styles.statusCell}>
-        <Icon 
-          name="Dot" 
-          size={8} 
-          className={value ? styles.statusDotActive : styles.statusDotInactive}
-        />
-        <span className={value ? styles.statusActive : styles.statusInactive}>
-          {value ? 'Active' : 'Inactive'}
-        </span>
+        <div className={styles.statusTag}>
+          <div 
+            className={value ? styles.statusDotActive : styles.statusDotInactive}
+          />
+          <span className={styles.statusText}>
+            {value ? 'Active' : 'Inactive'}
+          </span>
+        </div>
       </div>
     );
   };
@@ -279,6 +279,7 @@ const TableTest = () => {
       key: 'action',
       label: 'Action',
       sortable: false,
+      align: 'left',
       render: (value, row) => renderAction(value, row),
     },
     {
