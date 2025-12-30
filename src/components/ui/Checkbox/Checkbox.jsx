@@ -17,6 +17,7 @@ import styles from './Checkbox.module.css';
  */
 const Checkbox = ({
   checked = false,
+  indeterminate = false,
   disabled = false,
   state = 'default',
   size = 'medium',
@@ -60,6 +61,7 @@ const Checkbox = ({
     styles.checkbox,
     styles[`size_${normalizedSize}`],
     checked && styles.checkboxChecked,
+    !checked && indeterminate && styles.checkboxIndeterminateState,
     isDisabled && styles.checkboxDisabled,
     !isDisabled && styles[`state_${actualState}`],
   ]
@@ -80,7 +82,7 @@ const Checkbox = ({
           disabled={isDisabled}
           onChange={handleChange}
           className={styles.checkboxInput}
-          aria-checked={checked}
+          aria-checked={indeterminate ? 'mixed' : checked}
           aria-disabled={isDisabled}
           {...props}
         />
@@ -99,6 +101,11 @@ const Checkbox = ({
                   />
                 </div>
               </div>
+            </div>
+          )}
+          {!checked && indeterminate && (
+            <div className={styles.checkboxIndeterminate}>
+              <div className={styles.indeterminateBar} />
             </div>
           )}
         </label>

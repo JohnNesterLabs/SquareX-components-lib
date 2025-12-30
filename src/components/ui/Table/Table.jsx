@@ -461,14 +461,33 @@ const Table = ({
       return columnConfig;
     });
 
+    // Selection/header checkbox state
+    const totalRows = items.length;
+    const selectedCount = selectedRowKeys.length;
+    const allChecked = totalRows > 0 && selectedCount === totalRows;
+    const noneChecked = selectedCount === 0;
+    const someChecked = !noneChecked && !allChecked;
+
     // Create manual checkbox column (2nd position, after drag handle)
     const checkboxColumn = {
       title: (
         <div className={styles.checkboxHeader}>
           <Checkbox
-            checked={selectedRowKeys.length === items.length && items.length > 0}
+            checked={allChecked}
+            indeterminate={someChecked}
             onChange={(e) => {
-              handleRowSelect(e.target.checked ? items.map((row) => row[rowKey]) : []);
+              // If currently indeterminate (some checked), clicking should uncheck all
+              if (someChecked) {
+                handleRowSelect([]);
+              } else {
+                // Otherwise, toggle between all checked and none checked
+                const shouldSelectAll = e.target.checked;
+                handleRowSelect(
+                  shouldSelectAll
+                    ? items.map((row) => row[rowKey])
+                    : []
+                );
+              }
             }}
             size="small"
           />
