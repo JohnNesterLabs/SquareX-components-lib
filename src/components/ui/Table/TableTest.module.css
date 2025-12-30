@@ -51,14 +51,14 @@
 
 .statusActive {
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-green-600, #0f7b0f);
 }
 
 .statusInactive {
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   color: var(--color-slate-500, #768494);
 }

@@ -124,7 +124,8 @@
 
 /* State: Default */
 .state_default {
-  background-color: #d6dadf;
+  background: var(--Background-Action-Violet-Tertiary, #DAD6F2);
+
 }
 
 .state_default:hover:not(.toggleDisabled) {
@@ -190,7 +191,7 @@
 .label {
   font-family: 'Host Grotesk', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.5;
   color: #2f353b;
   cursor: pointer;
@@ -206,7 +207,8 @@
 
 /* Interactive states for default */
 .toggle:not(.toggleDisabled):not(.toggleChecked):hover {
-  background-color: #c8ced4;
+  background: var(--Background-Action-Violet-Tertiary, #DAD6F2);
+
 }
 
 .toggle:not(.toggleDisabled):not(.toggleChecked):active {
