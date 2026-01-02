@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './InputField.module.css';
 
 const InputField = ({
-  value = '',
+  value: controlledValue,
   description = '',
   label = '',
   error = '',
@@ -22,11 +22,17 @@ const InputField = ({
   className = '',
   ...props
 }) => {
-  // Normalize state name (handle variations like 'filled in' -> 'filled', 'filled in - Hover' -> 'filledHover')
+  // Internal state for uncontrolled mode
+  const [internalValue, setInternalValue] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+
+  // Use controlled value if provided, otherwise use internal state
+  const value = controlledValue !== undefined ? controlledValue : internalValue;
+
+  // Normalize state name
   const normalizeState = (stateName) => {
     if (!stateName) return 'default';
     const normalized = stateName.toLowerCase().replace(/\s+/g, '').replace(/-/g, '');
-    // Map variations to standard names
     if (normalized === 'filledin' || normalized === 'filled') return 'filled';
     if (normalized === 'filledinhover' || normalized === 'filledhover' || normalized === 'filled-hover') return 'filledHover';
     if (normalized === 'focused') return 'focused';
@@ -37,7 +43,7 @@ const InputField = ({
     return normalized;
   };
 
-  // Determine actual state (disabled takes precedence)
+  // Determine actual state
   const actualState = disabled ? 'disabled' : normalizeState(state);
 
   // Get icon element
@@ -78,6 +84,40 @@ const InputField = ({
     );
   };
 
+  // Handle change
+  const handleChange = (e) => {
+    if (!disabled) {
+      // Update internal state if uncontrolled
+      if (controlledValue === undefined) {
+        setInternalValue(e.target.value);
+      }
+      // Call onChange callback if provided
+      if (onChange) {
+        onChange(e);
+      }
+    }
+  };
+
+  // Handle focus
+  const handleFocus = (e) => {
+    if (!disabled) {
+      setIsFocused(true);
+      if (onFocus) {
+        onFocus(e);
+      }
+    }
+  };
+
+  // Handle blur
+  const handleBlur = (e) => {
+    if (!disabled) {
+      setIsFocused(false);
+      if (onBlur) {
+        onBlur(e);
+      }
+    }
+  };
+
   // Build class names
   const containerClassNames = [
     styles.container,
@@ -103,85 +143,46 @@ const InputField = ({
   // Determine if input should be disabled
   const isDisabled = disabled || actualState === 'disabled';
 
-  // Determine input value/placeholder
-  const displayValue = value || '';
-  const showPlaceholder = !value && placeholder;
+  // Generate unique ID for input
+  const inputId = props.id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
-  // Render based on state
-  const renderContent = () => {
-    return (
-      <div className={containerClassNames}>
-        {hasLabel && label && (
-          <label className={styles.label} htmlFor={props.id}>
-            {label}
-          </label>
-        )}
-        {hasDescription && description && (
-          <p className={styles.description}>{description}</p>
-        )}
-        <div className={inputWrapperClassNames}>
-          <div className={styles.inputInner}>
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{placeholder}</span>
-            ) : (
-              <span className={styles.value}>{displayValue}</span>
-            )}
-            {getIcon()}
-            {getChips()}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={styles.cursor}>|</span>
-            )}
-          </div>
+  return (
+    <div className={containerClassNames}>
+      {hasLabel && label && (
+        <label className={styles.label} htmlFor={inputId}>
+          {label}
+        </label>
+      )}
+      {hasDescription && description && (
+        <p className={styles.description}>{description}</p>
+      )}
+      <div className={inputWrapperClassNames}>
+        <div className={styles.inputInner}>
+          <input
+            type="text"
+            id={inputId}
+            className={inputClassNames}
+            value={value}
+            placeholder={placeholder}
+            onChange={handleChange}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            disabled={isDisabled}
+            aria-invalid={hasError}
+            aria-describedby={hasError ? `${inputId}-error` : undefined}
+            {...props}
+          />
+          {getIcon()}
+          {getChips()}
         </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
       </div>
-    );
-  };
-
-  // For interactive states, use button wrapper
-  if (actualState === 'hover' || actualState === 'typing' || (actualState === 'default' && !isDisabled) || actualState === 'filledHover') {
-    return (
-      <button
-        type="button"
-        className={containerClassNames}
-        onClick={onFocus}
-        disabled={isDisabled}
-        aria-disabled={isDisabled}
-        {...props}
-      >
-        {hasLabel && label && (
-          <label className={styles.label} htmlFor={props.id}>
-            {label}
-          </label>
-        )}
-        {hasDescription && description && (
-          <p className={styles.description}>{description}</p>
-        )}
-        <div className={inputWrapperClassNames}>
-          <div className={styles.inputInner}>
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{placeholder}</span>
-            ) : (
-              <span className={styles.value}>{displayValue}</span>
-            )}
-            {getIcon()}
-            {getChips()}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={styles.cursor}>|</span>
-            )}
-          </div>
-        </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
-      </button>
-    );
-  }
-
-  return renderContent();
+      {hasError && error && (
+        <p className={styles.error} id={`${inputId}-error`}>
+          {error}
+        </p>
+      )}
+    </div>
+  );
 };
 
 export default InputField;
-

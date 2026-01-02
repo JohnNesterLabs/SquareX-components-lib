@@ -1,0 +1,150 @@
+/* Pagination Container */
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Host Grotesk', sans-serif;
+}
+
+/* Navigation Buttons (Previous/Next) */
+.navButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2f353b;
+    outline: none;
+}
+
+.navButton:hover:not(.disabled) {
+    background-color: rgba(68, 50, 191, 0.08);
+}
+
+.navButton:active:not(.disabled) {
+    background-color: rgba(68, 50, 191, 0.12);
+}
+
+.navButton:focus-visible {
+    outline: 2px solid #4432bf;
+    outline-offset: 2px;
+}
+
+.navButton.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.navText {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+/* Page Numbers Container */
+.pageNumbers {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Page Button */
+.pageButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 8px 12px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #2f353b;
+    outline: none;
+}
+
+.pageButton:hover:not(.active) {
+    background-color: rgba(68, 50, 191, 0.08);
+}
+
+.pageButton:active:not(.active) {
+    background-color: rgba(68, 50, 191, 0.12);
+}
+
+.pageButton:focus-visible {
+    outline: 2px solid #4432bf;
+    outline-offset: 2px;
+}
+
+/* Active Page Button */
+.pageButton.active {
+    background-color: #4432bf;
+    color: #ffffff;
+    cursor: default;
+}
+
+.pageButton.active:hover {
+    background-color: #4432bf;
+}
+
+/* Ellipsis */
+.ellipsis {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 36px;
+    padding: 8px 12px;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #768494;
+    user-select: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .pagination {
+        gap: 4px;
+    }
+
+    .navText {
+        display: none;
+    }
+
+    .navButton {
+        padding: 8px;
+    }
+
+    .pageButton {
+        min-width: 32px;
+        height: 32px;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .ellipsis {
+        min-width: 32px;
+        height: 32px;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+}

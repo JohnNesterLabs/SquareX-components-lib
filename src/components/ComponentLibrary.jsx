@@ -3,6 +3,7 @@ import IconButton from './ui/IconButton/IconButton';
 import Button from './ui/Button/Button';
 import ButtonDanger from './ui/ButtonDanger/ButtonDanger';
 import InputField from './ui/InputField/InputField';
+import InputFieldTest from './ui/InputField/InputFieldTest';
 import TextArea from './ui/TextArea/TextArea';
 import Dropdown from './ui/Dropdown/Dropdown';
 import Search from './ui/Search/Search';
@@ -27,6 +28,8 @@ import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
 import Table from './ui/Table/Table';
 import TableTest from './ui/Table/TableTest';
+import Pagination from './ui/Pagination/Pagination';
+import PaginationTest from './ui/Pagination/PaginationTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -51,6 +54,7 @@ const ComponentLibrary = () => {
     { id: 'radio', label: 'Radio' },
     { id: 'toggle', label: 'Toggle' },
     { id: 'table', label: 'Table' },
+    { id: 'pagination', label: 'Pagination' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -258,6 +262,11 @@ const ComponentLibrary = () => {
 
     return (
       <>
+        {/* InputField Test Component */}
+        <div className="component-section">
+          <InputFieldTest />
+        </div>
+
         {/* InputField Section */}
         <div className="component-section">
           <h2 className="component-section-title">InputField Component</h2>
@@ -1521,6 +1530,17 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderPaginationComponent = () => {
+    return (
+      <>
+        {/* Pagination Test Component */}
+        <div className="component-section">
+          <PaginationTest />
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <div className="component-library-content">
@@ -1556,6 +1576,7 @@ const ComponentLibrary = () => {
           {activeTab === 'radio' && renderRadioComponent()}
           {activeTab === 'toggle' && renderToggleComponent()}
           {activeTab === 'table' && renderTableComponent()}
+          {activeTab === 'pagination' && renderPaginationComponent()}
         </div>
       </div>
     </div>
