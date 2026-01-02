@@ -38,18 +38,18 @@ const ComponentLibrary = () => {
   const sizes = ['medium', 'small'];
 
   const tabs = [
-    // { id: 'iconbutton', label: 'IconButton' },
-    // { id: 'button', label: 'Button' },
-    // { id: 'buttondanger', label: 'ButtonDanger' },
-    // { id: 'inputfield', label: 'InputField' },
-    // { id: 'nestedsection', label: 'NestedSection' },
-    // { id: 'itemrow', label: 'ItemRow' },
-    // { id: 'categories', label: 'Categories' },
-    // { id: 'backgroundgradient', label: 'BackgroundGradient' },
+    { id: 'iconbutton', label: 'IconButton' },
+    { id: 'button', label: 'Button' },
+    { id: 'buttondanger', label: 'ButtonDanger' },
+    { id: 'inputfield', label: 'InputField' },
+    { id: 'nestedsection', label: 'NestedSection' },
+    { id: 'itemrow', label: 'ItemRow' },
+    { id: 'categories', label: 'Categories' },
+    { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
-    // { id: 'checkbox', label: 'Checkbox' },
-    // { id: 'radio', label: 'Radio' },
-    // { id: 'toggle', label: 'Toggle' },
+    { id: 'checkbox', label: 'Checkbox' },
+    { id: 'radio', label: 'Radio' },
+    { id: 'toggle', label: 'Toggle' },
     { id: 'table', label: 'Table' },
   ];
 
@@ -1543,18 +1543,18 @@ const ComponentLibrary = () => {
         </div>
 
         <div className="component-tab-content">
-          {/* {activeTab === 'iconbutton' && renderIconButtonComponent()}
+          {activeTab === 'iconbutton' && renderIconButtonComponent()}
           {activeTab === 'button' && renderButtonComponent()}
           {activeTab === 'buttondanger' && renderButtonDangerComponent()}
           {activeTab === 'inputfield' && renderInputFieldComponent()}
           {activeTab === 'nestedsection' && renderNestedSectionComponent()}
           {activeTab === 'itemrow' && renderItemRowComponent()}
           {activeTab === 'categories' && renderCategoriesComponent()}
-          {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()} */}
+          {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()}
           {activeTab === 'icons' && renderIconsComponent()}
-          {/* {activeTab === 'checkbox' && renderCheckboxComponent()}
+          {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
-          {activeTab === 'toggle' && renderToggleComponent()} */}
+          {activeTab === 'toggle' && renderToggleComponent()}
           {activeTab === 'table' && renderTableComponent()}
         </div>
       </div>
