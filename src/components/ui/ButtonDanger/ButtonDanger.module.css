@@ -262,8 +262,9 @@
 .style_primary.state_loading .icon,
 .style_primary.state_disabled .loaderIcon,
 .style_primary.state_loading .loaderIcon {
-  filter: brightness(0) saturate(100%) invert(98%) sepia(5%) saturate(200%) hue-rotate(0deg) brightness(1) contrast(1);
-  opacity: 0.7;
+  filter: brightness(0) saturate(100%) invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1) !important;
+  /* filter: brightness(0) saturate(100%) invert(98%) sepia(5%) saturate(200%) hue-rotate(0deg) brightness(1) contrast(1); */
+  /* opacity: 0.7; */
 }
 
 /* Neutral and Subtle: Red icons */

@@ -205,20 +205,11 @@
   cursor: not-allowed;
   border-color: #d6dadf;
   background-color: #f5f5f5;
+  background: var(--Background-Disabled-Default, #DBDBDB);
 }
 
 .checkboxDisabled.checkboxChecked {
-  background-color: #dad6f2;
-  border: none;
-}
-
-.checkboxDisabled:hover {
-  border-color: #d6dadf;
-  background-color: #f5f5f5;
-}
-
-.checkboxDisabled.checkboxChecked:hover {
-  background-color: #dad6f2;
+  background-color: var(--Background-Disabled-Default, #DBDBDB);
   border: none;
 }
 
@@ -234,8 +225,8 @@
   margin: 0;
 }
 
-.checkboxDisabled + .label,
-.checkboxDisabled ~ .label {
+.checkboxDisabled+.label,
+.checkboxDisabled~.label {
   opacity: 0.5;
   cursor: not-allowed;
 }
@@ -259,4 +250,3 @@
 .checkbox:not(.checkboxDisabled).checkboxChecked:active {
   background-color: #4432bf;
 }
-
