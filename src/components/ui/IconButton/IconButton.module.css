@@ -47,6 +47,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -79,12 +80,13 @@
 }
 
 .style_primary.state_hover {
-  background-color: #291e73;
+  background: var(--Background-Action-Violet-Default-Hover, #695BCC);
 }
 
 .style_primary.state_focus {
   background-color: #4432bf;
   overflow: visible;
+  border: 2px solid var(--Border-Default-Tertiary, #768494)
 }
 
 .style_primary.state_focus::after {
@@ -98,15 +100,13 @@
 
 .style_primary.state_disabled,
 .style_primary.state_disabled:hover {
-  background-color: #dad6f2;
-  opacity: 0.5;
+  background: var(--Background-Disabled-Default, #DBDBDB);
   cursor: not-allowed;
 }
 
 .style_primary.state_loading,
 .style_primary.state_loading:hover {
-  background-color: #dad6f2;
-  opacity: 0.5;
+  background-color: var(--Background-Disabled-Default, #DBDBDB);
   cursor: not-allowed;
 }
 
@@ -116,7 +116,7 @@
 }
 
 .style_secondary.state_default {
-  background-color: #cfb9e5;
+  background: var(--Background-Brand-Purple-Secondary, #B897D9);
 }
 
 .style_secondary.state_default:hover:not(:disabled) {
@@ -128,8 +128,8 @@
 }
 
 .style_secondary.state_focus {
-  background-color: #cfb9e5;
   overflow: visible;
+  background-color: var(--Background-Brand-Purple-Secondary, #B897D9);
 }
 
 .style_secondary.state_focus::after {
@@ -137,19 +137,19 @@
   position: absolute;
   inset: -2px;
   border-radius: 10px;
-  border: 2px solid rgba(207, 185, 229, 0.5);
   pointer-events: none;
+  border: 2px solid var(--Border-Default-Tertiary, #768494)
 }
 
 .style_secondary.state_disabled,
 .style_secondary.state_disabled:hover {
-  background-color: #e7dcf2;
+  background: var(--Background-Disabled-Default, #DBDBDB);
   cursor: not-allowed;
 }
 
 .style_secondary.state_loading,
 .style_secondary.state_loading:hover {
-  background-color: #e7dcf2;
+  background: var(--Background-Disabled-Default, #DBDBDB);
   cursor: not-allowed;
 }
 
@@ -164,8 +164,8 @@
 .style_neutral.state_default {
   background-color: rgba(255, 255, 255, 0.7);
   border: 1.5px solid #ffffff;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 24px 0px #0000000F;
+  backdrop-filter: blur(20px)
 }
 
 .style_neutral.state_default:hover:not(:disabled) {
@@ -175,16 +175,12 @@
 
 .style_neutral.state_hover {
   background-color: rgba(255, 255, 255, 0.7);
-  border: 1.5px solid #ffffff;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0px 4px 24px 0px #0000002E;
+  backdrop-filter: blur(20px)
 }
 
 .style_neutral.state_focus {
   background-color: rgba(255, 255, 255, 0.7);
-  border: 1.5px solid #ffffff;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
   overflow: visible;
 }
 
@@ -193,28 +189,20 @@
   position: absolute;
   inset: -2px;
   border-radius: 10px;
-  border: 1.5px solid #ffffff;
+  border: 2px solid var(--Border-Default-Tertiary, #768494);
   pointer-events: none;
 }
 
 .style_neutral.state_disabled,
 .style_neutral.state_disabled:hover {
-  background-color: #e4e4e4;
-  border: 1.5px solid #e4e4e4;
-  opacity: 0.5;
   cursor: not-allowed;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: var(--Background-Disabled-Default, #DBDBDB);
 }
 
 .style_neutral.state_loading,
 .style_neutral.state_loading:hover {
-  background-color: #e4e4e4;
-  border: 1.5px solid #e4e4e4;
-  opacity: 0.5;
   cursor: not-allowed;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+  background: var(--Background-Disabled-Default, #DBDBDB);
 }
 
 /* Style: Subtle */
@@ -244,8 +232,8 @@
   position: absolute;
   inset: -2px;
   border-radius: 10px;
-  border: 2px solid rgba(47, 53, 59, 0.2);
   pointer-events: none;
+  border: 2px solid var(--Border-Default-Tertiary, #768494)
 }
 
 .style_subtle.state_disabled,
@@ -273,8 +261,7 @@
 .style_primary.state_loading .icon,
 .style_primary.state_disabled .loaderIcon,
 .style_primary.state_loading .loaderIcon {
-  filter: brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(200%) hue-rotate(240deg) brightness(100%) contrast(100%);
-  opacity: 0.7;
+  filter: brightness(0) saturate(100%) invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1) !important;
 }
 
 /* Secondary: Dark purple icons */
@@ -291,7 +278,7 @@
 .style_secondary.state_loading .icon,
 .style_secondary.state_disabled .loaderIcon,
 .style_secondary.state_loading .loaderIcon {
-  filter: brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(200%) hue-rotate(250deg) brightness(100%) contrast(100%);
+  filter: brightness(0) saturate(100%) invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1) !important;
 }
 
 /* Neutral and Subtle: Dark grey icons */
@@ -310,4 +297,3 @@
 .style_subtle.state_loading .loaderIcon {
   filter: brightness(0) saturate(100%) invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(1) contrast(1);
 }
-

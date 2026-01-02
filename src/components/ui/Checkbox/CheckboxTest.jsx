@@ -21,7 +21,7 @@ const CheckboxTest = () => {
   return (
     <div className={styles.testContainer}>
       <h2 className={styles.testTitle}>Checkbox Functionality Test</h2>
-      
+
       {/* Interactive Test Section */}
       <div className={styles.testSection}>
         <h3 className={styles.sectionTitle}>Interactive Testing - Click to Toggle</h3>
@@ -172,6 +172,100 @@ const CheckboxTest = () => {
         </div>
       </div>
 
+      {/* Indeterminate State Testing */}
+      <div className={styles.testSection}>
+        <h3 className={styles.sectionTitle}>Indeterminate/Neutral State Testing</h3>
+        <div className={styles.testGrid}>
+          <div className={styles.testItem}>
+            <h4>Indeterminate State</h4>
+            <Checkbox
+              checked={false}
+              indeterminate={true}
+              label="Indeterminate checkbox"
+              onChange={(e) => console.log('Indeterminate changed:', e.target.checked)}
+            />
+            <p className={styles.instruction}>Used for "select all" when some items are selected</p>
+          </div>
+
+          <div className={styles.testItem}>
+            <h4>Indeterminate Disabled</h4>
+            <Checkbox
+              checked={false}
+              indeterminate={true}
+              disabled={true}
+              label="Disabled indeterminate"
+              onChange={(e) => console.log('Should not fire')}
+            />
+            <p className={styles.instruction}>Disabled indeterminate state</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Checkbox Field - Three States Side by Side */}
+      <div className={styles.testSection}>
+        <h3 className={styles.sectionTitle}>🔹 Checkbox Field</h3>
+        <div className={styles.checkboxFieldGrid}>
+          {/* Checked */}
+          <div className={styles.checkboxFieldColumn}>
+            <div className={styles.checkboxFieldItem}>
+              <Checkbox
+                checked={true}
+                label="Label"
+              />
+              <p className={styles.description}>Description</p>
+            </div>
+            <div className={styles.checkboxFieldItem}>
+              <Checkbox
+                checked={true}
+                disabled={true}
+                label="Label"
+              />
+              <p className={styles.description}>Description</p>
+            </div>
+          </div>
+
+          {/* Unchecked */}
+          <div className={styles.checkboxFieldColumn}>
+            <div className={styles.checkboxFieldItem}>
+              <Checkbox
+                checked={false}
+                label="Label"
+              />
+              <p className={styles.description}>Description</p>
+            </div>
+            <div className={styles.checkboxFieldItem}>
+              <Checkbox
+                checked={false}
+                disabled={true}
+                label="Label"
+              />
+              <p className={styles.description}>Description</p>
+            </div>
+          </div>
+
+          {/* Indeterminate */}
+          <div className={styles.checkboxFieldColumn}>
+            <div className={styles.checkboxFieldItem}>
+              <Checkbox
+                checked={false}
+                indeterminate={true}
+                label="Label"
+              />
+              <p className={styles.description}>Description</p>
+            </div>
+            <div className={styles.checkboxFieldItem}>
+              <Checkbox
+                checked={false}
+                indeterminate={true}
+                disabled={true}
+                label="Label"
+              />
+              <p className={styles.description}>Description</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* All States Grid */}
       <div className={styles.testSection}>
         <h3 className={styles.sectionTitle}>All States Overview</h3>
@@ -215,6 +309,26 @@ const CheckboxTest = () => {
           <div className={styles.stateItem}>
             <h4>Checked - Disabled</h4>
             <Checkbox checked={true} disabled={true} />
+          </div>
+          <div className={styles.stateItem}>
+            <h4>Indeterminate - Default</h4>
+            <Checkbox checked={false} indeterminate={true} state="default" />
+          </div>
+          <div className={styles.stateItem}>
+            <h4>Indeterminate - Hover</h4>
+            <Checkbox checked={false} indeterminate={true} state="hover" />
+          </div>
+          <div className={styles.stateItem}>
+            <h4>Indeterminate - Focus</h4>
+            <Checkbox checked={false} indeterminate={true} state="focus" />
+          </div>
+          <div className={styles.stateItem}>
+            <h4>Indeterminate - Pressed</h4>
+            <Checkbox checked={false} indeterminate={true} state="pressed" />
+          </div>
+          <div className={styles.stateItem}>
+            <h4>Indeterminate - Disabled</h4>
+            <Checkbox checked={false} indeterminate={true} disabled={true} />
           </div>
         </div>
       </div>
