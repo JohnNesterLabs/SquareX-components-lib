@@ -201,7 +201,6 @@
 
 /* Disabled State */
 .checkboxDisabled {
-  opacity: 0.5;
   cursor: not-allowed;
   border-color: #d6dadf;
   background-color: #f5f5f5;

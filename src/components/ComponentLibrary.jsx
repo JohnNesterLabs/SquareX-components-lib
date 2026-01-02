@@ -45,7 +45,7 @@ const ComponentLibrary = () => {
     { id: 'nestedsection', label: 'NestedSection' },
     { id: 'itemrow', label: 'ItemRow' },
     { id: 'categories', label: 'Categories' },
-    { id: 'backgroundgradient', label: 'BackgroundGradient' },
+    // { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
     { id: 'checkbox', label: 'Checkbox' },
     { id: 'radio', label: 'Radio' },
@@ -67,7 +67,7 @@ const ComponentLibrary = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Rows for each style */}
           {styles.map((style) => (
             <div key={style} className="component-grid-row">
@@ -114,7 +114,7 @@ const ComponentLibrary = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Rows for each style */}
           {styles.map((style) => (
             <div key={style} className="component-grid-row">
@@ -164,7 +164,7 @@ const ComponentLibrary = () => {
               </div>
             ))}
           </div>
-          
+
           {/* Rows for each style */}
           {dangerStyles.map((style) => (
             <div key={style} className="component-grid-row">
@@ -265,8 +265,8 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 {inputStates.map((state) => (
-                  <div 
-                    key={state.key} 
+                  <div
+                    key={state.key}
                     className="component-inputfield-cell"
                   >
                     <div className="component-inputfield-state-label">{state.label}</div>
@@ -298,8 +298,8 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 {textAreaStates.map((state) => (
-                  <div 
-                    key={state.key} 
+                  <div
+                    key={state.key}
                     className="component-inputfield-cell"
                   >
                     <div className="component-inputfield-state-label">{state.label}</div>
@@ -332,8 +332,8 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 {dropdownStates.map((state) => (
-                  <div 
-                    key={state.key} 
+                  <div
+                    key={state.key}
                     className="component-inputfield-cell"
                   >
                     <div className="component-inputfield-state-label">{state.label}</div>
@@ -365,8 +365,8 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 {dropdownStates.map((state) => (
-                  <div 
-                    key={state.key} 
+                  <div
+                    key={state.key}
                     className="component-inputfield-cell"
                   >
                     <div className="component-inputfield-state-label">{state.label}</div>
@@ -398,8 +398,8 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 {searchStates.map((state) => (
-                  <div 
-                    key={state.key} 
+                  <div
+                    key={state.key}
                     className="component-inputfield-cell"
                   >
                     <div className="component-inputfield-state-label">{state.label}</div>
@@ -425,8 +425,8 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 {listSearchStates.map((state) => (
-                  <div 
-                    key={state.key} 
+                  <div
+                    key={state.key}
                     className="component-inputfield-cell"
                   >
                     <div className="component-inputfield-state-label">{state.label}</div>
@@ -451,8 +451,8 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 {listSearchStates.map((state) => (
-                  <div 
-                    key={state.key} 
+                  <div
+                    key={state.key}
                     className="component-inputfield-cell"
                   >
                     <div className="component-inputfield-state-label">{state.label}</div>
@@ -986,7 +986,7 @@ const ComponentLibrary = () => {
   const renderIconsComponent = () => {
     // Icon sizes to display (8 sizes matching first image: 48, 40, 32, 24, 20, 16, 14, 12)
     const iconSizes = [48, 40, 32, 24, 20, 16, 14, 12];
-    
+
     // All available icons from public/icon folder (358 icons)
     // Each icon displays all 8 size variants
     const allIcons = iconListData;
@@ -996,21 +996,21 @@ const ComponentLibrary = () => {
         {/* All Icons Grid - Matching First Image Design */}
         <div className="component-section">
           <h2 className="component-section-title">All Icons ({allIcons.length} icons)</h2>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(3, 1fr)', 
-            gap: '16px', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: '16px',
             padding: '16px',
             background: '#ffffff'
           }}>
             {allIcons.map((icon) => {
               // Show all 8 sizes
               const sizesToShow = iconSizes;
-              
+
               return (
-                <div 
-                  key={icon.name} 
-                  style={{ 
+                <div
+                  key={icon.name}
+                  style={{
                     display: 'flex',
                     flexDirection: 'column',
                     gap: '12px',
@@ -1032,11 +1032,11 @@ const ComponentLibrary = () => {
                   }}>
                     {/* Purple Diamond Icon */}
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 0L12 6L6 12L0 6L6 0Z" fill="#4432bf"/>
+                      <path d="M6 0L12 6L6 12L0 6L6 0Z" fill="#4432bf" />
                     </svg>
                     <span>{icon.label}</span>
                   </div>
-                  
+
                   {/* Icon Size Variants - Displayed in a row (largest to smallest) */}
                   <div style={{
                     display: 'flex',
@@ -1061,8 +1061,8 @@ const ComponentLibrary = () => {
                         <img
                           src={`/${icon.filePath}`}
                           alt={`${icon.label} ${size}px`}
-                          style={{ 
-                            width: `${size}px`, 
+                          style={{
+                            width: `${size}px`,
                             height: `${size}px`,
                             objectFit: 'contain',
                             display: 'block'
@@ -1108,17 +1108,17 @@ const ComponentLibrary = () => {
         {/* Checkbox States - Unchecked & Checked in Grid */}
         <div className="component-section">
           <h2 className="component-section-title">Checkbox Component - All States</h2>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(2, 1fr)', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '24px'
           }}>
             {/* Unchecked States */}
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Unchecked</h3>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: `120px repeat(${checkboxSizes.length}, 1fr)`, 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: `120px repeat(${checkboxSizes.length}, 1fr)`,
                 gap: '12px',
                 alignItems: 'center'
               }}>
@@ -1154,9 +1154,9 @@ const ComponentLibrary = () => {
             {/* Checked States */}
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Checked</h3>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: `120px repeat(${checkboxSizes.length}, 1fr)`, 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: `120px repeat(${checkboxSizes.length}, 1fr)`,
                 gap: '12px',
                 alignItems: 'center'
               }}>
@@ -1248,17 +1248,17 @@ const ComponentLibrary = () => {
         {/* Radio States - Unselected & Selected in Grid */}
         <div className="component-section">
           <h2 className="component-section-title">Radio Component - All States</h2>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(2, 1fr)', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '24px'
           }}>
             {/* Unselected States */}
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Unselected</h3>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: `120px repeat(${radioSizes.length}, 1fr)`, 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: `120px repeat(${radioSizes.length}, 1fr)`,
                 gap: '12px',
                 alignItems: 'center'
               }}>
@@ -1296,9 +1296,9 @@ const ComponentLibrary = () => {
             {/* Selected States */}
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>Selected</h3>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: `120px repeat(${radioSizes.length}, 1fr)`, 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: `120px repeat(${radioSizes.length}, 1fr)`,
                 gap: '12px',
                 alignItems: 'center'
               }}>
@@ -1391,17 +1391,17 @@ const ComponentLibrary = () => {
         {/* Toggle States - OFF & ON in Grid */}
         <div className="component-section">
           <h2 className="component-section-title">Toggle Component - All States</h2>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(2, 1fr)', 
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '24px'
           }}>
             {/* OFF States */}
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>OFF</h3>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: `120px repeat(${toggleSizes.length}, 1fr)`, 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: `120px repeat(${toggleSizes.length}, 1fr)`,
                 gap: '12px',
                 alignItems: 'center'
               }}>
@@ -1439,9 +1439,9 @@ const ComponentLibrary = () => {
             {/* ON States */}
             <div>
               <h3 style={{ fontSize: '18px', fontWeight: 600, marginBottom: '16px', color: '#2f353b' }}>ON</h3>
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: `120px repeat(${toggleSizes.length}, 1fr)`, 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: `120px repeat(${toggleSizes.length}, 1fr)`,
                 gap: '12px',
                 alignItems: 'center'
               }}>
@@ -1550,7 +1550,7 @@ const ComponentLibrary = () => {
           {activeTab === 'nestedsection' && renderNestedSectionComponent()}
           {activeTab === 'itemrow' && renderItemRowComponent()}
           {activeTab === 'categories' && renderCategoriesComponent()}
-          {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()}
+          {/* {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()} */}
           {activeTab === 'icons' && renderIconsComponent()}
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
