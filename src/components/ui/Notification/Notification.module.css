@@ -1,0 +1,51 @@
+/* Base Notification Styles */
+.notification {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Host Grotesk', sans-serif;
+    font-weight: 500;
+    border-radius: 100px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    box-sizing: border-box;
+    line-height: 1;
+}
+
+/* Size Variants */
+.size_small {
+    padding: 4px 8px;
+    font-size: 12px;
+    height: 20px;
+    min-width: 20px;
+}
+
+.size_medium {
+    padding: 6px 12px;
+    font-size: 14px;
+    height: 28px;
+    min-width: 28px;
+}
+
+/* Variant: Primary (Light purple bg, Dark purple text) */
+.variant_primary {
+    background-color: #ECEAF9;
+    color: #4432BF;
+}
+
+/* Variant: Neutral (Light grey bg, Dark grey text) */
+.variant_neutral {
+    background-color: #E3E5E8;
+    color: #2F353B;
+}
+
+/* Variant: Subtle (Very light grey bg, Light grey text) */
+.variant_subtle {
+    background-color: #F0F0F0;
+    color: #A6A6A6;
+}
+
+/* Hover effects (optional) */
+.notification:hover {
+    opacity: 0.9;
+}

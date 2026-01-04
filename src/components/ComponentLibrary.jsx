@@ -14,6 +14,8 @@ import ChipList from './ui/ChipList/ChipList';
 import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
 import Badge from './ui/Badge/Badge';
 import BadgeTest from './ui/Badge/BadgeTest';
+import Notification from './ui/Notification/Notification';
+import NotificationTest from './ui/Notification/NotificationTest';
 import ItemRow from './ui/ItemRow/ItemRow';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
@@ -57,6 +59,7 @@ const ComponentLibrary = () => {
     { id: 'table', label: 'Table' },
     { id: 'pagination', label: 'Pagination' },
     { id: 'badge', label: 'Badge' },
+    { id: 'notification', label: 'Notification' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1554,6 +1557,17 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderNotificationComponent = () => {
+    return (
+      <>
+        {/* Notification Test Component */}
+        <div className="component-section">
+          <NotificationTest />
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <div className="component-library-content">
@@ -1591,6 +1605,7 @@ const ComponentLibrary = () => {
           {activeTab === 'table' && renderTableComponent()}
           {activeTab === 'pagination' && renderPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}
+          {activeTab === 'notification' && renderNotificationComponent()}
         </div>
       </div>
     </div>
