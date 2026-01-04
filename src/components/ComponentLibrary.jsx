@@ -13,6 +13,7 @@ import Chip from './ui/Chip/Chip';
 import ChipList from './ui/ChipList/ChipList';
 import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
 import Badge from './ui/Badge/Badge';
+import BadgeTest from './ui/Badge/BadgeTest';
 import ItemRow from './ui/ItemRow/ItemRow';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
@@ -55,6 +56,7 @@ const ComponentLibrary = () => {
     { id: 'toggle', label: 'Toggle' },
     { id: 'table', label: 'Table' },
     { id: 'pagination', label: 'Pagination' },
+    { id: 'badge', label: 'Badge' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1541,6 +1543,17 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderBadgeComponent = () => {
+    return (
+      <>
+        {/* Badge Test Component */}
+        <div className="component-section">
+          <BadgeTest />
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <div className="component-library-content">
@@ -1577,6 +1590,7 @@ const ComponentLibrary = () => {
           {activeTab === 'toggle' && renderToggleComponent()}
           {activeTab === 'table' && renderTableComponent()}
           {activeTab === 'pagination' && renderPaginationComponent()}
+          {activeTab === 'badge' && renderBadgeComponent()}
         </div>
       </div>
     </div>
