@@ -16,6 +16,8 @@ import Badge from './ui/Badge/Badge';
 import BadgeTest from './ui/Badge/BadgeTest';
 import Notification from './ui/Notification/Notification';
 import NotificationTest from './ui/Notification/NotificationTest';
+import Tab from './ui/Tab/Tab';
+import TabTest from './ui/Tab/TabTest';
 import ItemRow from './ui/ItemRow/ItemRow';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
@@ -60,6 +62,7 @@ const ComponentLibrary = () => {
     { id: 'pagination', label: 'Pagination' },
     { id: 'badge', label: 'Badge' },
     { id: 'notification', label: 'Notification' },
+    { id: 'tab', label: 'Tab' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1568,6 +1571,17 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderTabComponent = () => {
+    return (
+      <>
+        {/* Tab Test Component */}
+        <div className="component-section">
+          <TabTest />
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <div className="component-library-content">
@@ -1606,6 +1620,7 @@ const ComponentLibrary = () => {
           {activeTab === 'pagination' && renderPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}
           {activeTab === 'notification' && renderNotificationComponent()}
+          {activeTab === 'tab' && renderTabComponent()}
         </div>
       </div>
     </div>
