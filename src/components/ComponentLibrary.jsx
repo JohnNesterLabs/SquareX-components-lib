@@ -12,28 +12,24 @@ import NestedSection from './ui/NestedSection/NestedSection';
 import Chip from './ui/Chip/Chip';
 import ChipList from './ui/ChipList/ChipList';
 import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
-import Badge from './ui/Badge/Badge';
 import BadgeTest from './ui/Badge/BadgeTest';
-import Notification from './ui/Notification/Notification';
 import NotificationTest from './ui/Notification/NotificationTest';
-import Tab from './ui/Tab/Tab';
 import TabTest from './ui/Tab/TabTest';
+import ModalTest from './ui/Modal/ModalTest';
 import ItemRow from './ui/ItemRow/ItemRow';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
 import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
 import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
-import IconShowcase from './ui/IconShowcase/IconShowcase';
+
 import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
 import Radio from './ui/Radio/Radio';
 import RadioTest from './ui/Radio/RadioTest';
 import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
-import Table from './ui/Table/Table';
 import TableTest from './ui/Table/TableTest';
-import Pagination from './ui/Pagination/Pagination';
 import PaginationTest from './ui/Pagination/PaginationTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
@@ -65,6 +61,7 @@ const ComponentLibrary = () => {
     { id: 'tab', label: 'Tab' },
     { id: 'chips', label: 'Chips' },
     { id: 'statusindicator', label: 'StatusIndicator' },
+    { id: 'modal', label: 'Modal' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -783,6 +780,17 @@ const ComponentLibrary = () => {
           </div>
         </div>
       </div>
+    );
+  };
+
+  const renderModalComponent = () => {
+    return (
+      <>
+        {/* Modal Test Component */}
+        <div className="component-section">
+          <ModalTest />
+        </div>
+      </>
     );
   };
 
@@ -1608,6 +1616,7 @@ const ComponentLibrary = () => {
           {activeTab === 'tab' && renderTabComponent()}
           {activeTab === 'chips' && renderChipComponent()}
           {activeTab === 'statusindicator' && renderStatusIndicatorComponent()}
+          {activeTab === 'modal' && renderModalComponent()}
         </div>
       </div>
     </div>
