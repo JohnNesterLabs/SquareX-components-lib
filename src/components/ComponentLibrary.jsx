@@ -16,6 +16,7 @@ import BadgeTest from './ui/Badge/BadgeTest';
 import NotificationTest from './ui/Notification/NotificationTest';
 import TabTest from './ui/Tab/TabTest';
 import ModalTest from './ui/Modal/ModalTest';
+import ToastTest from './ui/Toast/ToastTest';
 import ItemRow from './ui/ItemRow/ItemRow';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
@@ -62,6 +63,7 @@ const ComponentLibrary = () => {
     { id: 'chips', label: 'Chips' },
     { id: 'statusindicator', label: 'StatusIndicator' },
     { id: 'modal', label: 'Modal' },
+    { id: 'toast', label: 'Toast' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -789,6 +791,17 @@ const ComponentLibrary = () => {
         {/* Modal Test Component */}
         <div className="component-section">
           <ModalTest />
+        </div>
+      </>
+    );
+  };
+
+  const renderToastComponent = () => {
+    return (
+      <>
+        {/* Toast Test Component */}
+        <div className="component-section">
+          <ToastTest />
         </div>
       </>
     );
@@ -1617,6 +1630,7 @@ const ComponentLibrary = () => {
           {activeTab === 'chips' && renderChipComponent()}
           {activeTab === 'statusindicator' && renderStatusIndicatorComponent()}
           {activeTab === 'modal' && renderModalComponent()}
+          {activeTab === 'toast' && renderToastComponent()}
         </div>
       </div>
     </div>
