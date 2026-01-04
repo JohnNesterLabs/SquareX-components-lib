@@ -787,12 +787,6 @@ const ComponentLibrary = () => {
   };
 
   const renderNestedSectionComponent = () => {
-    const badgeTypes = [
-      { key: 'active', label: 'Active' },
-      { key: 'inactive', label: 'Inactive' },
-      { key: 'default', label: 'Default' },
-    ];
-
     return (
       <>
         {/* NestedSection Component */}
@@ -808,27 +802,6 @@ const ComponentLibrary = () => {
                     onMoreClick={() => console.log('More clicked')}
                   />
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Badge Component */}
-        <div className="component-section">
-          <h2 className="component-section-title">Badge Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {badgeTypes.map((type) => (
-                  <div key={type.key} className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{type.label}</div>
-                    <Badge
-                      label="Badge"
-                      size="medium"
-                      type={type.key}
-                    />
-                  </div>
-                ))}
               </div>
             </div>
           </div>
