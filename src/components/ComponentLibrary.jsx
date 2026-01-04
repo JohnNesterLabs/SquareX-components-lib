@@ -63,6 +63,7 @@ const ComponentLibrary = () => {
     { id: 'badge', label: 'Badge' },
     { id: 'notification', label: 'Notification' },
     { id: 'tab', label: 'Tab' },
+    { id: 'chips', label: 'Chips' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -674,7 +675,7 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderNestedSectionComponent = () => {
+  const renderChipComponent = () => {
     const chipStates = [
       { key: 'default', label: 'Default' },
       { key: 'hover', label: 'Hover' },
@@ -696,40 +697,8 @@ const ComponentLibrary = () => {
       { label: 'Label', id: '6' },
     ];
 
-    const statusStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'pressed', label: 'Pressed' },
-    ];
-
-    const colors = ['green', 'yellow', 'red', 'blue'];
-
-    const badgeTypes = [
-      { key: 'active', label: 'Active' },
-      { key: 'inactive', label: 'Inactive' },
-      { key: 'default', label: 'Default' },
-    ];
-
     return (
       <>
-        {/* NestedSection Component */}
-        <div className="component-section">
-          <h2 className="component-section-title">NestedSection Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell">
-                  <div className="component-inputfield-state-label">Default</div>
-                  <NestedSection
-                    canDrag={true}
-                    onMoreClick={() => console.log('More clicked')}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Chip Component */}
         <div className="component-section">
           <h2 className="component-section-title">Chip Component</h2>
@@ -771,6 +740,45 @@ const ComponentLibrary = () => {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
+  const renderNestedSectionComponent = () => {
+    const statusStates = [
+      { key: 'default', label: 'Default' },
+      { key: 'hover', label: 'Hover' },
+      { key: 'pressed', label: 'Pressed' },
+      { key: 'active', label: 'Active' },
+    ];
+
+    const colors = ['green', 'yellow', 'red', 'blue'];
+
+    const badgeTypes = [
+      { key: 'active', label: 'Active' },
+      { key: 'inactive', label: 'Inactive' },
+      { key: 'default', label: 'Default' },
+    ];
+
+    return (
+      <>
+        {/* NestedSection Component */}
+        <div className="component-section">
+          <h2 className="component-section-title">NestedSection Component</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell">
+                  <div className="component-inputfield-state-label">Default</div>
+                  <NestedSection
+                    canDrag={true}
+                    onMoreClick={() => console.log('More clicked')}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1621,6 +1629,7 @@ const ComponentLibrary = () => {
           {activeTab === 'badge' && renderBadgeComponent()}
           {activeTab === 'notification' && renderNotificationComponent()}
           {activeTab === 'tab' && renderTabComponent()}
+          {activeTab === 'chips' && renderChipComponent()}
         </div>
       </div>
     </div>
