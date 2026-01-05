@@ -41,6 +41,7 @@ import './ComponentLibrary.css';
 
 const ComponentLibrary = () => {
   const [activeTab, setActiveTab] = useState('iconbutton');
+  const [iconSearchQuery, setIconSearchQuery] = useState('');
   const styles = ['primary', 'secondary', 'neutral', 'subtle'];
   const dangerStyles = ['primary', 'neutral', 'subtle'];
   const states = ['default', 'hover', 'focus', 'disabled', 'loading'];
@@ -934,11 +935,73 @@ const ComponentLibrary = () => {
     // Each icon displays all 8 size variants
     const allIcons = iconListData;
 
+    const filteredIcons = allIcons.filter(icon =>
+      icon.label.toLowerCase().includes(iconSearchQuery.toLowerCase()) ||
+      icon.name.toLowerCase().includes(iconSearchQuery.toLowerCase())
+    );
+
     return (
       <>
         {/* All Icons Grid - Matching First Image Design */}
         <div className="component-section">
-          <h2 className="component-section-title">All Icons ({allIcons.length} icons)</h2>
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginBottom: '24px',
+            paddingBottom: '16px',
+            borderBottom: '1px solid #e4e6ea'
+          }}>
+            <h2 className="component-section-title" style={{ margin: 0 }}>
+              All Icons ({filteredIcons.length} icons)
+            </h2>
+            <div style={{
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              width: '300px'
+            }}>
+              <div style={{
+                position: 'absolute',
+                left: '12px',
+                display: 'flex',
+                alignItems: 'center',
+                pointerEvents: 'none'
+              }}>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7.33333 12.6667C10.2789 12.6667 12.6667 10.2789 12.6667 7.33333C12.6667 4.38781 10.2789 2 7.33333 2C4.38781 2 2 4.38781 2 7.33333C2 10.2789 4.38781 12.6667 7.33333 12.6667Z" stroke="#768494" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <path d="M14 14L11.1 11.1" stroke="#768494" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
+              <input
+                type="text"
+                placeholder="Search icons by name..."
+                value={iconSearchQuery}
+                onChange={(e) => setIconSearchQuery(e.target.value)}
+                style={{
+                  width: '100%',
+                  padding: '10px 12px 10px 40px',
+                  borderRadius: '8px',
+                  border: '1.5px solid #d6dadf',
+                  fontSize: '14px',
+                  fontFamily: "'Host Grotesk', sans-serif",
+                  outline: 'none',
+                  transition: 'all 0.2s ease',
+                  background: '#ffffff',
+                  color: '#2f353b'
+                }}
+                onFocus={(e) => {
+                  e.target.style.borderColor = '#4432bf';
+                  e.target.style.boxShadow = '0 0 0 3px rgba(68, 50, 191, 0.1)';
+                }}
+                onBlur={(e) => {
+                  e.target.style.borderColor = '#d6dadf';
+                  e.target.style.boxShadow = 'none';
+                }}
+              />
+            </div>
+          </div>
+
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
@@ -946,7 +1009,7 @@ const ComponentLibrary = () => {
             padding: '16px',
             background: '#ffffff'
           }}>
-            {allIcons.map((icon) => {
+            {filteredIcons.map((icon) => {
               // Show all 8 sizes
               const sizesToShow = iconSizes;
 
@@ -1021,6 +1084,16 @@ const ComponentLibrary = () => {
               );
             })}
           </div>
+          {filteredIcons.length === 0 && (
+            <div style={{
+              textAlign: 'center',
+              padding: '48px',
+              color: '#768494',
+              fontFamily: "'Host Grotesk', sans-serif"
+            }}>
+              No icons found matching "{iconSearchQuery}"
+            </div>
+          )}
         </div>
       </>
     );
