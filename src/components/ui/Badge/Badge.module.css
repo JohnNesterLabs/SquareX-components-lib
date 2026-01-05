@@ -5,7 +5,7 @@
   justify-content: center;
   font-family: 'Host Grotesk', sans-serif;
   font-weight: 500;
-  border-radius: 16px;
+  border-radius: 8px;
   white-space: nowrap;
   transition: all 0.2s ease;
   box-sizing: border-box;
@@ -20,7 +20,7 @@
 }
 
 .size_medium {
-  padding: 6px 16px;
+  padding: 6px 12px;
   font-size: 14px;
   line-height: 1.43;
   height: 32px;
@@ -35,26 +35,26 @@
 
 /* Type: Active (Light green/mint background) */
 .type_active {
-  background-color: #d4f4dd;
-  color: #1a5d2e;
+  background-color: #e7f7ef;
+  color: var(--text-success);
   border: none;
 }
 
 /* Type: Inactive (Gray background) */
 .type_inactive {
-  background-color: #e8e8e8;
-  color: #5a5a5a;
+  background-color: #e4e6ea;
+  color: #5e6a76;
   border: none;
 }
 
 /* Type: Default (White with border) */
 .type_default {
   background-color: #ffffff;
-  color: #2f353b;
-  border: 1.5px solid #d6dadf;
+  color: var(--text-neutral-default);
+  border: 1.5px solid #c8ced4;
 }
 
 /* Hover effects (optional) */
 .badge:hover {
-  opacity: 0.9;
+  /* opacity: 0.9; */
 }

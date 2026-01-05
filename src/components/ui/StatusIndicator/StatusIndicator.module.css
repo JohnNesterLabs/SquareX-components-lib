@@ -6,7 +6,7 @@
   justify-content: center;
   gap: 6px;
   padding: 0 12px;
-  height: 32px;
+  height: 30px;
   border-radius: 8px;
   font-family: 'Host Grotesk', sans-serif;
   font-weight: 400;
@@ -42,44 +42,52 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: #2f353b;
+  color: var(--text-neutral-default);
 }
 
 /* Size Variants */
 .size_medium {
-  height: 32px;
+  height: 30px;
   padding: 0 12px;
 }
 
 /* State: Default */
 .state_default {
-  background-color: #f1f3f4;
-  border-color: #c8ced4;
+  background-color: var(--color-slate-100);
+  border-color: var(--border-default);
 }
 
 /* State: Hover */
 .state_hover {
-  background-color: #d6dadf;
-  border-color: #c8ced4;
+  background-color: var(--color-slate-200);
+  border-color: var(--border-default);
 }
 
-/* State: Pressed */
-.state_pressed {
+/* State: Pressed / Active */
+.state_pressed,
+.state_active {
   background-color: #f1f3f4;
-  border-color: #1b144c;
+  border-color: var(--action-violet-default);
   border-width: 1.5px;
 }
 
 /* Interactive states for default */
-.statusIndicator:not(.state_hover):not(.state_pressed):hover {
-  background-color: #d6dadf;
+.statusIndicator:not(.state_hover):not(.state_pressed):not(.state_active):hover {
+  background-color: var(--color-slate-200);
 }
 
-.statusIndicator:not(.state_hover):not(.state_pressed):active {
-  background-color: #f1f3f4;
-  border-color: #1b144c;
+.statusIndicator:not(.state_hover):not(.state_pressed):not(.state_active):active {
+  background-color: var(--bg-default);
+  border-color: var(--action-violet-default);
   border-width: 1.5px;
 }
 
-/* Color variants - all use same base styles, indicator color is set inline */
+/* State: Disabled */
+.state_disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #f1f3f4;
+  border-color: #c8ced4;
+}
 
+/* Color variants - all use same base styles, indicator color is set inline */

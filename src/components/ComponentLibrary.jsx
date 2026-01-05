@@ -12,6 +12,7 @@ import NestedSection from './ui/NestedSection/NestedSection';
 import Chip from './ui/Chip/Chip';
 import ChipList from './ui/ChipList/ChipList';
 import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
+import StatusIndicatorTest from './ui/StatusIndicator/StatusIndicatorTest';
 import BadgeTest from './ui/Badge/BadgeTest';
 import NotificationTest from './ui/Notification/NotificationTest';
 import TabTest from './ui/Tab/TabTest';
@@ -749,39 +750,9 @@ const ComponentLibrary = () => {
   };
 
   const renderStatusIndicatorComponent = () => {
-    const statusStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'pressed', label: 'Pressed' },
-      { key: 'active', label: 'Active' },
-    ];
-
-    const colors = ['green', 'yellow', 'red', 'blue'];
-
     return (
       <div className="component-section">
-        <h2 className="component-section-title">StatusIndicator Component</h2>
-        <div className="component-inputfield-container">
-          <div className="component-inputfield-grid">
-            {colors.map((color) => (
-              <div key={color} className="component-inputfield-row">
-                {statusStates.map((state) => (
-                  <div key={state.key} className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">
-                      {color.charAt(0).toUpperCase() + color.slice(1)} - {state.label}
-                    </div>
-                    <StatusIndicator
-                      label="Status"
-                      state={state.key}
-                      size="medium"
-                      color={color}
-                    />
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <StatusIndicatorTest />
       </div>
     );
   };

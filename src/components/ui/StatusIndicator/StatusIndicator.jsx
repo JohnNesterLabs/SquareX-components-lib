@@ -16,6 +16,8 @@ const StatusIndicator = ({
     const normalized = stateName.toLowerCase();
     if (normalized === 'hover') return 'hover';
     if (normalized === 'pressed') return 'pressed';
+    if (normalized === 'active') return 'active';
+    if (normalized === 'disabled') return 'disabled';
     return 'default';
   };
 
@@ -37,14 +39,14 @@ const StatusIndicator = ({
   const getIndicatorColor = () => {
     switch (actualColor) {
       case 'red':
-        return '#ec221f';
+        return 'var(--color-red-500)';
       case 'yellow':
-        return '#eab333';
+        return 'var(--color-yellow-500)';
       case 'blue':
-        return '#4432bf';
+        return 'var(--color-violet-500)';
       case 'green':
       default:
-        return '#14ae5c';
+        return 'var(--color-green-500)';
     }
   };
 
@@ -52,7 +54,7 @@ const StatusIndicator = ({
   const getIndicator = () => {
     const colorValue = getIndicatorColor();
     return (
-      <div 
+      <div
         className={styles.indicator}
         style={{ backgroundColor: colorValue }}
       />
@@ -75,6 +77,7 @@ const StatusIndicator = ({
     <Component
       className={containerClassNames}
       onClick={onClick}
+      disabled={actualState === 'disabled'}
       type={onClick ? 'button' : undefined}
       {...props}
     >
