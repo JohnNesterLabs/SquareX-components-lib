@@ -16,6 +16,7 @@ const Categories = ({
   className = '',
   ...props
 }) => {
+  const [searchQuery, setSearchQuery] = useState('');
   const [expandedCategories, setExpandedCategories] = useState(
     categories.reduce((acc, cat, index) => {
       acc[index] = cat.expanded !== undefined ? cat.expanded : true;
@@ -32,6 +33,44 @@ const Categories = ({
       onCategoryToggle(index, !expandedCategories[index]);
     }
   };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const filteredCategories = React.useMemo(() => {
+    if (!searchQuery) return categories;
+    const lowerQuery = searchQuery.toLowerCase();
+
+    return categories
+      .map((cat) => {
+        const titleMatches = (cat.title || '').toLowerCase().includes(lowerQuery);
+        // If title matches, return the whole category
+        if (titleMatches) return cat;
+
+        // Otherwise filter items
+        const matchingItems = (cat.items || []).filter((item) =>
+          (item.label || '').toLowerCase().includes(lowerQuery)
+        );
+
+        if (matchingItems.length > 0) {
+          return { ...cat, items: matchingItems };
+        }
+        return null;
+      })
+      .filter(Boolean);
+  }, [categories, searchQuery]);
+
+  // Auto-expand when searching
+  React.useEffect(() => {
+    if (searchQuery) {
+      const allExpanded = filteredCategories.reduce((acc, _, index) => {
+        acc[index] = true;
+        return acc;
+      }, {});
+      setExpandedCategories(allExpanded);
+    }
+  }, [searchQuery, filteredCategories.length]); // Depend on length to avoid deep dependency issues, though ideally should be smarter
 
   const getSearchIcon = () => {
     return (
@@ -79,7 +118,8 @@ const Categories = ({
   };
 
   const renderCategoryList = (category, categoryIndex) => {
-    const isExpanded = expandedCategories[categoryIndex] !== false;
+    // If searching, always expand, otherwise use state
+    const isExpanded = searchQuery ? true : (expandedCategories[categoryIndex] !== false);
 
     return (
       <div key={categoryIndex} className={styles.categoryList}>
@@ -90,7 +130,7 @@ const Categories = ({
         >
           <p className={styles.categoryTitleText}>{category.title || 'Category'}</p>
           <div className={styles.chevronIcon}>
-              <img
+            <img
               src="/icons/chevron.svg"
               alt={isExpanded ? 'Collapse' : 'Expand'}
               className={`${styles.chevronImg} ${isExpanded ? styles.chevronUp : ''}`}
@@ -105,8 +145,8 @@ const Categories = ({
                   label={item.label || 'Item'}
                   showLeftIcon={true}
                   showRightIcon={false}
-                  hasCheckbox={false}
-                  hasRadio={true}
+                  hasCheckbox={variant === 'multiple'}
+                  hasRadio={variant !== 'multiple'}
                   checked={item.checked || false}
                   type={item.type || 'default'}
                   onClick={() => {
@@ -133,19 +173,22 @@ const Categories = ({
 
   return (
     <div className={containerClassNames} {...props}>
-      <button
-        type="button"
-        className={styles.searchSection}
-      >
+      <div className={styles.searchSection}>
         <div className={styles.searchInput}>
           {getSearchIcon()}
-          <p className={styles.searchPlaceholder}>Search</p>
+          <input
+            type="text"
+            className={styles.realSearchInput}
+            placeholder="Search"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
         </div>
         {renderChipList()}
-      </button>
+      </div>
 
       <div className={styles.listsContainer}>
-        {categories.map((category, index) => renderCategoryList(category, index))}
+        {filteredCategories.map((category, index) => renderCategoryList(category, index))}
       </div>
 
       <div className={styles.actionsContainer}>

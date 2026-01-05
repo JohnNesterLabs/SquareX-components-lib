@@ -22,6 +22,7 @@ import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
 import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
+import CategoriesTest from './ui/Categories/CategoriesTest';
 import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 
 import Checkbox from './ui/Checkbox/Checkbox';
@@ -855,6 +856,11 @@ const ComponentLibrary = () => {
 
     return (
       <>
+        {/* Categories Test Component */}
+        <div className="component-section">
+          <CategoriesTest />
+        </div>
+
         {/* Categories Component - Variant 1 (Categories=1) */}
         <div className="component-section">
           <h2 className="component-section-title">Categories Component - Variant 1 (Single Category List)</h2>
