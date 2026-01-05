@@ -31,18 +31,15 @@ const Chip = ({
   const getLeftIcon = () => {
     if (!showLeftIcon) return null;
     if (chooseLeftIcon) return chooseLeftIcon;
-    
+
     const iconColor = actualState === 'active' ? '#eceaf9' : '#768494';
     return (
       <div className={styles.iconWrapper}>
-        <img 
-          src="/icons/X.svg" 
-          alt="Icon" 
+        <div
           className={styles.icon}
-          style={{ 
-            filter: actualState === 'active' 
-              ? 'brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(200%) hue-rotate(240deg) brightness(100%) contrast(100%)'
-              : 'none'
+          style={{
+            maskImage: 'url(/icons/X.svg)',
+            WebkitMaskImage: 'url(/icons/X.svg)'
           }}
         />
       </div>
@@ -53,22 +50,19 @@ const Chip = ({
   const getRightIcon = () => {
     if (!showRightIcon) return null;
     if (chooseRightIcon) return chooseRightIcon;
-    
+
     const iconColor = actualState === 'active' ? '#eceaf9' : '#768494';
     return (
       <div className={styles.iconWrapper}>
-        <img 
-          src="/icons/X.svg" 
-          alt="Remove" 
+        <div
           className={styles.icon}
           onClick={(e) => {
             e.stopPropagation();
             if (onRemove) onRemove();
           }}
-          style={{ 
-            filter: actualState === 'active' 
-              ? 'brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(200%) hue-rotate(240deg) brightness(100%) contrast(100%)'
-              : 'none'
+          style={{
+            maskImage: 'url(/icons/X.svg)',
+            WebkitMaskImage: 'url(/icons/X.svg)'
           }}
         />
       </div>

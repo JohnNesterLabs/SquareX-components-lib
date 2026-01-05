@@ -52,6 +52,13 @@
   height: 14px;
   display: block;
   cursor: pointer;
+  background-color: currentColor;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
 }
 
 .size_small .iconWrapper,
@@ -77,22 +84,14 @@
 .state_default {
   background-color: #e4e6ea;
   border-color: #c8ced4;
-  color: #2f353b;
-}
-
-.state_default .icon {
-  filter: brightness(0) saturate(100%) invert(45%) sepia(8%) saturate(500%) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+  color: var(--text-neutral-default);
 }
 
 /* State: Hover */
 .state_hover {
   background-color: #c8ced4;
   border-color: #c8ced4;
-  color: #2f353b;
-}
-
-.state_hover .icon {
-  filter: brightness(0) saturate(100%) invert(45%) sepia(8%) saturate(500%) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+  color: var(--text-neutral-default);
 }
 
 /* State: Pressed */
@@ -100,11 +99,7 @@
   background-color: #e4e6ea;
   border-color: #4432bf;
   border-width: 1.5px;
-  color: #2f353b;
-}
-
-.state_pressed .icon {
-  filter: brightness(0) saturate(100%) invert(45%) sepia(8%) saturate(500%) hue-rotate(180deg) brightness(0.9) contrast(0.9);
+  color: var(--text-neutral-default);
 }
 
 /* State: Active */
@@ -112,10 +107,6 @@
   background-color: #4432bf;
   border: none;
   color: #eceaf9;
-}
-
-.state_active .icon {
-  filter: brightness(0) saturate(100%) invert(95%) sepia(5%) saturate(200%) hue-rotate(240deg) brightness(100%) contrast(100%);
 }
 
 /* Interactive states for default */
