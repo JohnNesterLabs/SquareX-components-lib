@@ -1,0 +1,48 @@
+.testContainer {
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.testTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2f353b;
+    margin: 0 0 24px 0;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e4e6ea;
+}
+
+.testSection {
+    margin-bottom: 40px;
+}
+
+.sectionTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #768494;
+    margin-bottom: 16px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.gridItem {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.stateLabel {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5e6a76;
+}

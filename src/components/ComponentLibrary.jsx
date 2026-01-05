@@ -10,7 +10,9 @@ import Search from './ui/Search/Search';
 import ListSearch from './ui/ListSearch/ListSearch';
 import NestedSection from './ui/NestedSection/NestedSection';
 import Chip from './ui/Chip/Chip';
+import ChipTest from './ui/Chip/ChipTest';
 import ChipList from './ui/ChipList/ChipList';
+import ChipListTest from './ui/ChipList/ChipListTest';
 import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
 import StatusIndicatorTest from './ui/StatusIndicator/StatusIndicatorTest';
 import BadgeTest from './ui/Badge/BadgeTest';
@@ -678,72 +680,13 @@ const ComponentLibrary = () => {
   };
 
   const renderChipComponent = () => {
-    const chipStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'pressed', label: 'Pressed' },
-      { key: 'active', label: 'Active' },
-    ];
-
-    const layouts = [
-      { key: 'single', label: 'Single Row' },
-      { key: 'double', label: 'Double Row' },
-    ];
-
-    const sampleChips = [
-      { label: 'Label', id: '1' },
-      { label: 'Label', id: '2' },
-      { label: 'Label', id: '3' },
-      { label: 'Label', id: '4' },
-      { label: 'Label', id: '5' },
-      { label: 'Label', id: '6' },
-    ];
-
     return (
       <>
-        {/* Chip Component */}
         <div className="component-section">
-          <h2 className="component-section-title">Chip Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {chipStates.map((state) => (
-                  <div key={state.key} className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <Chip
-                      label="Label"
-                      showRightIcon={true}
-                      showLeftIcon={true}
-                      state={state.key}
-                      size="medium"
-                      onRemove={() => console.log('Chip removed')}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <ChipTest />
         </div>
-
-        {/* ChipList Component */}
         <div className="component-section">
-          <h2 className="component-section-title">ChipList Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {layouts.map((layout) => (
-                <div key={layout.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{layout.label}</div>
-                    <ChipList
-                      chips={sampleChips}
-                      layout={layout.key}
-                      onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <ChipListTest />
         </div>
       </>
     );

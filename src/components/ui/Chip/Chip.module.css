@@ -54,15 +54,28 @@
   cursor: pointer;
 }
 
+.size_small .iconWrapper,
+.size_small .icon {
+  width: 12px;
+  height: 12px;
+}
+
 /* Size Variants */
 .size_medium {
-  height: 32px;
-  padding: 0 12px;
+  height: 30px;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.size_small {
+  height: 26px;
+  padding: 6px 8px;
+  font-size: 12px;
 }
 
 /* State: Default */
 .state_default {
-  background-color: #f1f3f4;
+  background-color: #e4e6ea;
   border-color: #c8ced4;
   color: #2f353b;
 }
@@ -73,7 +86,7 @@
 
 /* State: Hover */
 .state_hover {
-  background-color: #d6dadf;
+  background-color: #c8ced4;
   border-color: #c8ced4;
   color: #2f353b;
 }
@@ -84,7 +97,7 @@
 
 /* State: Pressed */
 .state_pressed {
-  background-color: #f1f3f4;
+  background-color: #e4e6ea;
   border-color: #4432bf;
   border-width: 1.5px;
   color: #2f353b;
@@ -107,7 +120,7 @@
 
 /* Interactive states for default */
 .chip:not(.state_hover):not(.state_pressed):not(.state_active):hover {
-  background-color: #d6dadf;
+  background-color: #c8ced4;
 }
 
 .chip:not(.state_hover):not(.state_pressed):not(.state_active):active {
@@ -115,4 +128,3 @@
   border-color: #4432bf;
   border-width: 1.5px;
 }
-
