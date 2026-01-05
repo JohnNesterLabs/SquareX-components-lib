@@ -22,7 +22,6 @@
 /* Search Section */
 .searchSection {
   box-sizing: border-box;
-  cursor: pointer;
   display: flex;
   flex-direction: column;
   gap: 0;
@@ -72,7 +71,8 @@
 
 /* Search Placeholder and Value */
 .searchPlaceholder,
-.searchValue {
+.searchValue,
+.realSearchInput {
   flex: 1 0 0;
   font-family: 'Host Grotesk', sans-serif;
   font-weight: 400;
@@ -83,6 +83,18 @@
   flex-shrink: 0;
   font-size: 14px;
   text-align: left;
+}
+
+.realSearchInput {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  color: #2f353b;
+}
+
+.realSearchInput::placeholder {
+  color: #d6dadf;
 }
 
 .searchPlaceholder {
@@ -287,7 +299,7 @@
 }
 
 /* Override ItemRow padding to match Figma exactly */
-.categoryItemWrapper > * {
+.categoryItemWrapper>* {
   padding-left: 0 !important;
   padding-right: 12px !important;
   padding-top: 8px !important;
@@ -393,4 +405,3 @@
 .variant_multiple {
   /* Multiple category lists variant */
 }
-

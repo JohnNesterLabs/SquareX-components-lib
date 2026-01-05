@@ -12,23 +12,26 @@ import NestedSection from './ui/NestedSection/NestedSection';
 import Chip from './ui/Chip/Chip';
 import ChipList from './ui/ChipList/ChipList';
 import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
-import Badge from './ui/Badge/Badge';
+import BadgeTest from './ui/Badge/BadgeTest';
+import NotificationTest from './ui/Notification/NotificationTest';
+import TabTest from './ui/Tab/TabTest';
+import ModalTest from './ui/Modal/ModalTest';
+import ToastTest from './ui/Toast/ToastTest';
 import ItemRow from './ui/ItemRow/ItemRow';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
 import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
+import CategoriesTest from './ui/Categories/CategoriesTest';
 import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
-import IconShowcase from './ui/IconShowcase/IconShowcase';
+
 import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
 import Radio from './ui/Radio/Radio';
 import RadioTest from './ui/Radio/RadioTest';
 import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
-import Table from './ui/Table/Table';
 import TableTest from './ui/Table/TableTest';
-import Pagination from './ui/Pagination/Pagination';
 import PaginationTest from './ui/Pagination/PaginationTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
@@ -55,6 +58,13 @@ const ComponentLibrary = () => {
     { id: 'toggle', label: 'Toggle' },
     { id: 'table', label: 'Table' },
     { id: 'pagination', label: 'Pagination' },
+    { id: 'badge', label: 'Badge' },
+    { id: 'notification', label: 'Notification' },
+    { id: 'tab', label: 'Tab' },
+    { id: 'chips', label: 'Chips' },
+    { id: 'statusindicator', label: 'StatusIndicator' },
+    { id: 'modal', label: 'Modal' },
+    { id: 'toast', label: 'Toast' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -666,7 +676,7 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderNestedSectionComponent = () => {
+  const renderChipComponent = () => {
     const chipStates = [
       { key: 'default', label: 'Default' },
       { key: 'hover', label: 'Hover' },
@@ -688,40 +698,8 @@ const ComponentLibrary = () => {
       { label: 'Label', id: '6' },
     ];
 
-    const statusStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'pressed', label: 'Pressed' },
-    ];
-
-    const colors = ['green', 'yellow', 'red', 'blue'];
-
-    const badgeTypes = [
-      { key: 'active', label: 'Active' },
-      { key: 'inactive', label: 'Inactive' },
-      { key: 'default', label: 'Default' },
-    ];
-
     return (
       <>
-        {/* NestedSection Component */}
-        <div className="component-section">
-          <h2 className="component-section-title">NestedSection Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell">
-                  <div className="component-inputfield-state-label">Default</div>
-                  <NestedSection
-                    canDrag={true}
-                    onMoreClick={() => console.log('More clicked')}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Chip Component */}
         <div className="component-section">
           <h2 className="component-section-title">Chip Component</h2>
@@ -766,49 +744,86 @@ const ComponentLibrary = () => {
             </div>
           </div>
         </div>
+      </>
+    );
+  };
 
-        {/* StatusIndicator Component */}
-        <div className="component-section">
-          <h2 className="component-section-title">StatusIndicator Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              {colors.map((color) => (
-                <div key={color} className="component-inputfield-row">
-                  {statusStates.map((state) => (
-                    <div key={state.key} className="component-inputfield-cell">
-                      <div className="component-inputfield-state-label">
-                        {color.charAt(0).toUpperCase() + color.slice(1)} - {state.label}
-                      </div>
-                      <StatusIndicator
-                        label="Status"
-                        state={state.key}
-                        size="medium"
-                        color={color}
-                      />
+  const renderStatusIndicatorComponent = () => {
+    const statusStates = [
+      { key: 'default', label: 'Default' },
+      { key: 'hover', label: 'Hover' },
+      { key: 'pressed', label: 'Pressed' },
+      { key: 'active', label: 'Active' },
+    ];
+
+    const colors = ['green', 'yellow', 'red', 'blue'];
+
+    return (
+      <div className="component-section">
+        <h2 className="component-section-title">StatusIndicator Component</h2>
+        <div className="component-inputfield-container">
+          <div className="component-inputfield-grid">
+            {colors.map((color) => (
+              <div key={color} className="component-inputfield-row">
+                {statusStates.map((state) => (
+                  <div key={state.key} className="component-inputfield-cell">
+                    <div className="component-inputfield-state-label">
+                      {color.charAt(0).toUpperCase() + color.slice(1)} - {state.label}
                     </div>
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Badge Component */}
-        <div className="component-section">
-          <h2 className="component-section-title">Badge Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {badgeTypes.map((type) => (
-                  <div key={type.key} className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{type.label}</div>
-                    <Badge
-                      label="Badge"
+                    <StatusIndicator
+                      label="Status"
+                      state={state.key}
                       size="medium"
-                      type={type.key}
+                      color={color}
                     />
                   </div>
                 ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderModalComponent = () => {
+    return (
+      <>
+        {/* Modal Test Component */}
+        <div className="component-section">
+          <ModalTest />
+        </div>
+      </>
+    );
+  };
+
+  const renderToastComponent = () => {
+    return (
+      <>
+        {/* Toast Test Component */}
+        <div className="component-section">
+          <ToastTest />
+        </div>
+      </>
+    );
+  };
+
+  const renderNestedSectionComponent = () => {
+    return (
+      <>
+        {/* NestedSection Component */}
+        <div className="component-section">
+          <h2 className="component-section-title">NestedSection Component</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                <div className="component-inputfield-cell">
+                  <div className="component-inputfield-state-label">Default</div>
+                  <NestedSection
+                    canDrag={true}
+                    onMoreClick={() => console.log('More clicked')}
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -841,6 +856,11 @@ const ComponentLibrary = () => {
 
     return (
       <>
+        {/* Categories Test Component */}
+        <div className="component-section">
+          <CategoriesTest />
+        </div>
+
         {/* Categories Component - Variant 1 (Categories=1) */}
         <div className="component-section">
           <h2 className="component-section-title">Categories Component - Variant 1 (Single Category List)</h2>
@@ -1541,6 +1561,39 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderBadgeComponent = () => {
+    return (
+      <>
+        {/* Badge Test Component */}
+        <div className="component-section">
+          <BadgeTest />
+        </div>
+      </>
+    );
+  };
+
+  const renderNotificationComponent = () => {
+    return (
+      <>
+        {/* Notification Test Component */}
+        <div className="component-section">
+          <NotificationTest />
+        </div>
+      </>
+    );
+  };
+
+  const renderTabComponent = () => {
+    return (
+      <>
+        {/* Tab Test Component */}
+        <div className="component-section">
+          <TabTest />
+        </div>
+      </>
+    );
+  };
+
   return (
     <div className="component-library">
       <div className="component-library-content">
@@ -1577,6 +1630,13 @@ const ComponentLibrary = () => {
           {activeTab === 'toggle' && renderToggleComponent()}
           {activeTab === 'table' && renderTableComponent()}
           {activeTab === 'pagination' && renderPaginationComponent()}
+          {activeTab === 'badge' && renderBadgeComponent()}
+          {activeTab === 'notification' && renderNotificationComponent()}
+          {activeTab === 'tab' && renderTabComponent()}
+          {activeTab === 'chips' && renderChipComponent()}
+          {activeTab === 'statusindicator' && renderStatusIndicatorComponent()}
+          {activeTab === 'modal' && renderModalComponent()}
+          {activeTab === 'toast' && renderToastComponent()}
         </div>
       </div>
     </div>

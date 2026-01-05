@@ -1,0 +1,87 @@
+/* Test Container */
+.testContainer {
+    padding: 24px;
+    background: #f5f5f5;
+    min-height: 100vh;
+}
+
+.testTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2f353b;
+    margin: 0 0 32px 0;
+}
+
+/* Test Section */
+.testSection {
+    background: #fff;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2f353b;
+    margin: 0 0 20px 0;
+}
+
+/* Layouts */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    align-items: flex-start;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.item h4 {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2f353b;
+    margin: 0;
+}
+
+.description {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 12px;
+    color: #768494;
+    margin: 0;
+}
+
+.group {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+/* Context Examples */
+.contextGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.contextItem {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    color: #2f353b;
+}
