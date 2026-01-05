@@ -107,22 +107,13 @@ const Pagination = ({
                     disabled={currentPage === 1}
                     aria-label="Previous page"
                 >
-                    <svg
-                        className={styles.icon}
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M10 12L6 8L10 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                    <div
+                        className={styles.navIcon}
+                        style={{
+                            WebkitMaskImage: "url('/icon/ArrowLeft.svg')",
+                            maskImage: "url('/icon/ArrowLeft.svg')"
+                        }}
+                    />
                     <span className={styles.navText}>Previous</span>
                 </button>
             )}
@@ -163,22 +154,13 @@ const Pagination = ({
                     aria-label="Next page"
                 >
                     <span className={styles.navText}>Next</span>
-                    <svg
-                        className={styles.icon}
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M6 12L10 8L6 4"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                        />
-                    </svg>
+                    <div
+                        className={styles.navIcon}
+                        style={{
+                            WebkitMaskImage: "url('/icon/ArrowRight.svg')",
+                            maskImage: "url('/icon/ArrowRight.svg')"
+                        }}
+                    />
                 </button>
             )}
         </div>

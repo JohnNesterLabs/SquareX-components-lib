@@ -12,7 +12,6 @@ const PaginationTest = () => {
     const [currentPage2, setCurrentPage2] = useState(1);
     const [currentPage3, setCurrentPage3] = useState(5);
     const [currentPage4, setCurrentPage4] = useState(35);
-    const [currentPage5, setCurrentPage5] = useState(1);
 
     return (
         <div className={styles.testContainer}>
@@ -84,116 +83,6 @@ const PaginationTest = () => {
                         }}
                     />
                     <p className={styles.status}>Current Page: {currentPage4} / 68</p>
-                </div>
-            </div>
-
-            {/* Configuration Options */}
-            <div className={styles.testSection}>
-                <h3 className={styles.sectionTitle}>Configuration Options</h3>
-
-                <div className={styles.testGrid}>
-                    <div className={styles.testItem}>
-                        <h4>Without Previous/Next Buttons</h4>
-                        <Pagination
-                            currentPage={currentPage5}
-                            totalPages={10}
-                            showPrevNext={false}
-                            onPageChange={(page) => setCurrentPage5(page)}
-                        />
-                        <p className={styles.status}>Current Page: {currentPage5} / 10</p>
-                    </div>
-
-                    <div className={styles.testItem}>
-                        <h4>Custom Sibling Count (2)</h4>
-                        <p className={styles.description}>
-                            Shows 2 pages on each side of current page
-                        </p>
-                        <Pagination
-                            currentPage={5}
-                            totalPages={20}
-                            siblingCount={2}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-
-                    <div className={styles.testItem}>
-                        <h4>First Page (Disabled Previous)</h4>
-                        <Pagination
-                            currentPage={1}
-                            totalPages={10}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-
-                    <div className={styles.testItem}>
-                        <h4>Last Page (Disabled Next)</h4>
-                        <Pagination
-                            currentPage={10}
-                            totalPages={10}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-                </div>
-            </div>
-
-            {/* Visual States */}
-            <div className={styles.testSection}>
-                <h3 className={styles.sectionTitle}>Visual States Overview</h3>
-
-                <div className={styles.statesGrid}>
-                    <div className={styles.stateItem}>
-                        <h4>Default State</h4>
-                        <Pagination
-                            currentPage={1}
-                            totalPages={5}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-
-                    <div className={styles.stateItem}>
-                        <h4>With Ellipsis (Left)</h4>
-                        <Pagination
-                            currentPage={8}
-                            totalPages={10}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-
-                    <div className={styles.stateItem}>
-                        <h4>With Ellipsis (Right)</h4>
-                        <Pagination
-                            currentPage={2}
-                            totalPages={10}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-
-                    <div className={styles.stateItem}>
-                        <h4>With Ellipsis (Both)</h4>
-                        <Pagination
-                            currentPage={15}
-                            totalPages={30}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-
-                    <div className={styles.stateItem}>
-                        <h4>Single Page</h4>
-                        <Pagination
-                            currentPage={1}
-                            totalPages={1}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
-
-                    <div className={styles.stateItem}>
-                        <h4>Two Pages</h4>
-                        <Pagination
-                            currentPage={1}
-                            totalPages={2}
-                            onPageChange={(page) => console.log('Page:', page)}
-                        />
-                    </div>
                 </div>
             </div>
 

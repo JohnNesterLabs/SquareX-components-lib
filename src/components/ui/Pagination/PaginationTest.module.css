@@ -40,6 +40,7 @@
     border-radius: 8px;
     background: #fafafa;
     margin-bottom: 16px;
+    overflow-x: auto;
 }
 
 .testItem:last-child {
@@ -104,6 +105,7 @@
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     background: #fafafa;
+    overflow-x: auto;
 }
 
 .stateItem h4 {
