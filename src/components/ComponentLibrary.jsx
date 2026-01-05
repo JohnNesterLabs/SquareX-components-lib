@@ -48,7 +48,7 @@ const ComponentLibrary = () => {
     { id: 'button', label: 'Button' },
     { id: 'buttondanger', label: 'ButtonDanger' },
     { id: 'inputfield', label: 'InputField' },
-    { id: 'nestedsection', label: 'NestedSection' },
+    // { id: 'nestedsection', label: 'NestedSection' },
     { id: 'itemrow', label: 'ItemRow' },
     { id: 'categories', label: 'Categories' },
     // { id: 'backgroundgradient', label: 'BackgroundGradient' },
@@ -1620,7 +1620,7 @@ const ComponentLibrary = () => {
           {activeTab === 'button' && renderButtonComponent()}
           {activeTab === 'buttondanger' && renderButtonDangerComponent()}
           {activeTab === 'inputfield' && renderInputFieldComponent()}
-          {activeTab === 'nestedsection' && renderNestedSectionComponent()}
+          {/* {activeTab === 'nestedsection' && renderNestedSectionComponent()} */}
           {activeTab === 'itemrow' && renderItemRowComponent()}
           {activeTab === 'categories' && renderCategoriesComponent()}
           {/* {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()} */}
