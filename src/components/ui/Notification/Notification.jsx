@@ -41,11 +41,6 @@ const Notification = ({
     const actualVariant = normalizeVariant(variant);
     const actualSize = normalizeSize(size);
 
-    // Format display value
-    const displayValue = typeof count === 'number' && count > maxCount
-        ? `${maxCount}+`
-        : count;
-
     const notificationClassNames = [
         styles.notification,
         styles[`variant_${actualVariant}`],
@@ -55,9 +50,34 @@ const Notification = ({
         .filter(Boolean)
         .join(' ');
 
+    const renderContent = () => {
+        // Handle numeric overflow
+        if (typeof count === 'number' && count > maxCount) {
+            return (
+                <>
+                    <span className={styles.count}>{maxCount}</span>
+                    <span className={styles.plus}>+</span>
+                </>
+            );
+        }
+
+        // Handle manual string with '+' (e.g., "99+")
+        if (typeof count === 'string' && count.endsWith('+')) {
+            const baseValue = count.slice(0, -1);
+            return (
+                <>
+                    <span className={styles.count}>{baseValue}</span>
+                    <span className={styles.plus}>+</span>
+                </>
+            );
+        }
+
+        return count;
+    };
+
     return (
         <span className={notificationClassNames} {...props}>
-            {displayValue}
+            {renderContent()}
         </span>
     );
 };

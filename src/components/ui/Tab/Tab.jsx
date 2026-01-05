@@ -62,7 +62,7 @@ const Tab = ({
                 <Notification
                     count={count}
                     variant={getNotificationVariant()}
-                    size="medium"
+                    size="small"
                     className={styles.notification}
                 />
             )}

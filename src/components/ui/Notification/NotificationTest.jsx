@@ -18,17 +18,17 @@ const NotificationTest = () => {
                 <div className={styles.row}>
                     <div className={styles.item}>
                         <h4>Primary</h4>
-                        <Notification count="99+" variant="primary" />
+                        <Notification count={100} variant="primary" />
                         <p className={styles.description}>Active/Primary state</p>
                     </div>
                     <div className={styles.item}>
                         <h4>Neutral</h4>
-                        <Notification count="99+" variant="neutral" />
+                        <Notification count={100} variant="neutral" />
                         <p className={styles.description}>Secondary/Neutral state</p>
                     </div>
                     <div className={styles.item}>
                         <h4>Subtle</h4>
-                        <Notification count="99+" variant="subtle" />
+                        <Notification count={100} variant="subtle" />
                         <p className={styles.description}>Disabled/Subtle state</p>
                     </div>
                 </div>
@@ -42,14 +42,14 @@ const NotificationTest = () => {
                         <h4>Medium (Default)</h4>
                         <div className={styles.group}>
                             <Notification count={5} size="medium" variant="primary" />
-                            <Notification count="99+" size="medium" variant="neutral" />
+                            <Notification count={100} size="medium" variant="neutral" />
                         </div>
                     </div>
                     <div className={styles.item}>
                         <h4>Small</h4>
                         <div className={styles.group}>
                             <Notification count={5} size="small" variant="primary" />
-                            <Notification count="99+" size="small" variant="neutral" />
+                            <Notification count={100} size="small" variant="neutral" />
                         </div>
                     </div>
                 </div>
@@ -92,7 +92,7 @@ const NotificationTest = () => {
                     </div>
                     <div className={styles.contextItem}>
                         <span>Messages</span>
-                        <Notification count="99+" variant="neutral" size="small" />
+                        <Notification count={100} variant="neutral" size="small" />
                     </div>
                     <div className={styles.contextItem}>
                         <span>Archived</span>

@@ -14,14 +14,14 @@
 
 /* Size Variants */
 .size_small {
-    padding: 4px 8px;
-    font-size: 12px;
+    padding: 0 8px;
+    font-size: 10px;
     height: 20px;
     min-width: 20px;
 }
 
 .size_medium {
-    padding: 6px 12px;
+    padding: 0 12px;
     font-size: 12px;
     height: 28px;
     min-width: 28px;
@@ -29,23 +29,38 @@
 
 /* Variant: Primary (Light purple bg, Dark purple text) */
 .variant_primary {
-    background-color: #ECEAF9;
-    color: #4432BF;
+    background-color: #dad6f2;
+    color: #322899;
 }
 
 /* Variant: Neutral (Light grey bg, Dark grey text) */
 .variant_neutral {
-    background-color: #E3E5E8;
+    background-color: #e4e6ea;
     color: #2F353B;
 }
 
 /* Variant: Subtle (Very light grey bg, Light grey text) */
 .variant_subtle {
-    background-color: #F0F0F0;
+    background-color: #ededed;
     color: #A6A6A6;
 }
 
 /* Hover effects (optional) */
 .notification:hover {
     opacity: 0.9;
+}
+
+.count {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.plus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin-left: 1px;
+    font-size: 12px;
 }
