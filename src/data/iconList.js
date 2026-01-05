@@ -1180,6 +1180,12 @@ export const allIcons = [
     "variantCount": 7
   },
   {
+    "name": "green-tick",
+    "label": "Green Tick",
+    "filePath": "icon/GreenTick.svg",
+    "variantCount": 7
+  },
+  {
     "name": "grid-four",
     "label": "Grid Four",
     "filePath": "icon/GridFour.svg",

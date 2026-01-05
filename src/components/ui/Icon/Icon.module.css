@@ -26,11 +26,6 @@
   cursor: not-allowed;
 }
 
-.variant_filled {
-  /* Filled variant styling */
+.variant_white {
+  filter: brightness(0) invert(1);
 }
-
-.variant_outlined {
-  /* Outlined variant styling */
-}
-

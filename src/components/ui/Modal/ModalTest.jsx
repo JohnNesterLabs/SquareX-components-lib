@@ -1,14 +1,8 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import Button from '../Button/Button';
+import Icon from '../Icon/Icon';
 import styles from './ModalTest.module.css';
-
-const SuccessIcon = () => (
-    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="40" fill="#00B050" />
-        <path d="M26.6667 40L35.5556 48.8889L53.3334 31.1111" stroke="white" strokeWidth="5.33333" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-);
 
 const ModalTest = () => {
     const [showSuccessModal, setShowSuccessModal] = useState(false);
@@ -50,16 +44,17 @@ const ModalTest = () => {
                 onClose={() => setShowSuccessModal(false)}
                 title="New Category Created"
                 description="You may create a new list under the 'Gaming' category now, or choose the category later when starting a new list."
-                icon={<SuccessIcon />}
+                icon={<Icon name="GreenTick" size={72} />}
                 actions={[
                     <Button
                         key="details"
                         label="View details"
                         style="neutral"
                         size="medium"
+                        showLeadingIcon={false}
                         showTrailingIcon={true}
+                        trailingIcon={<Icon name="ArrowRight" size={14} />}
                         onClick={() => console.log('View details')}
-                        className={styles.actionButton}
                     />,
                     <Button
                         key="create"
@@ -67,8 +62,8 @@ const ModalTest = () => {
                         style="primary"
                         size="medium"
                         showLeadingIcon={true}
+                        leadingIcon={<Icon name="Plus" size={14} variant="white" />}
                         onClick={() => console.log('Create list')}
-                        className={styles.actionButton}
                     />
                 ]}
             />

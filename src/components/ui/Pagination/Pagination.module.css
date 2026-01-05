@@ -35,17 +35,17 @@
     -webkit-mask-position: center;
     mask-size: contain;
     -webkit-mask-size: contain;
-    background-color: #ff0000;
+    background-color: #2f353b;
     transition: all 0.2s ease;
 }
 
 .navButton:hover:not(.disabled) {
-    background-color: var(--action-violet-secondary-hover);
+    background-color: var(--bg-neutral-subtle-low);
 }
 
 /* Hover Icon Color (White) */
 .navButton:hover:not(.disabled) .navIcon {
-    background-color: #ff0000;
+    background-color: #2f353b;
 }
 
 .navButton:active:not(.disabled) {
@@ -65,7 +65,7 @@
 }
 
 .navButton.disabled .navIcon {
-    background-color: #fca5a5;
+    background-color: var(--text-muted);
     /* Light red */
 }
 
@@ -104,6 +104,7 @@
 
 .pageButton:hover:not(.active) {
     background-color: var(--action-violet-secondary-hover);
+    color: #F3EEF9;
 }
 
 .pageButton:active:not(.active) {
@@ -118,7 +119,7 @@
 /* Active Page Button */
 .pageButton.active {
     background-color: #4432bf;
-    color: #ffffff;
+    color: #F3EEF9;
     cursor: default;
 }
 
