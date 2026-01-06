@@ -83,32 +83,44 @@ const Categories = ({
   const renderChipList = () => {
     if (!chips || chips.length === 0) return null;
 
-    // Split chips into rows (3 per row)
+    const maxVisibleChips = 5;
+    const visibleChips = chips.slice(0, maxVisibleChips);
+    const remainingCount = chips.length - maxVisibleChips;
+
+    // Create a list of items to render (chips + optional "more" indicator)
+    const itemsToRender = [...visibleChips];
+    if (remainingCount > 0) {
+      itemsToRender.push({ isMore: true, label: `+${remainingCount}` });
+    }
+
+    // Split items into rows (3 per row)
     const rows = [];
-    for (let i = 0; i < chips.length; i += 3) {
-      rows.push(chips.slice(i, i + 3));
+    for (let i = 0; i < itemsToRender.length; i += 3) {
+      rows.push(itemsToRender.slice(i, i + 3));
     }
 
     return (
       <div className={styles.chipListContainer}>
         {rows.map((row, rowIndex) => (
           <div key={rowIndex} className={styles.chipListRow}>
-            {row.map((chip, chipIndex) => (
-              <div key={chipIndex} className={styles.chip}>
-                <p className={styles.chipLabel}>{chip.label || 'Label'}</p>
-                <button
-                  type="button"
-                  className={styles.chipRemove}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (onChipRemove) {
-                      onChipRemove(chip);
-                    }
-                  }}
-                  aria-label="Remove chip"
-                >
-                  <img src="/icons/X.svg" alt="Remove" className={styles.chipIcon} />
-                </button>
+            {row.map((item, itemIndex) => (
+              <div key={itemIndex} className={styles.chip}>
+                <p className={styles.chipLabel}>{item.label || 'Label'}</p>
+                {!item.isMore && (
+                  <button
+                    type="button"
+                    className={styles.chipRemove}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (onChipRemove) {
+                        onChipRemove(item);
+                      }
+                    }}
+                    aria-label="Remove chip"
+                  >
+                    <img src="/icons/X.svg" alt="Remove" className={styles.chipIcon} />
+                  </button>
+                )}
               </div>
             ))}
           </div>
