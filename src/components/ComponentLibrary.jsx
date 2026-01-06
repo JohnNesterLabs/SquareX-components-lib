@@ -53,7 +53,7 @@ const ComponentLibrary = () => {
     { id: 'buttondanger', label: 'ButtonDanger' },
     // { id: 'inputfield', label: 'InputField' },
     // { id: 'nestedsection', label: 'NestedSection' },
-    // { id: 'itemrow', label: 'ItemRow' },
+    { id: 'itemrow', label: 'ItemRow' },
     { id: 'categories', label: 'Categories' },
     // { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
@@ -747,25 +747,79 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderCategoriesComponent = () => {
-    const sampleChips = [
-      { label: 'Label', id: '1' },
-      { label: 'Label', id: '2' },
-      { label: 'Label', id: '3' },
-      { label: 'Label', id: '4' },
-      { label: 'Label', id: '5' },
-      { label: 'Label', id: '6' },
-    ];
+  const FunctionalCategoriesWrapper = ({ initialCategories, variant = 'single' }) => {
+    const [categories, setCategories] = React.useState(initialCategories);
+    const [chips, setChips] = React.useState([]);
 
+    const handleItemClick = (item, categoryIndex) => {
+      const newCategories = categories.map((cat, idx) => {
+        if (variant === 'single') {
+          return {
+            ...cat,
+            items: cat.items.map(i => ({
+              ...i,
+              checked: i.id === item.id ? !i.checked : false,
+              type: 'default'
+            }))
+          };
+        } else {
+          if (idx !== categoryIndex) return cat;
+          return {
+            ...cat,
+            items: cat.items.map(i => {
+              if (i.id !== item.id) return i;
+              return { ...i, checked: !i.checked, type: 'default' };
+            })
+          };
+        }
+      });
+      setCategories(newCategories);
+
+      const newChips = newCategories
+        .flatMap(cat => cat.items)
+        .filter(i => i.checked)
+        .map(i => ({ label: i.label, id: i.id }));
+      setChips(newChips);
+    };
+
+    const handleChipRemove = (chip) => {
+      const newCategories = categories.map(cat => ({
+        ...cat,
+        items: cat.items.map(item => {
+          if (item.id === chip.id) {
+            return { ...item, checked: false, type: 'default' };
+          }
+          return item;
+        })
+      }));
+      setCategories(newCategories);
+      setChips(chips.filter(c => c.id !== chip.id));
+    };
+
+    return (
+      <Categories
+        variant={variant}
+        chips={chips}
+        categories={categories}
+        onChipRemove={handleChipRemove}
+        onItemClick={handleItemClick}
+        onCancel={() => console.log('Cancel clicked')}
+        onApply={() => console.log('Apply clicked')}
+      />
+    );
+  };
+
+  const renderCategoriesComponent = () => {
     const sampleCategory = {
       title: 'Category',
       expanded: true,
       items: [
-        { label: 'Item', id: '1' },
-        { label: 'Item', id: '2' },
-        { label: 'Item', id: '3' },
-        { label: 'Item', id: '4' },
-        { label: 'Item', id: '5' },
+        { label: 'Item 1', id: '1' },
+        { label: 'Item 2', id: '2' },
+        { label: 'Item 3', id: '3' },
+        { label: 'Item 4', id: '4' },
+        { label: 'Item 5', id: '5' },
+        { label: 'Item 6', id: '6' },
       ],
     };
 
@@ -783,15 +837,9 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="single"
-                    chips={sampleChips}
-                    categories={[sampleCategory]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
+                    initialCategories={[sampleCategory]}
                   />
                 </div>
               </div>
@@ -806,15 +854,12 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[sampleCategory, { ...sampleCategory, title: 'Category' }]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) }
+                    ]}
                   />
                 </div>
               </div>
@@ -829,19 +874,13 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[
-                      sampleCategory,
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 3', items: sampleCategory.items.map(i => ({ ...i, id: `c3-${i.id}` })) }
                     ]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
                   />
                 </div>
               </div>
@@ -856,20 +895,14 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[
-                      sampleCategory,
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 3', items: sampleCategory.items.map(i => ({ ...i, id: `c3-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 4', items: sampleCategory.items.map(i => ({ ...i, id: `c4-${i.id}` })) }
                     ]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
                   />
                 </div>
               </div>
@@ -884,21 +917,15 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[
-                      sampleCategory,
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 3', items: sampleCategory.items.map(i => ({ ...i, id: `c3-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 4', items: sampleCategory.items.map(i => ({ ...i, id: `c4-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 5', items: sampleCategory.items.map(i => ({ ...i, id: `c5-${i.id}` })) }
                     ]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
                   />
                 </div>
               </div>
@@ -1609,7 +1636,7 @@ const ComponentLibrary = () => {
           {activeTab === 'buttondanger' && renderButtonDangerComponent()}
           {/* {activeTab === 'inputfield' && renderInputFieldComponent()} */}
           {/* {activeTab === 'nestedsection' && renderNestedSectionComponent()} */}
-          {/* {activeTab === 'itemrow' && renderItemRowComponent()} */}
+          {activeTab === 'itemrow' && renderItemRowComponent()}
           {activeTab === 'categories' && renderCategoriesComponent()}
           {/* {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()} */}
           {activeTab === 'icons' && renderIconsComponent()}

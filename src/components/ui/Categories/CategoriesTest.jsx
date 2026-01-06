@@ -34,19 +34,23 @@ const CategoriesTest = () => {
     const [singleChips, setSingleChips] = useState([]);
 
     const handleSingleItemClick = (item, categoryIndex) => {
-        // Toggle selection for single select demo
-        const newData = [...singleSelectionData];
-        // Uncheck all others in this category (or globally if strict single)
-        // For this demo, let's assume single select per category for simplicity or just toggle
-        newData[categoryIndex].items = newData[categoryIndex].items.map(i => ({
-            ...i,
-            checked: i.id === item.id ? !i.checked : false
+        const newData = singleSelectionData.map(cat => ({
+            ...cat,
+            items: cat.items.map(i => {
+                const isSelected = i.id === item.id ? !i.checked : false;
+                return {
+                    ...i,
+                    checked: isSelected,
+                    type: 'default'
+                };
+            })
         }));
         setSingleSelectionData(newData);
 
         // Update chips
-        if (!item.checked) { // If we just checked it
-            setSingleChips([{ label: item.label, id: item.id }]);
+        const selectedItem = newData.flatMap(cat => cat.items).find(i => i.checked);
+        if (selectedItem) {
+            setSingleChips([{ label: selectedItem.label, id: selectedItem.id }]);
         } else {
             setSingleChips([]);
         }
@@ -54,13 +58,16 @@ const CategoriesTest = () => {
 
     const handleChipRemove = (chip) => {
         setSingleChips(singleChips.filter(c => c.id !== chip.id));
-        // Also uncheck the item
-        const newData = [...singleSelectionData];
-        newData.forEach(cat => {
-            cat.items.forEach(item => {
-                if (item.label === chip.label) item.checked = false;
-            });
-        });
+        // Also uncheck the item and reset type
+        const newData = singleSelectionData.map(cat => ({
+            ...cat,
+            items: cat.items.map(item => {
+                if (item.id === chip.id) {
+                    return { ...item, checked: false, type: 'default' };
+                }
+                return item;
+            })
+        }));
         setSingleSelectionData(newData);
     };
 
@@ -69,34 +76,42 @@ const CategoriesTest = () => {
     const [multiChips, setMultiChips] = useState([]);
 
     const handleMultiItemClick = (item, categoryIndex) => {
-        const newData = [...multiSelectionData];
-        // Toggle the clicked item
-        newData[categoryIndex].items = newData[categoryIndex].items.map(i => ({
-            ...i,
-            checked: i.id === item.id ? !i.checked : i.checked
-        }));
+        const newData = multiSelectionData.map((cat, idx) => {
+            if (idx !== categoryIndex) return cat;
+            return {
+                ...cat,
+                items: cat.items.map(i => {
+                    if (i.id !== item.id) return i;
+                    const isSelected = !i.checked;
+                    return {
+                        ...i,
+                        checked: isSelected,
+                        type: 'default'
+                    };
+                })
+            };
+        });
         setMultiSelectionData(newData);
 
         // Update chips based on all checked items across all categories
-        const newChips = [];
-        newData.forEach(cat => {
-            cat.items.forEach(i => {
-                if (i.checked) {
-                    newChips.push({ label: i.label, id: i.id });
-                }
-            });
-        });
+        const newChips = newData
+            .flatMap(cat => cat.items)
+            .filter(i => i.checked)
+            .map(i => ({ label: i.label, id: i.id }));
         setMultiChips(newChips);
     };
 
     const handleMultiChipRemove = (chip) => {
-        // Uncheck the item
-        const newData = [...multiSelectionData];
-        newData.forEach(cat => {
-            cat.items.forEach(item => {
-                if (item.id === chip.id) item.checked = false;
-            });
-        });
+        // Uncheck the item and reset type
+        const newData = multiSelectionData.map(cat => ({
+            ...cat,
+            items: cat.items.map(item => {
+                if (item.id === chip.id) {
+                    return { ...item, checked: false, type: 'default' };
+                }
+                return item;
+            })
+        }));
         setMultiSelectionData(newData);
 
         // Update chips

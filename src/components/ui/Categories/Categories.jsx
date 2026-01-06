@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Categories.module.css';
 import ItemRow from '../ItemRow/ItemRow';
+import Icon from '../Icon/Icon';
 
 const Categories = ({
   variant = 'single', // 'single' (Categories=1) or 'multiple' (Categories=2)
@@ -75,7 +76,7 @@ const Categories = ({
   const getSearchIcon = () => {
     return (
       <div className={styles.searchIcon}>
-        <img src="/icons/search.svg" alt="Search" className={styles.searchIconImage} />
+        <Icon name="MagnifyingGlass" size={16} className={styles.searchIconImage} />
       </div>
     );
   };
@@ -93,36 +94,26 @@ const Categories = ({
       itemsToRender.push({ isMore: true, label: `+${remainingCount}` });
     }
 
-    // Split items into rows (3 per row)
-    const rows = [];
-    for (let i = 0; i < itemsToRender.length; i += 3) {
-      rows.push(itemsToRender.slice(i, i + 3));
-    }
-
     return (
       <div className={styles.chipListContainer}>
-        {rows.map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.chipListRow}>
-            {row.map((item, itemIndex) => (
-              <div key={itemIndex} className={styles.chip}>
-                <p className={styles.chipLabel}>{item.label || 'Label'}</p>
-                {!item.isMore && (
-                  <button
-                    type="button"
-                    className={styles.chipRemove}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      if (onChipRemove) {
-                        onChipRemove(item);
-                      }
-                    }}
-                    aria-label="Remove chip"
-                  >
-                    <img src="/icons/X.svg" alt="Remove" className={styles.chipIcon} />
-                  </button>
-                )}
-              </div>
-            ))}
+        {itemsToRender.map((item, index) => (
+          <div key={index} className={styles.chip}>
+            <p className={styles.chipLabel}>{item.label || 'Label'}</p>
+            {!item.isMore && (
+              <button
+                type="button"
+                className={styles.chipRemove}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onChipRemove) {
+                    onChipRemove(item);
+                  }
+                }}
+                aria-label="Remove chip"
+              >
+                <Icon name="X" size={14} className={styles.chipIcon} />
+              </button>
+            )}
           </div>
         ))}
       </div>
@@ -142,9 +133,9 @@ const Categories = ({
         >
           <p className={styles.categoryTitleText}>{category.title || 'Category'}</p>
           <div className={styles.chevronIcon}>
-            <img
-              src="/icons/chevron.svg"
-              alt={isExpanded ? 'Collapse' : 'Expand'}
+            <Icon
+              name="CaretDown"
+              size={14}
               className={`${styles.chevronImg} ${isExpanded ? styles.chevronUp : ''}`}
             />
           </div>

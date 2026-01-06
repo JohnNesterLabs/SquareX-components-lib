@@ -50,9 +50,9 @@ const ItemRow = ({
     >
       {showInfo && (
         <div className={styles.infoIcon}>
-          <img 
-            src="/icons/Icon.svg" 
-            alt="Info" 
+          <img
+            src="/icons/Icon.svg"
+            alt="Info"
             className={styles.infoIconImg}
           />
         </div>
@@ -62,9 +62,9 @@ const ItemRow = ({
           <div className={styles.iconWrapper}>
             {chooseLeftIcon || (
               <div className={styles.fileIcon}>
-                <img 
-                  src="/icons/File.svg" 
-                  alt="File" 
+                <img
+                  src="/icons/File.svg"
+                  alt="File"
                   className={styles.fileIconImg}
                 />
               </div>
@@ -81,9 +81,9 @@ const ItemRow = ({
           <div className={styles.iconWrapper}>
             {chooseRightIcon || (
               <div className={styles.starIcon}>
-                <img 
-                  src="/icons/Star.svg" 
-                  alt="Star" 
+                <img
+                  src="/icons/Star.svg"
+                  alt="Star"
                   className={styles.starIconImg}
                 />
               </div>
@@ -100,9 +100,9 @@ const ItemRow = ({
                   <div className={styles.checkboxCheck}>
                     <div className={styles.checkIconWrapper}>
                       <div className={styles.checkIconInner}>
-                        <img 
-                          src="/icons/check.svg" 
-                          alt="Check" 
+                        <img
+                          src="/icons/check.svg"
+                          alt="Check"
                           className={styles.checkIcon}
                         />
                       </div>
@@ -119,7 +119,9 @@ const ItemRow = ({
       {hasRadio && (
         <div className={styles.radioField}>
           <div className={styles.radioWrapper}>
-            <div className={styles.radio}></div>
+            <div className={`${styles.radio} ${checked ? styles.radioChecked : ''}`}>
+              {checked && <div className={styles.radioDot}></div>}
+            </div>
           </div>
         </div>
       )}

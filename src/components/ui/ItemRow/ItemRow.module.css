@@ -195,7 +195,7 @@
 
 .checkIconInner {
   position: absolute;
-  
+
   width: 100%;
   height: 100%;
 }
@@ -232,6 +232,23 @@
   position: relative;
   border: 1px solid #d6dadf;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.radioChecked {
+  border-color: #4432bf;
+  border-width: 1.5px;
+}
+
+.radioDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #4432bf;
+  flex-shrink: 0;
 }
 
 /* Type: Default */
@@ -330,7 +347,7 @@
 
 /* Interactive states */
 .itemRow:not(.type_disabled):not(.type_selected):not(.type_danger):hover {
-  background-color: rgba(118, 132, 148, 0.08);
+  background-color: var(--bg-neutral-subtle-low);
 }
 
 .itemRow:not(.type_disabled):focus {
@@ -341,4 +358,3 @@
   outline: 2px solid #4432bf;
   outline-offset: 2px;
 }
-

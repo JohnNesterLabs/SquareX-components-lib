@@ -111,15 +111,12 @@
   background: var(--bg-neutral-tertiary);
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 8px;
   min-height: 48px;
-  align-items: flex-start;
-  justify-content: center;
-  padding-left: 8px;
-  padding-right: 0;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px 12px;
   position: relative;
   flex-shrink: 0;
   width: 100%;
@@ -241,7 +238,7 @@
 .categoryTitleText {
   flex: 1 0 0;
   font-family: 'Host Grotesk', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   min-height: 1px;
   min-width: 1px;
