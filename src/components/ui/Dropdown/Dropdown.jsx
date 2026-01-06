@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import styles from './Dropdown.module.css';
 import Icon from '../Icon/Icon';
 
@@ -18,11 +19,30 @@ const Dropdown = ({
   onFocus,
   onBlur,
   onClick,
+  onOutsideClick,
   disabled,
   className = '',
   children,
   ...props
 }) => {
+  const containerRef = useRef(null);
+
+  // Handle click outside
+  useEffect(() => {
+    if (!onOutsideClick) return;
+
+    const handleClickOutside = (event) => {
+      if (containerRef.current && !containerRef.current.contains(event.target)) {
+        onOutsideClick();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [onOutsideClick]);
+
   // Normalize state name
   const normalizeState = (stateName) => {
     if (!stateName) return 'default';
@@ -59,7 +79,7 @@ const Dropdown = ({
                 }}
                 aria-label="Remove chip"
               >
-                <img src="/icons/Vector.svg" alt="Remove" className={styles.chipIcon} />
+                <Icon name="X" size={10} className={styles.chipIcon} />
               </button>
             )}
           </div>
@@ -82,13 +102,6 @@ const Dropdown = ({
     styles[`dropdownWrapper_type_${normalizedType}`],
     styles[`dropdownWrapper_state_${actualState}`],
     styles[`dropdownWrapper_type_${normalizedType}_state_${actualState}`],
-  ]
-    .filter(Boolean)
-    .join(' ');
-
-  const chevronWrapperClassNames = [
-    styles.chevronWrapper,
-    actualState === 'focused' ? styles.chevronRotated : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -123,7 +136,7 @@ const Dropdown = ({
   );
 
   return (
-    <div className={containerClassNames}>
+    <div className={containerClassNames} ref={containerRef}>
       {hasLabel && label && <p className={styles.label}>{label}</p>}
       {hasDescription && description && <p className={styles.description}>{description}</p>}
 

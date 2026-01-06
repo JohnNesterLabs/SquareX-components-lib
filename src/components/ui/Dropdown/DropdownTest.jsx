@@ -56,6 +56,7 @@ const DropdownTest = () => {
                             placeholder="Choose..."
                             value={value1}
                             onClick={() => setOpenDropdown(openDropdown === 'basic' ? null : 'basic')}
+                            onOutsideClick={() => openDropdown === 'basic' && setOpenDropdown(null)}
                         >
                             {openDropdown === 'basic' && (
                                 <div className={styles.dropdownPopup}>
@@ -83,6 +84,7 @@ const DropdownTest = () => {
                             description="Current status of the item"
                             value={value2}
                             onClick={() => setOpenDropdown(openDropdown === 'controlled' ? null : 'controlled')}
+                            onOutsideClick={() => openDropdown === 'controlled' && setOpenDropdown(null)}
                         >
                             {openDropdown === 'controlled' && (
                                 <div className={styles.dropdownPopup}>
@@ -113,6 +115,7 @@ const DropdownTest = () => {
                             hasError={!value3}
                             error="Please select a priority"
                             onClick={() => setOpenDropdown(openDropdown === 'error' ? null : 'error')}
+                            onOutsideClick={() => openDropdown === 'error' && setOpenDropdown(null)}
                         >
                             {openDropdown === 'error' && (
                                 <div className={styles.dropdownPopup}>
@@ -142,6 +145,7 @@ const DropdownTest = () => {
                                 hasLabel={false}
                                 hasDescription={false}
                                 onClick={() => setOpenDropdown(openDropdown === 'small' ? null : 'small')}
+                                onOutsideClick={() => openDropdown === 'small' && setOpenDropdown(null)}
                             >
                                 {openDropdown === 'small' && (
                                     <div className={styles.dropdownPopup}>
@@ -168,6 +172,7 @@ const DropdownTest = () => {
                                 hasLabel={false}
                                 hasDescription={false}
                                 onClick={() => setOpenDropdown(openDropdown === 'operator' ? null : 'operator')}
+                                onOutsideClick={() => openDropdown === 'operator' && setOpenDropdown(null)}
                             >
                                 {openDropdown === 'operator' && (
                                     <div className={styles.dropdownPopup}>
@@ -197,6 +202,7 @@ const DropdownTest = () => {
                             chips={chipsWithHandlers}
                             placeholder="Select tags..."
                             onClick={() => setOpenDropdown(openDropdown === 'chips' ? null : 'chips')}
+                            onOutsideClick={() => openDropdown === 'chips' && setOpenDropdown(null)}
                         >
                             {openDropdown === 'chips' && (
                                 <div className={styles.dropdownPopup}>
