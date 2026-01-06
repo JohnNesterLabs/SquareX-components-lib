@@ -160,7 +160,7 @@
 
 /* Chip */
 .chip {
-  background-color: #f1f3f4;
+  background-color: var(--bg-neutral-tertiary);
   border: 1px solid #c8ced4;
   box-sizing: border-box;
   display: flex;
@@ -315,7 +315,7 @@
 
 /* State: Error - Small */
 .dropdownWrapper_type_small_state_error {
-  background-color: #f1f3f4;
+  background-color: var(--bg-neutral-tertiary);
   border: 1.5px solid #ec221f;
 }
 
@@ -417,4 +417,3 @@
 .dropdownWrapper_type_small_state_disabled {
   box-shadow: none;
 }
-

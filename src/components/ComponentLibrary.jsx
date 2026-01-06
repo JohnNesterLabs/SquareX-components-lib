@@ -54,7 +54,7 @@ const ComponentLibrary = () => {
     // { id: 'inputfield', label: 'InputField' },
     // { id: 'nestedsection', label: 'NestedSection' },
     // { id: 'itemrow', label: 'ItemRow' },
-    // { id: 'categories', label: 'Categories' },
+    { id: 'categories', label: 'Categories' },
     // { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
     { id: 'checkbox', label: 'Checkbox' },
@@ -1610,7 +1610,7 @@ const ComponentLibrary = () => {
           {/* {activeTab === 'inputfield' && renderInputFieldComponent()} */}
           {/* {activeTab === 'nestedsection' && renderNestedSectionComponent()} */}
           {/* {activeTab === 'itemrow' && renderItemRowComponent()} */}
-          {/* {activeTab === 'categories' && renderCategoriesComponent()} */}
+          {activeTab === 'categories' && renderCategoriesComponent()}
           {/* {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()} */}
           {activeTab === 'icons' && renderIconsComponent()}
           {activeTab === 'checkbox' && renderCheckboxComponent()}

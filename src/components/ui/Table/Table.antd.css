@@ -13,11 +13,12 @@
 }
 
 /* Table Header Styles */
-.tableContainer .ant-table-thead > tr > th {
+.tableContainer .ant-table-thead>tr>th {
   background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
   border-bottom: 1px solid var(--Border-Default-Secondary, #D6DADF) !important;
   padding: 0 16px !important;
-  padding-right: 0 !important; /* Remove right padding to allow resize handle at edge */
+  padding-right: 0 !important;
+  /* Remove right padding to allow resize handle at edge */
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   font-size: 12px !important;
   font-weight: 600 !important;
@@ -37,16 +38,16 @@
 
 /* Remove Ant Design's default ::before and ::after pseudo-elements (column split) */
 /* Target all possible combinations of classes */
-.tableContainer .ant-table-thead > tr > th::before,
-.tableContainer .ant-table-thead > tr > th.ant-table-cell::before,
-.tableContainer .ant-table-thead > tr > th.ant-table-column-has-sorters::before,
-.tableContainer .ant-table-thead > tr > th.ant-table-cell.ant-table-column-has-sorters::before,
-.tableContainer .ant-table-thead > tr > th[class*="ant-table"]::before,
-.tableContainer .ant-table-thead > tr > th::after,
-.tableContainer .ant-table-thead > tr > th.ant-table-cell::after,
-.tableContainer .ant-table-thead > tr > th.ant-table-column-has-sorters::after,
-.tableContainer .ant-table-thead > tr > th.ant-table-cell.ant-table-column-has-sorters::after,
-.tableContainer .ant-table-thead > tr > th[class*="ant-table"]::after {
+.tableContainer .ant-table-thead>tr>th::before,
+.tableContainer .ant-table-thead>tr>th.ant-table-cell::before,
+.tableContainer .ant-table-thead>tr>th.ant-table-column-has-sorters::before,
+.tableContainer .ant-table-thead>tr>th.ant-table-cell.ant-table-column-has-sorters::before,
+.tableContainer .ant-table-thead>tr>th[class*="ant-table"]::before,
+.tableContainer .ant-table-thead>tr>th::after,
+.tableContainer .ant-table-thead>tr>th.ant-table-cell::after,
+.tableContainer .ant-table-thead>tr>th.ant-table-column-has-sorters::after,
+.tableContainer .ant-table-thead>tr>th.ant-table-cell.ant-table-column-has-sorters::after,
+.tableContainer .ant-table-thead>tr>th[class*="ant-table"]::after {
   display: none !important;
   content: "" !important;
   width: 0 !important;
@@ -70,33 +71,33 @@
   inset-inline-end: -9999px !important;
 }
 
-.tableContainer .ant-table-thead > tr > th:not(.ant-table-selection-column):not(.dragHandleHeader):hover {
-  background: var(--bg-gray-tertiary, #f1f3f4) !important;
+.tableContainer .ant-table-thead>tr>th:not(.ant-table-selection-column):not(.dragHandleHeader):hover {
+  background: var(--bg-neutral-tertiary) !important;
   cursor: pointer;
 }
 
 /* Drag Handle Header - no hover effect */
-.tableContainer .ant-table-thead > tr > th.dragHandleHeader {
+.tableContainer .ant-table-thead>tr>th.dragHandleHeader {
   cursor: default;
   background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
 }
 
 /* Ensure fixed drag handle column header stays on top and has proper background */
-.tableContainer .ant-table-thead > tr > th.dragHandleHeader.ant-table-cell-fix-left {
+.tableContainer .ant-table-thead>tr>th.dragHandleHeader.ant-table-cell-fix-left {
   z-index: 11 !important;
   background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
 }
 
 /* Ensure fixed drag handle column body cells stay on top and have proper background */
-.tableContainer .ant-table-tbody > tr > td.dragHandleCell.ant-table-cell-fix-left {
+.tableContainer .ant-table-tbody>tr>td.dragHandleCell.ant-table-cell-fix-left {
   z-index: 11 !important;
   background: var(--bg-default, #ffffff) !important;
 }
 
 /* Selection Column Header */
-.tableContainer .ant-table-thead > tr > th.ant-table-selection-column,
-.tableContainer .ant-table-thead > tr > th[data-column-key="selection"],
-.tableContainer .ant-table-thead > tr > th.checkboxColumn {
+.tableContainer .ant-table-thead>tr>th.ant-table-selection-column,
+.tableContainer .ant-table-thead>tr>th[data-column-key="selection"],
+.tableContainer .ant-table-thead>tr>th.checkboxColumn {
   padding: 0 16px !important;
   width: 48px;
   height: 48px !important;
@@ -113,19 +114,19 @@
 }
 
 /* Ensure fixed checkbox column header stays on top and has proper background */
-.tableContainer .ant-table-thead > tr > th.ant-table-selection-column.ant-table-cell-fix-left,
-.tableContainer .ant-table-thead > tr > th[data-column-key="selection"].ant-table-cell-fix-left,
-.tableContainer .ant-table-thead > tr > th.checkboxColumn.ant-table-cell-fix-left {
+.tableContainer .ant-table-thead>tr>th.ant-table-selection-column.ant-table-cell-fix-left,
+.tableContainer .ant-table-thead>tr>th[data-column-key="selection"].ant-table-cell-fix-left,
+.tableContainer .ant-table-thead>tr>th.checkboxColumn.ant-table-cell-fix-left {
   z-index: 12 !important;
   background: var(--Background-Neutral-Subtle-Low, #76849414) !important;
 }
 
 /* Table Row Height Constraints */
-.tableContainer .ant-table-thead > tr {
+.tableContainer .ant-table-thead>tr {
   height: 48px !important;
 }
 
-.tableContainer .ant-table-tbody > tr {
+.tableContainer .ant-table-tbody>tr {
   height: 48px !important;
 }
 
@@ -140,13 +141,13 @@
 }
 
 /* Constrain all child elements within table cells */
-.tableContainer .ant-table-cell > * {
+.tableContainer .ant-table-cell>* {
   max-height: 100% !important;
   overflow: hidden !important;
 }
 
 /* Table Body Styles */
-.tableContainer .ant-table-tbody > tr > td {
+.tableContainer .ant-table-tbody>tr>td {
   padding: 0 16px !important;
   font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
   font-size: 12px !important;
@@ -161,23 +162,23 @@
   overflow: hidden;
 }
 
-.tableContainer .ant-table-tbody > tr:hover > td {
-  background: var(--bg-gray-tertiary, #f1f3f4) !important;
+.tableContainer .ant-table-tbody>tr:hover>td {
+  background: var(--bg-neutral-tertiary) !important;
 }
 
 /* Selected Row Styles */
-.tableContainer .ant-table-tbody > tr.ant-table-row-selected > td {
+.tableContainer .ant-table-tbody>tr.ant-table-row-selected>td {
   background: var(--brand-purple-subtle, rgba(136, 81, 191, 0.08)) !important;
 }
 
-.tableContainer .ant-table-tbody > tr.ant-table-row-selected:hover > td {
+.tableContainer .ant-table-tbody>tr.ant-table-row-selected:hover>td {
   background: var(--brand-purple-tertiary, #dbcbec) !important;
 }
 
 /* Selection Column Cell */
-.tableContainer .ant-table-tbody > tr > td.ant-table-selection-column,
-.tableContainer .ant-table-tbody > tr > td[data-column-key="selection"],
-.tableContainer .ant-table-tbody > tr > td.checkboxColumn {
+.tableContainer .ant-table-tbody>tr>td.ant-table-selection-column,
+.tableContainer .ant-table-tbody>tr>td[data-column-key="selection"],
+.tableContainer .ant-table-tbody>tr>td.checkboxColumn {
   padding: 0 16px !important;
   width: 48px;
   height: 48px !important;
@@ -193,9 +194,9 @@
 }
 
 /* Ensure fixed checkbox column body cells stay on top and have proper background */
-.tableContainer .ant-table-tbody > tr > td.ant-table-selection-column.ant-table-cell-fix-left,
-.tableContainer .ant-table-tbody > tr > td[data-column-key="selection"].ant-table-cell-fix-left,
-.tableContainer .ant-table-tbody > tr > td.checkboxColumn.ant-table-cell-fix-left {
+.tableContainer .ant-table-tbody>tr>td.ant-table-selection-column.ant-table-cell-fix-left,
+.tableContainer .ant-table-tbody>tr>td[data-column-key="selection"].ant-table-cell-fix-left,
+.tableContainer .ant-table-tbody>tr>td.checkboxColumn.ant-table-cell-fix-left {
   z-index: 12 !important;
   background: var(--bg-default, #ffffff) !important;
 }
@@ -237,7 +238,7 @@
 }
 
 /* Remove default cursor pointer from headers - sorting is now icon-only */
-.tableContainer .ant-table-thead > tr > th:not(.ant-table-selection-column):not(.dragHandleHeader) {
+.tableContainer .ant-table-thead>tr>th:not(.ant-table-selection-column):not(.dragHandleHeader) {
   cursor: default;
 }
 
@@ -278,7 +279,7 @@
 }
 
 .tableContainer .ant-table-body::-webkit-scrollbar-track {
-  background: var(--bg-gray-tertiary, #f1f3f4);
+  background: var(--bg-neutral-tertiary);
 }
 
 .tableContainer .ant-table-body::-webkit-scrollbar-thumb {
@@ -307,21 +308,23 @@
 }
 
 /* Ensure proper spacing - remove border from last table row */
-.tableContainer .ant-table-tbody > tr:last-child > td {
+.tableContainer .ant-table-tbody>tr:last-child>td {
   border-bottom: none !important;
 }
 
-:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody >tr >th, :where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody >tr >td {
+:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody>tr>th,
+:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody>tr>td {
   border-bottom: 1px solid #D6DADF !important;
 }
 
 /* Remove border-bottom from last table row */
-:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody >tr:last-child >th,
-:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody >tr:last-child >td {
+:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody>tr:last-child>th,
+:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-tbody>tr:last-child>td {
   border-bottom: none !important;
 }
 
-:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-thead >tr>th:not(.ant-table-selection-column):not(.dragHandleHeader), :where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-thead >tr>td:not(.ant-table-selection-column) {
+:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-thead>tr>th:not(.ant-table-selection-column):not(.dragHandleHeader),
+:where(.css-dev-only-do-not-override-1iph5z3).ant-table-wrapper .ant-table-thead>tr>td:not(.ant-table-selection-column) {
   position: relative;
   color: var(--Text-Neutral-Secondary, #768494) !important;
   font-weight: 400;

@@ -108,7 +108,7 @@
 
 /* Chip List Container */
 .chipListContainer {
-  background: #f1f3f4;
+  background: var(--bg-neutral-tertiary);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -136,7 +136,7 @@
 
 /* Chip */
 .chip {
-  background: #f1f3f4;
+  background: var(--bg-neutral-tertiary);
   border: 1px solid #c8ced4;
   box-sizing: border-box;
   display: flex;

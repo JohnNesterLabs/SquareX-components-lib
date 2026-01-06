@@ -191,7 +191,7 @@
 .state_pressed {
   border-color: #4432bf;
   border-width: 2px;
-  background-color: #f1f3f4;
+  background-color: var(--bg-neutral-tertiary);
 }
 
 .state_pressed.checkboxChecked {
@@ -231,15 +231,12 @@
 }
 
 /* Interactive states for default */
-.checkbox:not(.checkboxDisabled):not(.checkboxChecked):hover {
-  /* border-color: #c8ced4; */
-  /* background-color: #f5f5f5; */
-}
+
 
 .checkbox:not(.checkboxDisabled):not(.checkboxChecked):active {
   border-color: #4432bf;
   border-width: 2px;
-  background-color: #f1f3f4;
+  background-color: var(--bg-neutral-tertiary);
 }
 
 .checkbox:not(.checkboxDisabled).checkboxChecked:hover {
