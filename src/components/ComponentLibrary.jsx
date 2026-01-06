@@ -35,7 +35,7 @@ import RadioTest from './ui/Radio/RadioTest';
 import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
 import TableTest from './ui/Table/TableTest';
-import PaginationTest from './ui/Pagination/PaginationTest';
+import AntPaginationTest from './ui/AntPagination/AntPaginationTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -61,7 +61,7 @@ const ComponentLibrary = () => {
     { id: 'radio', label: 'Radio' },
     { id: 'toggle', label: 'Toggle' },
     { id: 'table', label: 'Table' },
-    { id: 'pagination', label: 'Pagination' },
+    { id: 'antpagination', label: 'AntPagination' },
     { id: 'badge', label: 'Badge' },
     { id: 'notification', label: 'Notification' },
     { id: 'tab', label: 'Tab' },
@@ -1537,12 +1537,13 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderPaginationComponent = () => {
+
+  const renderAntPaginationComponent = () => {
     return (
       <>
-        {/* Pagination Test Component */}
+        {/* AntPagination Test Component */}
         <div className="component-section">
-          <PaginationTest />
+          <AntPaginationTest />
         </div>
       </>
     );
@@ -1616,7 +1617,7 @@ const ComponentLibrary = () => {
           {activeTab === 'radio' && renderRadioComponent()}
           {activeTab === 'toggle' && renderToggleComponent()}
           {activeTab === 'table' && renderTableComponent()}
-          {activeTab === 'pagination' && renderPaginationComponent()}
+          {activeTab === 'antpagination' && renderAntPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}
           {activeTab === 'notification' && renderNotificationComponent()}
           {activeTab === 'tab' && renderTabComponent()}

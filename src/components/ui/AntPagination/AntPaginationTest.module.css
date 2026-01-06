@@ -1,0 +1,30 @@
+.testContainer {
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    font-family: 'Host Grotesk', sans-serif;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #2f353b;
+    margin-bottom: 32px;
+}
+
+.section {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2f353b;
+    margin-bottom: 16px;
+}
