@@ -13,16 +13,20 @@
 }
 
 :global(.ant-pagination-item:hover) {
-    background-color: rgba(68, 50, 191, 0.1) !important;
+    background-color: var(--bg-neutral-subtle-low) !important;
 }
 
 :global(.ant-pagination-item-active) {
-    background-color: #4432bf !important;
+    background-color: var(--action-violet-default) !important;
     transition: none !important;
 }
 
+:global(.ant-pagination-item-active:hover) {
+    background-color: var(--color-violet-400) !important;
+}
+
 :global(.ant-pagination-item-active a) {
-    color: #F3EEF9 !important;
+    color: var(--color-purple-050) !important;
     transition: none !important;
 }
 
@@ -45,20 +49,20 @@
 
 :global(.ant-pagination-jump-prev .ant-pagination-item-container .ant-pagination-item-ellipsis),
 :global(.ant-pagination-jump-next .ant-pagination-item-container .ant-pagination-item-ellipsis) {
-    color: #768494 !important;
+    color: var(--color-slate-500) !important;
     transition: none !important;
 }
 
 :global(.ant-pagination-options-quick-jumper input) {
     border-radius: 8px !important;
-    border: 1.5px solid #d6dadf !important;
+    border: 1.5px solid var(--color-slate-150) !important;
     padding: 4px 8px !important;
     transition: all 0.2s ease !important;
 }
 
 :global(.ant-pagination-options-quick-jumper input:focus) {
-    border-color: #4432bf !important;
-    box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.1) !important;
+    border-color: var(--action-violet-default) !important;
+    box-shadow: 0 0 0 2px var(--action-violet-subtle-low) !important;
     outline: none !important;
 }
 
@@ -75,7 +79,7 @@
 }
 
 .navButtonCustom:hover {
-    background-color: rgba(228, 230, 234, 0.5);
+    background-color: var(--bg-neutral-subtle-low);
 }
 
 .navIcon {
@@ -88,14 +92,14 @@
     -webkit-mask-position: center;
     mask-size: contain;
     -webkit-mask-size: contain;
-    background-color: #2f353b;
+    background-color: var(--color-slate-800);
     transition: all 0.2s ease;
 }
 
 .navText {
     font-size: 14px;
     font-weight: 500;
-    color: #2f353b;
+    color: var(--color-slate-800);
     line-height: 1;
     user-select: none;
 }
@@ -111,11 +115,11 @@
 :global(.ant-pagination-disabled) .navIcon,
 :global(.ant-pagination-prev-disabled) .navIcon,
 :global(.ant-pagination-next-disabled) .navIcon {
-    background-color: #768494;
+    background-color: var(--color-slate-500);
 }
 
 :global(.ant-pagination-disabled) .navText,
 :global(.ant-pagination-prev-disabled) .navText,
 :global(.ant-pagination-next-disabled) .navText {
-    color: #768494;
+    color: var(--color-slate-500);
 }

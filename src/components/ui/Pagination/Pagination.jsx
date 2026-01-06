@@ -1,16 +1,16 @@
 import React from 'react';
-import { Pagination, ConfigProvider } from 'antd';
-import styles from './AntPagination.module.css';
+import { Pagination as AntdPagination, ConfigProvider } from 'antd';
+import styles from './Pagination.module.css';
 
 /**
- * AntPagination Component
+ * Pagination Component
  * 
  * A wrapper around Ant Design's Pagination component with custom styling.
  * Supports all Ant Design Pagination features.
  * 
  * @param {Object} props - Ant Design Pagination props
  */
-const AntPagination = (props) => {
+const Pagination = (props) => {
     const itemRender = (_, type, originalElement) => {
         if (type === 'prev') {
             return (
@@ -70,10 +70,11 @@ const AntPagination = (props) => {
             }}
         >
             <div className={styles.paginationWrapper}>
-                <Pagination itemRender={itemRender} {...props} />
+                <AntdPagination itemRender={itemRender} {...props} />
             </div>
         </ConfigProvider>
     );
 };
 
-export default AntPagination;
+export default Pagination;
+
