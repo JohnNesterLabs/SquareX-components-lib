@@ -20,12 +20,13 @@
 
 /* Type: Medium */
 .container.type_medium {
-  width: 357.33px;
+  width: 100%;
+  /* width: 357.33px; */
 }
 
 /* Type: Small */
 .container.type_small {
-  max-width: 200px;
+  width: auto;
 }
 
 /* Label */
@@ -63,30 +64,38 @@
   -webkit-backdrop-filter: blur(5px);
 }
 
+.fieldWrapper {
+  position: relative;
+  width: 100%;
+}
+
 /* Type: Medium */
 .dropdownWrapper_type_medium {
-  height: 40px;
+  min-height: 40px;
+  height: auto;
   width: 100%;
 }
 
 /* Type: Small */
 .dropdownWrapper_type_small {
-  height: 32px;
-  max-width: 120px;
+  min-height: 32px;
+  height: auto;
+  width: auto;
+  min-width: 80px;
 }
 
 /* Dropdown Inner */
 .dropdownInner {
   box-sizing: border-box;
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
   align-items: center;
-  overflow: hidden;
-  padding: 12px;
+  padding: 6px 32px 6px 12px;
   position: relative;
   border-radius: inherit;
   width: 100%;
-  height: 100%;
+  min-height: inherit;
 }
 
 .dropdownWrapper_type_small .dropdownInner {
@@ -96,12 +105,9 @@
 /* Placeholder and Value */
 .placeholder,
 .value {
-  flex: 1 0 0;
   font-family: 'Host Grotesk', sans-serif;
   font-weight: 400;
   line-height: 1;
-  min-height: 1px;
-  min-width: 1px;
   position: relative;
   flex-shrink: 0;
   font-size: 14px;
@@ -126,51 +132,48 @@
 
 /* Chevron Wrapper */
 .chevronWrapper {
-  overflow: hidden;
-  position: relative;
-  flex-shrink: 0;
-  width: 8px;
-  height: 4px;
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.chevronRotated {
-  transform: rotate(180deg);
+  pointer-events: none;
+  transition: transform 0.2s ease;
 }
 
 .chevronIcon {
   display: block;
-  max-width: none;
-  width: 100%;
-  height: 100%;
+  object-fit: contain;
 }
 
 /* Chip List */
 .chipList {
   box-sizing: border-box;
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px;
   align-items: center;
-  padding: 8px 0;
   position: relative;
-  flex-shrink: 0;
+  flex: 1 1 auto;
 }
 
 /* Chip */
 .chip {
-  background-color: var(--bg-neutral-tertiary);
+  background-color: #f1f3f5;
   border: 1px solid #c8ced4;
   box-sizing: border-box;
   display: flex;
   gap: 4px;
-  height: 32px;
+  height: 24px;
   align-items: center;
   justify-content: center;
-  padding: 0 12px;
+  padding: 0 8px;
   position: relative;
-  border-radius: 8px;
+  border-radius: 6px;
   flex-shrink: 0;
 }
 
@@ -181,7 +184,7 @@
   position: relative;
   flex-shrink: 0;
   color: #2f353b;
-  font-size: 14px;
+  font-size: 12px;
   white-space: nowrap;
 }
 

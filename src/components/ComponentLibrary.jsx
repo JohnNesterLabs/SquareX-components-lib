@@ -6,6 +6,7 @@ import InputField from './ui/InputField/InputField';
 import InputFieldTest from './ui/InputField/InputFieldTest';
 import TextArea from './ui/TextArea/TextArea';
 import Dropdown from './ui/Dropdown/Dropdown';
+import DropdownTest from './ui/Dropdown/DropdownTest';
 import Search from './ui/Search/Search';
 import ListSearch from './ui/ListSearch/ListSearch';
 import NestedSection from './ui/NestedSection/NestedSection';
@@ -61,6 +62,7 @@ const ComponentLibrary = () => {
     { id: 'checkbox', label: 'Checkbox' },
     { id: 'radio', label: 'Radio' },
     { id: 'toggle', label: 'Toggle' },
+    { id: 'dropdown', label: 'Dropdown' },
     { id: 'table', label: 'Table' },
     { id: 'pagination', label: 'Pagination' },
     { id: 'badge', label: 'Badge' },
@@ -242,14 +244,6 @@ const ComponentLibrary = () => {
       { key: 'disabled', label: 'Disabled' },
     ];
 
-    const dropdownStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'selected', label: 'Selected' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'error', label: 'Error' },
-      { key: 'disabled', label: 'Disabled' },
-    ];
 
     const searchStates = [
       { key: 'default', label: 'Default' },
@@ -339,72 +333,6 @@ const ComponentLibrary = () => {
                       showIcon={false}
                       showTitle={false}
                       showDragIcon={true}
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dropdown Section - Medium */}
-        <div className="component-section">
-          <h2 className="component-section-title">Dropdown Component - Medium</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {dropdownStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <Dropdown
-                      label="Label"
-                      description="Description"
-                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
-                      placeholder="Value"
-                      error="Error"
-                      hasLabel={true}
-                      hasDescription={true}
-                      hasError={false}
-                      hasChips={false}
-                      type="medium"
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dropdown Section - Small */}
-        <div className="component-section">
-          <h2 className="component-section-title">Dropdown Component - Small</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {dropdownStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <Dropdown
-                      label="Label"
-                      description="Description"
-                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
-                      placeholder="Value"
-                      error="Error"
-                      hasLabel={true}
-                      hasDescription={true}
-                      hasError={false}
-                      hasChips={false}
-                      type="small"
                       state={state.key}
                       disabled={state.key === 'disabled'}
                     />
@@ -1525,6 +1453,97 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderDropdownComponent = () => {
+    return (
+      <>
+        {/* Dropdown Test Component */}
+        <div className="component-section">
+          <DropdownTest />
+        </div>
+
+        {/* Dropdown Section - Medium */}
+        <div className="component-section">
+          <h2 className="component-section-title">Dropdown Component - Medium</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                {[
+                  { key: 'default', label: 'Default' },
+                  { key: 'hover', label: 'Hover' },
+                  { key: 'selected', label: 'Selected' },
+                  { key: 'focused', label: 'Focused' },
+                  { key: 'error', label: 'Error' },
+                  { key: 'disabled', label: 'Disabled' },
+                ].map((state) => (
+                  <div
+                    key={state.key}
+                    className="component-inputfield-cell"
+                  >
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <Dropdown
+                      label="Label"
+                      description="Description"
+                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
+                      placeholder="Value"
+                      error="Error"
+                      hasLabel={true}
+                      hasDescription={true}
+                      hasError={state.key === 'error'}
+                      hasChips={false}
+                      type="medium"
+                      state={state.key}
+                      disabled={state.key === 'disabled'}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dropdown Section - Small */}
+        <div className="component-section">
+          <h2 className="component-section-title">Dropdown Component - Small</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                {[
+                  { key: 'default', label: 'Default' },
+                  { key: 'hover', label: 'Hover' },
+                  { key: 'selected', label: 'Selected' },
+                  { key: 'focused', label: 'Focused' },
+                  { key: 'error', label: 'Error' },
+                  { key: 'disabled', label: 'Disabled' },
+                ].map((state) => (
+                  <div
+                    key={state.key}
+                    className="component-inputfield-cell"
+                  >
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <Dropdown
+                      label="Label"
+                      description="Description"
+                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
+                      placeholder="Value"
+                      error="Error"
+                      hasLabel={true}
+                      hasDescription={true}
+                      hasError={state.key === 'error'}
+                      hasChips={false}
+                      type="small"
+                      state={state.key}
+                      disabled={state.key === 'disabled'}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   const renderTableComponent = () => {
     return (
       <>
@@ -1615,6 +1634,7 @@ const ComponentLibrary = () => {
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
           {activeTab === 'toggle' && renderToggleComponent()}
+          {activeTab === 'dropdown' && renderDropdownComponent()}
           {activeTab === 'table' && renderTableComponent()}
           {activeTab === 'pagination' && renderPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}

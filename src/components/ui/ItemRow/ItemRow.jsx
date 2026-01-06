@@ -63,9 +63,7 @@ const ItemRow = ({
         {showLeftIcon && (
           <div className={styles.iconWrapper}>
             {chooseLeftIcon || (
-              <div className={styles.fileIcon}>
-                <Icon name="File" size={14} className={styles.fileIconImg} />
-              </div>
+              <Icon name="File" size={14} className={styles.fileIconImg} />
             )}
           </div>
         )}
@@ -78,9 +76,7 @@ const ItemRow = ({
         {showRightIcon && (
           <div className={styles.iconWrapper}>
             {chooseRightIcon || (
-              <div className={styles.starIcon}>
-                <Icon name="Star" size={14} className={styles.starIconImg} />
-              </div>
+              <Icon name="Star" size={14} className={styles.starIconImg} />
             )}
           </div>
         )}

@@ -1,5 +1,5 @@
-import React from 'react';
 import styles from './Dropdown.module.css';
+import Icon from '../Icon/Icon';
 
 const Dropdown = ({
   value = '',
@@ -17,8 +17,10 @@ const Dropdown = ({
   onChange,
   onFocus,
   onBlur,
+  onClick,
   disabled,
   className = '',
+  children,
   ...props
 }) => {
   // Normalize state name
@@ -38,16 +40,6 @@ const Dropdown = ({
 
   // Determine actual state (disabled takes precedence)
   const actualState = disabled ? 'disabled' : normalizeState(state);
-
-  // Get chevron icon
-  const getChevronIcon = () => {
-    const isFocused = actualState === 'focused';
-    return (
-      <div className={`${styles.chevronWrapper} ${isFocused ? styles.chevronRotated : ''}`}>
-        <img src="/icons/chevron.svg" alt="Chevron" className={styles.chevronIcon} />
-      </div>
-    );
-  };
 
   // Get chips element
   const getChips = () => {
@@ -94,82 +86,52 @@ const Dropdown = ({
     .filter(Boolean)
     .join(' ');
 
+  const chevronWrapperClassNames = [
+    styles.chevronWrapper,
+    actualState === 'focused' ? styles.chevronRotated : '',
+  ]
+    .filter(Boolean)
+    .join(' ');
+
   // Determine if dropdown should be disabled
   const isDisabled = disabled || actualState === 'disabled';
 
-  // Determine dropdown value/placeholder
-  const displayValue = value || '';
-  const showPlaceholder = !value && placeholder;
-
-  // Render based on state
-  const renderContent = () => {
-    return (
-      <div className={containerClassNames}>
-        {hasLabel && label && (
-          <label className={styles.label} htmlFor={props.id}>
-            {label}
-          </label>
-        )}
-        {hasDescription && description && (
-          <p className={styles.description}>{description}</p>
-        )}
-        <div className={dropdownWrapperClassNames}>
-          <div className={styles.dropdownInner}>
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{placeholder}</span>
-            ) : (
-              <span className={styles.value}>{displayValue}</span>
-            )}
-            {getChips()}
-            {getChevronIcon()}
-          </div>
-        </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
-      </div>
-    );
-  };
-
-  // For interactive states, use button wrapper
-  if (actualState === 'hover' || actualState === 'selected' || (actualState === 'default' && !isDisabled) || actualState === 'focused') {
-    return (
+  const fieldContent = (
+    <div className={styles.fieldWrapper}>
       <button
         type="button"
-        className={containerClassNames}
-        onClick={onFocus}
+        className={dropdownWrapperClassNames}
+        onClick={onClick || onFocus}
         disabled={isDisabled}
         aria-disabled={isDisabled}
         {...props}
       >
-        {hasLabel && label && (
-          <label className={styles.label} htmlFor={props.id}>
-            {label}
-          </label>
-        )}
-        {hasDescription && description && (
-          <p className={styles.description}>{description}</p>
-        )}
-        <div className={dropdownWrapperClassNames}>
-          <div className={styles.dropdownInner}>
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{placeholder}</span>
-            ) : (
-              <span className={styles.value}>{displayValue}</span>
-            )}
-            {getChips()}
-            {getChevronIcon()}
+        <div className={styles.dropdownInner}>
+          {getChips()}
+          {value ? (
+            <span className={styles.value}>{value}</span>
+          ) : (
+            <span className={styles.placeholder}>{placeholder}</span>
+          )}
+          <div className={styles.chevronWrapper}>
+            <Icon name={children ? "CaretUp" : "CaretDown"} size={12} className={styles.chevronIcon} />
           </div>
         </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
       </button>
-    );
-  }
+      {children}
+    </div>
+  );
 
-  return renderContent();
+  return (
+    <div className={containerClassNames}>
+      {hasLabel && label && <p className={styles.label}>{label}</p>}
+      {hasDescription && description && <p className={styles.description}>{description}</p>}
+
+      {fieldContent}
+
+      {hasError && error && <p className={styles.error}>{error}</p>}
+    </div>
+  );
 };
 
 export default Dropdown;
-

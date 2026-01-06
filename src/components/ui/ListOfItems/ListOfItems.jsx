@@ -69,9 +69,11 @@ const ListOfItems = ({
               <ItemRow
                 key={item.id || index}
                 label={item.label}
-                showLeftIcon={true}
-                showRightIcon={false}
-                hasCheckbox={false}
+                showLeftIcon={item.showLeftIcon !== undefined ? item.showLeftIcon : true}
+                chooseLeftIcon={item.leftIcon || item.chooseLeftIcon}
+                showRightIcon={item.showRightIcon || false}
+                chooseRightIcon={item.rightIcon || item.chooseRightIcon}
+                hasCheckbox={item.hasCheckbox || false}
                 hasRadio={item.hasRadio || false}
                 type={item.type || 'Default'}
                 onClick={() => {
@@ -92,10 +94,12 @@ const ListOfItems = ({
           <ItemRow
             key={item.id || index}
             label={item.label}
-            showLeftIcon={true}
-            showRightIcon={false}
-            hasCheckbox={false}
-            hasRadio={false}
+            showLeftIcon={item.showLeftIcon !== undefined ? item.showLeftIcon : true}
+            chooseLeftIcon={item.leftIcon || item.chooseLeftIcon}
+            showRightIcon={item.showRightIcon || false}
+            chooseRightIcon={item.rightIcon || item.chooseRightIcon}
+            hasCheckbox={item.hasCheckbox || false}
+            hasRadio={item.hasRadio || false}
             type={item.type || 'Default'}
             onClick={() => {
               if (onItemClick) onItemClick(item);
