@@ -42,8 +42,20 @@ const Radio = ({
   };
 
   const actualState = normalizeState(state);
-  const normalizedSize = size.toLowerCase();
+  const isNumericSize = typeof size === 'number';
+  const normalizedSize = isNumericSize ? 'custom' : size.toLowerCase();
   const isDisabled = disabled || actualState === 'disabled';
+
+  const getSizeStyle = () => {
+    if (isNumericSize) {
+      return {
+        width: `${size}px`,
+        height: `${size}px`,
+      };
+    }
+    return {};
+  };
+
 
   // Handle change
   const handleChange = (e) => {
@@ -90,6 +102,7 @@ const Radio = ({
         <label
           htmlFor={radioId}
           className={radioClassNames}
+          style={getSizeStyle()}
         >
           {checked && (
             <div className={styles.radioDot}></div>

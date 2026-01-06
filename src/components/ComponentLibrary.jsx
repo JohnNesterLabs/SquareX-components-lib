@@ -21,6 +21,7 @@ import TabTest from './ui/Tab/TabTest';
 import ModalTest from './ui/Modal/ModalTest';
 import ToastTest from './ui/Toast/ToastTest';
 import ItemRow from './ui/ItemRow/ItemRow';
+import ItemRowTest from './ui/ItemRow/ItemRowTest';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
 import DropdownNested from './ui/DropdownNested/DropdownNested';
@@ -497,14 +498,6 @@ const ComponentLibrary = () => {
   };
 
   const renderItemRowComponent = () => {
-    const itemRowTypes = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'selected', label: 'Selected' },
-      { key: 'disabled', label: 'Disabled' },
-      { key: 'danger', label: 'Danger' },
-    ];
-
     const listOfItemsTypes = [
       { key: 'default', label: 'Default (No Title)' },
       { key: 'variant2', label: 'Variant2 (With Title)' },
@@ -513,28 +506,7 @@ const ComponentLibrary = () => {
     return (
       <>
         <div className="component-section">
-          <h2 className="component-section-title">ItemRow Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {itemRowTypes.map((type) => (
-                  <div key={type.key} className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{type.label}</div>
-                    <ItemRow
-                      label="Item"
-                      showLeftIcon={true}
-                      showRightIcon={false}
-                      showInfo={false}
-                      hasCheckbox={false}
-                      hasRadio={false}
-                      type={type.key}
-                      onClick={() => console.log(`ItemRow: ${type.key} clicked`)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <ItemRowTest />
         </div>
 
         <div className="component-section">

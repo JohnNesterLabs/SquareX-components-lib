@@ -24,15 +24,15 @@ const ListOfItems = ({
   const actualType = normalizeType(type);
   const showTitle = withTitle && actualType === 'variant2';
 
-  const defaultItems = items.length > 0 
-    ? items 
+  const defaultItems = items.length > 0
+    ? items
     : [
-        { label: 'Item', id: '1' },
-        { label: 'Item', id: '2' },
-        { label: 'Item', id: '3' },
-        { label: 'Item', id: '4' },
-        { label: 'Item', id: '5' },
-      ];
+      { label: 'Item', id: '1' },
+      { label: 'Item', id: '2' },
+      { label: 'Item', id: '3' },
+      { label: 'Item', id: '4' },
+      { label: 'Item', id: '5' },
+    ];
 
   const containerClassNames = [
     styles.listOfItems,
@@ -49,16 +49,16 @@ const ListOfItems = ({
   if (actualType === 'variant2' && showTitle) {
     return (
       <div className={containerClassNames} {...props}>
-        <button 
+        <button
           className={styles.titleButton}
           onClick={handleTitleClick}
           type="button"
         >
           <p className={styles.titleText}>{title}</p>
           <div className={styles.chevronIcon}>
-            <img 
-              src="/icons/chevron.svg" 
-              alt="Chevron" 
+            <img
+              src="/icons/chevron.svg"
+              alt="Chevron"
               className={styles.chevronImg}
             />
           </div>
