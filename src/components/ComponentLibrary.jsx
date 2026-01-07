@@ -22,7 +22,6 @@ import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn
 import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
 import CategoriesTest from './ui/Categories/CategoriesTest';
-import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 
 import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
@@ -1532,9 +1531,9 @@ const ComponentLibrary = () => {
           {activeTab === 'statusindicator' && renderStatusIndicatorComponent()}
           {activeTab === 'modal' && renderModalComponent()}
           {activeTab === 'toast' && renderToastComponent()}
-        </div>
-      </div>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 };
 
