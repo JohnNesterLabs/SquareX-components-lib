@@ -1,5 +1,7 @@
 import React from 'react';
 import DropdownNestedColumn from '../DropdownNestedColumn/DropdownNestedColumn';
+import Button from '../Button/Button';
+import ButtonDanger from '../ButtonDanger/ButtonDanger';
 import styles from './DropdownNested.module.css';
 
 const DropdownNested = ({
@@ -24,47 +26,10 @@ const DropdownNested = ({
   className = '',
   ...props
 }) => {
-  // Default chips for left column
-  const leftChips = leftColumn.chips.length > 0 
-    ? leftColumn.chips 
-    : [
-        { label: 'Label', id: '1' },
-        { label: 'Label', id: '2' },
-        { label: 'Label', id: '3' },
-        { label: 'Label', id: '4' },
-      ];
-
-  // Default chips for right column
-  const rightChips = rightColumn.chips.length > 0 
-    ? rightColumn.chips 
-    : [
-        { label: 'Label', id: '1' },
-        { label: 'Label', id: '2' },
-        { label: 'Label', id: '3' },
-        { label: 'Label', id: '4' },
-      ];
-
-  // Default items for left column
-  const leftItems = leftColumn.items.length > 0 
-    ? leftColumn.items 
-    : [
-        { label: 'Item', id: '1', hasCheckbox: true, checked: false },
-        { label: 'Item', id: '2', hasCheckbox: true, checked: true },
-        { label: 'Item', id: '3', hasCheckbox: true, checked: true },
-        { label: 'Item', id: '4', hasCheckbox: true, checked: false },
-        { label: 'Item', id: '5', hasCheckbox: true, checked: false },
-      ];
-
-  // Default items for right column
-  const rightItems = rightColumn.items.length > 0 
-    ? rightColumn.items 
-    : [
-        { label: 'Item', id: '1', hasCheckbox: true, checked: true },
-        { label: 'Item', id: '2', hasCheckbox: true, checked: false },
-        { label: 'Item', id: '3', hasCheckbox: true, checked: true },
-        { label: 'Item', id: '4', hasCheckbox: true, checked: false },
-        { label: 'Item', id: '5', hasCheckbox: true, checked: false },
-      ];
+  const leftChips = leftColumn.chips;
+  const rightChips = rightColumn.chips;
+  const leftItems = leftColumn.items;
+  const rightItems = rightColumn.items;
 
   const containerClassNames = [
     styles.dropdownNested,
@@ -100,20 +65,22 @@ const DropdownNested = ({
         </div>
       </div>
       <div className={styles.ctas}>
-        <button 
-          className={styles.cancelButton}
+        <ButtonDanger
+          label="Cancel"
+          style="neutral"
+          size="medium"
+          showLeadingIcon={false}
           onClick={onCancel}
-          type="button"
-        >
-          <p className={styles.cancelText}>Cancel</p>
-        </button>
-        <button 
-          className={styles.applyButton}
+          className={styles.cancelButton}
+        />
+        <Button
+          label="Apply"
+          style="primary"
+          size="medium"
+          showLeadingIcon={false}
           onClick={onApply}
-          type="button"
-        >
-          <p className={styles.applyText}>Apply</p>
-        </button>
+          className={styles.applyButton}
+        />
       </div>
     </div>
   );

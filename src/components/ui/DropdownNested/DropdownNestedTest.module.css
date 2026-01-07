@@ -1,0 +1,33 @@
+.testContainer {
+    padding: 24px;
+    min-height: 100vh;
+}
+
+.testTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2f353b;
+    margin: 0 0 32px 0;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 16px;
+}
+
+.section {
+    margin-bottom: 48px;
+}
+
+.sectionTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2f353b;
+    margin: 0 0 24px 0;
+}
+
+.demoBox {
+    padding: 24px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+}
