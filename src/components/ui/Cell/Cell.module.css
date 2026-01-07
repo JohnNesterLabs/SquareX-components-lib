@@ -1,0 +1,185 @@
+.cell {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    min-height: 40px;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    color: #2f353b;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.label {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Default Variant */
+.defaultContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.leadingIcon {
+    color: #768494;
+}
+
+.trailingIcon {
+    color: #768494;
+    margin-left: auto;
+}
+
+/* Avatar Variant */
+.avatarContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.avatarPlaceholder {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #f0f2f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #768494;
+}
+
+/* Status Variant */
+.statusContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #d1d5db;
+}
+
+.status_active,
+.status_online {
+    background: #10b981;
+}
+
+.status_inactive,
+.status_offline {
+    background: #f43f5e;
+}
+
+.status_pending {
+    background: #f59e0b;
+}
+
+/* Social Variant */
+.socialContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.socialIcon {
+    color: #1877f2;
+    /* Facebook blue as example */
+}
+
+/* Actions Variant */
+.actionsContent {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+.actionButton {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: #768494;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.actionButton:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: #2f353b;
+}
+
+/* Checkbox Variant */
+.checkboxContent {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Toggle Variant */
+.toggleContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* User Count Variant */
+.userCountContent {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.userIconWrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    background: #f0f2f5;
+    border-radius: 6px;
+    color: #2f353b;
+}
+
+.count {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Badge */
+.badge {
+    padding: 2px 6px;
+    background: #eceaf9;
+    color: #4432bf;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+}

@@ -1,0 +1,47 @@
+.cellHeader {
+    display: flex;
+    align-items: center;
+    padding: 10px 12px;
+    min-height: 44px;
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #768494;
+    background: rgba(255, 255, 255, 0.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.sortable {
+    cursor: pointer;
+}
+
+.sortable:hover {
+    background: rgba(240, 242, 245, 0.9);
+    color: #2f353b;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.checkboxWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.sortIcon {
+    display: flex;
+    align-items: center;
+    color: #768494;
+}
+
+.label {
+    text-transform: none;
+    letter-spacing: 0.01em;
+}

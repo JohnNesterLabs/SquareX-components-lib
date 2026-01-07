@@ -40,6 +40,7 @@ import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
 import TableTest from './ui/Table/TableTest';
 import PaginationTest from './ui/Pagination/PaginationTest';
+import CellTest from './ui/Cell/CellTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -69,6 +70,7 @@ const ComponentLibrary = () => {
     { id: 'dropdown', label: 'Dropdown' },
     { id: 'table', label: 'Table' },
     { id: 'pagination', label: 'Pagination' },
+    { id: 'cell', label: 'Cell' },
     { id: 'badge', label: 'Badge' },
     { id: 'notification', label: 'Notification' },
     { id: 'tab', label: 'Tab' },
@@ -1512,6 +1514,7 @@ const ComponentLibrary = () => {
           {activeTab === 'toggle' && renderToggleComponent()}
           {activeTab === 'dropdown' && renderDropdownComponent()}
           {activeTab === 'table' && renderTableComponent()}
+          {activeTab === 'cell' && <CellTest />}
           {activeTab === 'pagination' && renderPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}
           {activeTab === 'notification' && renderNotificationComponent()}
