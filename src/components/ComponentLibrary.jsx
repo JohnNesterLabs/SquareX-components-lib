@@ -1403,7 +1403,7 @@ const ComponentLibrary = () => {
       <div className="component-header">
         <div className="component-header-left">
           <div className="component-header-logo">
-            <Icon name="SquaresFour" size={24} />
+            <img src="/logo/Logo.svg" alt="SquareX Logo" style={{ width: '24px', height: '24px' }} />
             SquareX
           </div>
         </div>
