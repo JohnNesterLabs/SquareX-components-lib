@@ -2,6 +2,7 @@
     padding: 16px;
     background: #ffffff;
     min-height: 100vh;
+    border-radius: 12px;
 }
 
 .testTitle {
