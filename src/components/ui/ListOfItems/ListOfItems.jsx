@@ -76,6 +76,7 @@ const ListOfItems = ({
                 chooseRightIcon={item.rightIcon || item.chooseRightIcon}
                 hasCheckbox={item.hasCheckbox || false}
                 hasRadio={item.hasRadio || false}
+                checked={item.checked || false}
                 type={item.type || 'Default'}
                 onClick={() => {
                   if (onItemClick) onItemClick(item);
@@ -101,6 +102,7 @@ const ListOfItems = ({
             chooseRightIcon={item.rightIcon || item.chooseRightIcon}
             hasCheckbox={item.hasCheckbox || false}
             hasRadio={item.hasRadio || false}
+            checked={item.checked || false}
             type={item.type || 'Default'}
             onClick={() => {
               if (onItemClick) onItemClick(item);
