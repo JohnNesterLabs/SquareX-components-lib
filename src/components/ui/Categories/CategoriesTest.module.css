@@ -1,5 +1,5 @@
 .testContainer {
-    padding: 40px;
+    padding: 16px;
     max-width: 1200px;
     margin: 0 auto;
     font-family: 'Inter', sans-serif;
@@ -8,28 +8,28 @@
 }
 
 .testTitle {
-    font-size: 32px;
+    font-size: 20px;
     font-weight: 700;
     color: #1a1a1a;
-    margin-bottom: 40px;
+    margin-bottom: 24px;
     text-align: center;
 }
 
 .testSection {
     background: white;
-    border-radius: 16px;
-    padding: 32px;
-    margin-bottom: 32px;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 .sectionTitle {
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
     color: #2d3748;
-    margin-bottom: 24px;
-    border-bottom: 2px solid #e2e8f0;
-    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 8px;
 }
 
 .demoContainer {

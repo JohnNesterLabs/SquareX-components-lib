@@ -683,9 +683,9 @@ const ComponentLibrary = () => {
 
     return (
       <div className="component-section" style={{ padding: 0, overflow: 'hidden' }}>
-        <div style={{ padding: '24px 24px 0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <h2 className="component-section-title" style={{ marginBottom: '24px', borderBottom: 'none' }}>BackgroundGradient Component</h2>
-          <div style={{ marginBottom: '24px' }}>
+        <div style={{ padding: '16px 16px 0 16px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h2 className="component-section-title" style={{ marginBottom: '16px', borderBottom: 'none' }}>BackgroundGradient Component</h2>
+          <div style={{ marginBottom: '16px' }}>
             <Toggle
               checked={isDarkMode}
               onChange={(e) => setIsDarkMode(e.target.checked)}
@@ -695,7 +695,7 @@ const ComponentLibrary = () => {
           </div>
         </div>
 
-        <div style={{ padding: '0 24px 24px 24px' }}>
+        <div style={{ padding: '0 16px 16px 16px' }}>
           <div style={{
             width: '100%',
             height: '700px',
@@ -707,12 +707,12 @@ const ComponentLibrary = () => {
             <BackgroundGradient mode={mode} />
             <div style={{
               position: 'absolute',
-              top: '16px',
-              left: '16px',
-              padding: '4px 12px',
+              top: '12px',
+              left: '12px',
+              padding: '4px 10px',
               background: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
               borderRadius: '20px',
-              fontSize: '12px',
+              fontSize: '11px',
               fontWeight: '600',
               color: isDarkMode ? '#fff' : '#2f353b',
               backdropFilter: 'blur(4px)',

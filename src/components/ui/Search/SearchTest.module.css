@@ -1,21 +1,21 @@
 .testContainer {
-    padding: 24px;
+    padding: 16px;
     background: #ffffff;
 }
 
 .testTitle {
     font-family: 'Host Grotesk', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     color: #2f353b;
-    margin: 0 0 32px 0;
+    margin: 0 0 24px 0;
     border-bottom: 1px solid #e0e0e0;
-    padding-bottom: 16px;
+    padding-bottom: 12px;
 }
 
 .demoSection {
-    margin-bottom: 40px;
-    padding: 24px;
+    margin-bottom: 24px;
+    padding: 16px;
     background: #f8f9fa;
     border-radius: 12px;
     border: 1px solid #e9ecef;
@@ -23,15 +23,15 @@
 
 .demoSubtitle {
     font-family: 'Host Grotesk', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: #2f353b;
-    margin: 0 0 20px 0;
+    margin: 0 0 16px 0;
 }
 
 .interactiveRow {
     display: flex;
-    gap: 24px;
+    gap: 16px;
     align-items: flex-start;
 }
 
@@ -63,25 +63,25 @@
 .divider {
     height: 1px;
     background: #e0e0e0;
-    margin: 40px 0;
+    margin: 24px 0;
 }
 
 .section {
-    margin-bottom: 48px;
+    margin-bottom: 32px;
 }
 
 .sectionTitle {
     font-family: 'Host Grotesk', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     color: #2f353b;
-    margin: 0 0 24px 0;
+    margin: 0 0 16px 0;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
 }
 
 .cell {

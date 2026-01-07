@@ -1,5 +1,5 @@
 .testContainer {
-    padding: 24px;
+    padding: 16px;
     background: #ffffff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -9,30 +9,30 @@
 
 .testTitle {
     font-family: 'Host Grotesk', sans-serif;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     color: #2f353b;
-    margin-bottom: 32px;
+    margin-bottom: 24px;
     border-bottom: 1px solid #f1f3f4;
-    padding-bottom: 16px;
+    padding-bottom: 12px;
 }
 
 .testSection {
-    margin-bottom: 40px;
+    margin-bottom: 32px;
 }
 
 .sectionTitle {
     font-family: 'Host Grotesk', sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: #474f59;
-    margin-bottom: 20px;
+    margin-bottom: 16px;
 }
 
 .demoGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
 }
 
 .demoItem {
