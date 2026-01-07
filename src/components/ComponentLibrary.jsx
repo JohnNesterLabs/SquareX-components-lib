@@ -22,6 +22,7 @@ import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn
 import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
 import CategoriesTest from './ui/Categories/CategoriesTest';
+import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 
 import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
@@ -55,7 +56,7 @@ const ComponentLibrary = () => {
     // { id: 'nestedsection', label: 'NestedSection' },
     { id: 'itemrow', label: 'ItemRow' },
     { id: 'categories', label: 'Categories' },
-    // { id: 'backgroundgradient', label: 'BackgroundGradient' },
+    { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
     { id: 'checkbox', label: 'Checkbox' },
     { id: 'radio', label: 'Radio' },
@@ -676,6 +677,56 @@ const ComponentLibrary = () => {
     );
   };
 
+  const BackgroundGradientWrapper = () => {
+    const [isDarkMode, setIsDarkMode] = React.useState(false);
+    const mode = isDarkMode ? 'Dark Mode BG' : 'Light Mode BG';
+
+    return (
+      <div className="component-section" style={{ padding: 0, overflow: 'hidden' }}>
+        <div style={{ padding: '24px 24px 0 24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <h2 className="component-section-title" style={{ marginBottom: '24px', borderBottom: 'none' }}>BackgroundGradient Component</h2>
+          <div style={{ marginBottom: '24px' }}>
+            <Toggle
+              checked={isDarkMode}
+              onChange={(e) => setIsDarkMode(e.target.checked)}
+              label={isDarkMode ? 'Dark Mode' : 'Light Mode'}
+              size="medium"
+            />
+          </div>
+        </div>
+
+        <div style={{ padding: '0 24px 24px 24px' }}>
+          <div style={{
+            width: '100%',
+            height: '700px',
+            position: 'relative',
+            border: isDarkMode ? '1px solid #333' : '1px solid #e0e0e0',
+            borderRadius: '12px',
+            overflow: 'hidden',
+          }}>
+            <BackgroundGradient mode={mode} />
+            <div style={{
+              position: 'absolute',
+              top: '16px',
+              left: '16px',
+              padding: '4px 12px',
+              background: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)',
+              borderRadius: '20px',
+              fontSize: '12px',
+              fontWeight: '600',
+              color: isDarkMode ? '#fff' : '#2f353b',
+              backdropFilter: 'blur(4px)',
+              zIndex: 10
+            }}>
+              {mode}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  const renderBackgroundGradientComponent = () => <BackgroundGradientWrapper />;
 
   const renderIconsComponent = () => {
     // Icon sizes to display (8 sizes matching first image: 48, 40, 32, 24, 20, 16, 14, 12)
@@ -1461,6 +1512,7 @@ const ComponentLibrary = () => {
           {activeTab === 'textarea' && renderTextAreaComponent()}
           {activeTab === 'itemrow' && renderItemRowComponent()}
           {activeTab === 'categories' && renderCategoriesComponent()}
+          {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()}
           {activeTab === 'icons' && renderIconsComponent()}
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
