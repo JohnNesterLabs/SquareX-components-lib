@@ -85,13 +85,36 @@
   color: #2f353b;
 }
 
+.realInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Host Grotesk', sans-serif;
+  font-size: 14px;
+  color: #2f353b;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.realInput::placeholder {
+  color: #768494;
+}
+
+.inputInner_state_focused .realInput::placeholder {
+  color: #d6dadf;
+}
+
+
 /* Cursor */
 .cursor {
   position: absolute;
   font-family: 'Host Grotesk', sans-serif;
   font-size: 20px;
   line-height: 1;
-  color:  #1559EA;;
+  color: #1559EA;
+  ;
   animation: blink 1s infinite;
   left: 33px;
   top: 10px;
@@ -107,8 +130,16 @@
 }
 
 @keyframes blink {
-  0%, 50% { opacity: 1; }
-  51%, 100% { opacity: 0; }
+
+  0%,
+  50% {
+    opacity: 1;
+  }
+
+  51%,
+  100% {
+    opacity: 0;
+  }
 }
 
 /* Error */
@@ -128,7 +159,7 @@
 /* State: Default */
 .input_state_default {
   background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
 }
 
 .inputInner_state_default .placeholder {
@@ -187,7 +218,7 @@
 /* State: Filled */
 .input_state_filled {
   background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
 }
 
 .inputInner_state_filled .value {
@@ -232,7 +263,7 @@
 /* State: Disabled */
 .input_state_disabled {
   background: #dbdbdb;
-  border: 1px solid #cacaca;
+  border: 1.5px solid #cacaca;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
@@ -245,4 +276,3 @@
 .inputInner_state_disabled .searchIconImage {
   filter: brightness(0) saturate(100%) invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(95%) contrast(100%);
 }
-

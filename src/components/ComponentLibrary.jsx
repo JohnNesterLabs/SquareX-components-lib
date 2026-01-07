@@ -9,6 +9,7 @@ import TextAreaTest from './ui/TextArea/TextAreaTest';
 import Dropdown from './ui/Dropdown/Dropdown';
 import DropdownTest from './ui/Dropdown/DropdownTest';
 import Search from './ui/Search/Search';
+import SearchTest from './ui/Search/SearchTest';
 import ListSearch from './ui/ListSearch/ListSearch';
 import NestedSection from './ui/NestedSection/NestedSection';
 import Chip from './ui/Chip/Chip';
@@ -55,6 +56,7 @@ const ComponentLibrary = () => {
     { id: 'button', label: 'Button' },
     { id: 'buttondanger', label: 'ButtonDanger' },
     { id: 'inputfield', label: 'InputField' },
+    { id: 'search', label: 'Search' },
     { id: 'textarea', label: 'TextArea' },
     // { id: 'nestedsection', label: 'NestedSection' },
     { id: 'itemrow', label: 'ItemRow' },
@@ -235,48 +237,13 @@ const ComponentLibrary = () => {
       { key: 'disabled', label: 'Disabled' },
     ];
 
-    const textAreaStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'typing', label: 'Typing' },
-      { key: 'filled', label: 'Filled' },
-      { key: 'filledHover', label: 'Filled in - Hover' },
-      { key: 'error', label: 'Error' },
-      { key: 'disabled', label: 'Disabled' },
-    ];
-
-
-    const searchStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'typing', label: 'Typing' },
-      { key: 'filled', label: 'Filled' },
-      { key: 'filledHover', label: 'Filled in - Hover' },
-      { key: 'error', label: 'Error' },
-      { key: 'disabled', label: 'Disabled' },
-    ];
-
-    const listSearchStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'typing', label: 'Typing' },
-    ];
-
-    const sampleChips = [
-      { label: 'Label' },
-      { label: 'Label' },
-      { label: 'Label' },
-    ];
-
     return (
       <>
         {/* InputField Test Component */}
         <div className="component-section">
           <InputFieldTest />
         </div>
+
 
         {/* InputField Section */}
         <div className="component-section">
@@ -310,86 +277,16 @@ const ComponentLibrary = () => {
             </div>
           </div>
         </div>
+      </>
+    );
+  };
 
-
-        {/* Search Section */}
+  const renderSearchComponent = () => {
+    return (
+      <>
         <div className="component-section">
-          <h2 className="component-section-title">Search Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {searchStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <Search
-                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Search'}
-                      placeholder="Search"
-                      error="Error"
-                      hasError={state.key === 'error'}
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div >
-
-        {/* ListSearch Section - Type 1 */}
-        < div className="component-section" >
-          <h2 className="component-section-title">ListSearch Component - Type 1</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {listSearchStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <ListSearch
-                      label={state.key === 'default' || state.key === 'focused' ? 'Search' : state.key === 'typing' ? 'Search' : 'Search'}
-                      chipList={true}
-                      chips={sampleChips}
-                      type="type1"
-                      state={state.key}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div >
-
-        {/* ListSearch Section - Type 2 */}
-        < div className="component-section" >
-          <h2 className="component-section-title">ListSearch Component - Type 2</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {listSearchStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <ListSearch
-                      label={state.key === 'default' || state.key === 'focused' ? 'Search' : state.key === 'typing' ? 'Search' : 'Search'}
-                      chipList={true}
-                      chips={sampleChips}
-                      type="type2"
-                      state={state.key}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div >
+          <SearchTest />
+        </div>
       </>
     );
   };
@@ -1603,6 +1500,7 @@ const ComponentLibrary = () => {
           {activeTab === 'button' && renderButtonComponent()}
           {activeTab === 'buttondanger' && renderButtonDangerComponent()}
           {activeTab === 'inputfield' && renderInputFieldComponent()}
+          {activeTab === 'search' && renderSearchComponent()}
           {activeTab === 'textarea' && renderTextAreaComponent()}
           {/* {activeTab === 'nestedsection' && renderNestedSectionComponent()} */}
           {activeTab === 'itemrow' && renderItemRowComponent()}

@@ -15,9 +15,12 @@ const Search = ({
   title = '',
   ...props
 }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
+
   // Normalize state name
   const normalizeState = (stateName) => {
-    if (!stateName) return 'default';
+    if (!stateName || stateName === 'default') return null; // Return null if default to allow internal state
     const normalized = stateName.toLowerCase().replace(/\s+/g, '').replace(/-/g, '');
     if (normalized === 'filledin' || normalized === 'filled') return 'filled';
     if (normalized === 'filledinhover' || normalized === 'filledhover' || normalized === 'filled-hover') return 'filledHover';
@@ -29,8 +32,23 @@ const Search = ({
     return normalized;
   };
 
-  // Determine actual state (disabled takes precedence)
-  const actualState = disabled ? 'disabled' : normalizeState(state);
+  // Determine actual state
+  const getActualState = () => {
+    if (disabled) return 'disabled';
+
+    const propState = normalizeState(state);
+    if (propState) return propState;
+
+    if (hasError) return 'error';
+    if (isFocused) return value ? 'typing' : 'focused';
+    if (isHovered) return value ? 'filledHover' : 'hover';
+    if (value) return 'filled';
+
+    return 'default';
+  };
+
+  const actualState = getActualState();
+
 
   // Get search icon
   const getSearchIcon = () => {
@@ -71,64 +89,44 @@ const Search = ({
   const showPlaceholder = !value && placeholder;
   const isTyping = actualState === 'typing' && displayValue !== '';
 
-  // Render based on state
-  const renderContent = () => {
-    return (
-      <div className={containerClassNames} title={title}>
-        <div className={inputClassNames}>
-          <div className={inputInnerClassNames}>
-            {getSearchIcon()}
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{placeholder}</span>
-            ) : (
-              <span className={styles.value}>{displayValue}</span>
-            )}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={`${styles.cursor} ${isTyping ? styles.cursorTyping : ''}`}>|</span>
-            )}
-          </div>
+  // Render content
+  return (
+    <div
+      className={containerClassNames}
+      title={title}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className={inputClassNames}>
+        <div className={inputInnerClassNames}>
+          {getSearchIcon()}
+          <input
+            type="text"
+            className={styles.realInput}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            onFocus={(e) => {
+              setIsFocused(true);
+              onFocus?.(e);
+            }}
+            onBlur={(e) => {
+              setIsFocused(false);
+              onBlur?.(e);
+            }}
+            disabled={isDisabled}
+            {...props}
+          />
+          {(actualState === 'focused' || actualState === 'typing') && !value && (
+            <span className={styles.cursor}>|</span>
+          )}
         </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
       </div>
-    );
-  };
-
-  // For interactive states, use button wrapper
-  if (actualState === 'hover' || actualState === 'typing' || (actualState === 'default' && !isDisabled) || actualState === 'filledHover' || actualState === 'filled') {
-    return (
-      <button
-        type="button"
-        className={containerClassNames}
-        onClick={onFocus}
-        disabled={isDisabled}
-        aria-disabled={isDisabled}
-        title={title}
-        {...props}
-      >
-        <div className={inputClassNames}>
-          <div className={inputInnerClassNames}>
-            {getSearchIcon()}
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{placeholder}</span>
-            ) : (
-              <span className={styles.value}>{displayValue}</span>
-            )}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={`${styles.cursor} ${isTyping ? styles.cursorTyping : ''}`}>|</span>
-            )}
-          </div>
-        </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
-      </button>
-    );
-  }
-
-  return renderContent();
+      {hasError && error && (
+        <p className={styles.error}>{error}</p>
+      )}
+    </div>
+  );
 };
 
 export default Search;
-
