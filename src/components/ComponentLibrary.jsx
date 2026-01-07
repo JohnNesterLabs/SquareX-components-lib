@@ -47,6 +47,29 @@ const ComponentLibrary = () => {
   const states = ['default', 'hover', 'focus', 'disabled', 'loading'];
   const sizes = ['medium', 'small'];
 
+  const ListOfItemsWrapper = ({ type }) => {
+    const [selectedId, setSelectedId] = React.useState(null);
+
+    const items = [
+      { label: 'Item', id: '1', hasRadio: type === 'variant2', checked: selectedId === '1' },
+      { label: 'Item', id: '2', hasRadio: type === 'variant2', checked: selectedId === '2' },
+      { label: 'Item', id: '3', hasRadio: type === 'variant2', checked: selectedId === '3' },
+      { label: 'Item', id: '4', hasRadio: type === 'variant2', checked: selectedId === '4' },
+      { label: 'Item', id: '5', hasRadio: type === 'variant2', checked: selectedId === '5' },
+    ];
+
+    return (
+      <ListOfItems
+        title="Category"
+        type={type}
+        withTitle={type === 'variant2'}
+        open={true}
+        items={items}
+        onItemClick={(item) => setSelectedId(item.id)}
+      />
+    );
+  };
+
   const tabs = [
     { id: 'avatar', label: 'Avatar' },
     { id: 'backgroundgradient', label: 'BackgroundGradient' },
@@ -306,27 +329,14 @@ const ComponentLibrary = () => {
           <h2 className="component-section-title">ListOfItems Component</h2>
           <div className="component-inputfield-container">
             <div className="component-inputfield-grid">
-              {listOfItemsTypes.map((type) => (
-                <div key={type.key} className="component-inputfield-row">
-                  <div className="component-inputfield-cell">
+              <div className="component-inputfield-row">
+                {listOfItemsTypes.map((type) => (
+                  <div key={type.key} className="component-inputfield-cell" style={{ gridColumn: 'span 2' }}>
                     <div className="component-inputfield-state-label">{type.label}</div>
-                    <ListOfItems
-                      title="Category"
-                      type={type.key}
-                      withTitle={type.key === 'variant2'}
-                      open={true}
-                      items={[
-                        { label: 'Item', id: '1', hasRadio: type.key === 'variant2' },
-                        { label: 'Item', id: '2', hasRadio: type.key === 'variant2' },
-                        { label: 'Item', id: '3', hasRadio: type.key === 'variant2' },
-                        { label: 'Item', id: '4', hasRadio: type.key === 'variant2' },
-                        { label: 'Item', id: '5', hasRadio: type.key === 'variant2' },
-                      ]}
-                      onItemClick={(item) => console.log('Item clicked:', item)}
-                    />
+                    <ListOfItemsWrapper type={type.key} />
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

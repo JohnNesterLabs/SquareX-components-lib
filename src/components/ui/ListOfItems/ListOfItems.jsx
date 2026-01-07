@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ItemRow from '../ItemRow/ItemRow';
+import Icon from '../Icon/Icon';
 import styles from './ListOfItems.module.css';
 
 const ListOfItems = ({
@@ -56,9 +57,9 @@ const ListOfItems = ({
         >
           <p className={styles.titleText}>{title}</p>
           <div className={styles.chevronIcon}>
-            <img
-              src="/icons/chevron.svg"
-              alt="Chevron"
+            <Icon
+              name={isOpen ? "CaretUp" : "CaretDown"}
+              size={16}
               className={styles.chevronImg}
             />
           </div>
