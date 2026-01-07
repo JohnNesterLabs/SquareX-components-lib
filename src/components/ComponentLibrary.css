@@ -1,61 +1,150 @@
 .component-library {
   min-height: 100vh;
-  background-color: #f5f5f5;
-  padding: 16px;
+  background-color: #ffffff;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
-  .component-library-content {
-    flex-direction: column;
-  }
-
-  .component-sidebar {
-    width: 100%;
-    position: relative;
-    top: 0;
-    max-height: 300px;
-  }
-}
-
-.component-sidebar-header {
-  padding: 20px 16px;
+/* Glass Header */
+.component-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.component-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.component-header-logo {
+  font-weight: 700;
+  font-size: 18px;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.component-header-search-wrapper {
+  position: relative;
+  width: 300px;
+}
+
+.component-header-search {
+  display: flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
+  padding: 8px 12px;
+  width: 100%;
+  gap: 8px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.component-header-search:focus-within {
+  background: #fff;
+  border-color: #4432bf;
+  box-shadow: 0 0 0 2px rgba(68, 50, 191, 0.1);
+}
+
+.component-header-search input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  color: #1a1a1a;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.component-header-search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 6px;
+  z-index: 1000;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.component-header-search-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  color: #1a1a1a;
+  font-weight: 500;
+}
+
+.component-header-search-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.component-header-search-shortcut {
+  font-size: 12px;
+  color: #666;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: monospace;
   flex-shrink: 0;
 }
 
-.component-sidebar-header h1 {
-  font-size: 20px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 4px 0;
-}
-
-.component-sidebar-header p {
-  font-size: 12px;
-  color: #666;
-  margin: 0;
+.component-header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .component-library-content {
   display: flex;
-  gap: 16px;
+  gap: 0;
   max-width: 100%;
   margin: 0 auto;
   align-items: flex-start;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .component-sidebar {
-  width: 200px;
+  width: 260px;
   flex-shrink: 0;
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-right: 1px solid rgba(0, 0, 0, 0.06);
   position: sticky;
-  top: 16px;
-  max-height: calc(100vh - 32px);
+  top: 65px;
+  /* Adjusted for header height */
+  height: calc(100vh - 65px);
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .component-sidebar-scroll {
@@ -64,23 +153,8 @@
   padding: 8px;
   flex: 1;
   min-height: 0;
-}
-
-.component-sidebar-scroll::-webkit-scrollbar {
-  width: 6px;
-}
-
-.component-sidebar-scroll::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.component-sidebar-scroll::-webkit-scrollbar-thumb {
-  background: #d9d9d9;
-  border-radius: 3px;
-}
-
-.component-sidebar-scroll::-webkit-scrollbar-thumb:hover {
-  background: #bfbfbf;
+  scrollbar-width: thin;
+  scrollbar-color: #d9d9d9 transparent;
 }
 
 .component-tab {
@@ -115,6 +189,7 @@
   flex: 1;
   min-width: 0;
   animation: fadeIn 0.3s ease;
+  padding: 40px;
 }
 
 @keyframes fadeIn {
