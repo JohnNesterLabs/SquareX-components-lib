@@ -1,0 +1,89 @@
+.testContainer {
+    padding: 24px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.testTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #2f353b;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #f1f3f4;
+    padding-bottom: 16px;
+}
+
+.testSection {
+    margin-bottom: 40px;
+}
+
+.sectionTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #474f59;
+    margin-bottom: 20px;
+}
+
+.demoGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.demoItem {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.demoLabel {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #768494;
+}
+
+.demoWrapper {
+    border: 1px solid #f1f3f4;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #fafafa;
+}
+
+.interactiveSection {
+    background: #f8f9fa;
+    padding: 24px;
+    border-radius: 12px;
+    border: 1px dashed #d6dadf;
+}
+
+.stateDisplay {
+    margin-top: 24px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e4e6ea;
+    border-radius: 8px;
+}
+
+.stateTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5e6a76;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.jsonDisplay {
+    font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', monospace;
+    font-size: 12px;
+    color: #4432bf;
+    white-space: pre-wrap;
+    word-break: break-all;
+}

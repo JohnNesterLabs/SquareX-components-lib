@@ -1,0 +1,170 @@
+.testContainer {
+    padding: 24px;
+    background: #ffffff;
+}
+
+.testTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2f353b;
+    margin: 0 0 32px 0;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 16px;
+}
+
+.demoSection {
+    margin-bottom: 40px;
+    padding: 24px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.demoSubtitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2f353b;
+    margin: 0 0 20px 0;
+}
+
+.interactiveRow {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.componentWrapper {
+    flex: 1;
+    max-width: 400px;
+}
+
+.valueDisplay {
+    margin-top: 12px;
+    font-size: 14px;
+    color: #768494;
+    font-family: 'Host Grotesk', sans-serif;
+}
+
+.inputControls {
+    margin-top: 16px;
+}
+
+.testInput {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Host Grotesk', sans-serif;
+}
+
+.divider {
+    height: 1px;
+    background: #e0e0e0;
+    margin: 40px 0;
+}
+
+.section {
+    margin-bottom: 48px;
+}
+
+.sectionTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #2f353b;
+    margin: 0 0 24px 0;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.cell {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.stateLabel {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #768494;
+}
+
+.controlsWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+}
+
+.controlLabel {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2f353b;
+}
+
+.testSelect {
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: 'Host Grotesk', sans-serif;
+    background: white;
+    color: #2f353b;
+    cursor: pointer;
+}
+
+.testSelect:focus {
+    outline: none;
+    border-color: #4432bf;
+}
+
+.infoWrapper {
+    flex: 1;
+    padding: 16px;
+    background: #ffffff;
+    border-radius: 8px;
+    border: 1px dashed #d1d5db;
+    display: flex;
+    align-items: center;
+}
+
+.infoText {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    color: #768494;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.valueRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.clearButton {
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    font-family: 'Host Grotesk', sans-serif;
+    color: #4b5563;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clearButton:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+}

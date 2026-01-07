@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './TextArea.module.css';
 
 const TextArea = ({
-  body = '',
+  value,
+  defaultValue,
+  body, // Alias for value for backward compatibility
   title = '',
   description = '',
   label = '',
@@ -21,8 +23,11 @@ const TextArea = ({
   onBlur,
   disabled,
   className = '',
+  rows = 4,
   ...props
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   // Normalize state name
   const normalizeState = (stateName) => {
     if (!stateName) return 'default';
@@ -38,7 +43,12 @@ const TextArea = ({
   };
 
   // Determine actual state (disabled takes precedence)
-  const actualState = disabled ? 'disabled' : normalizeState(state);
+  let actualState = disabled ? 'disabled' : normalizeState(state);
+
+  // If no explicit state is provided and it's focused, show focused state
+  if (actualState === 'default' && isFocused) {
+    actualState = 'focused';
+  }
 
   // Get icon element
   const getIcon = () => {
@@ -72,6 +82,7 @@ const TextArea = ({
   const textareaWrapperClassNames = [
     styles.textareaWrapper,
     styles[`textareaWrapper_state_${actualState}`],
+    hasError ? styles.textareaWrapper_state_error : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -79,95 +90,54 @@ const TextArea = ({
   // Determine if textarea should be disabled
   const isDisabled = disabled || actualState === 'disabled';
 
-  // Determine textarea value/placeholder
-  const displayValue = body || '';
-  const showPlaceholder = !body && placeholder;
-
-  // Render based on state
-  const renderContent = () => {
-    return (
-      <div className={containerClassNames}>
-        {hasLabel && label && (
-          <label className={styles.label} htmlFor={props.id}>
-            {label}
-          </label>
-        )}
-        {hasDescription && description && (
-          <p className={styles.description}>{description}</p>
-        )}
-        <div className={textareaWrapperClassNames}>
-          <div className={styles.textareaInner}>
-            <div className={styles.textContent}>
-              {showTitle && title && (
-                <p className={styles.title}>{title}</p>
-              )}
-              {showPlaceholder ? (
-                <span className={styles.placeholder}>{placeholder}</span>
-              ) : (
-                <span className={styles.body}>{displayValue}</span>
-              )}
-            </div>
-            {getIcon()}
-            {getDragIcon()}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={styles.cursor}>|</span>
-            )}
-          </div>
-        </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
-      </div>
-    );
+  const handleFocus = (e) => {
+    setIsFocused(true);
+    if (onFocus) onFocus(e);
   };
 
-  // For interactive states, use button wrapper
-  if (actualState === 'hover' || actualState === 'typing' || (actualState === 'default' && !isDisabled)) {
-    return (
-      <button
-        type="button"
-        className={containerClassNames}
-        onClick={onFocus}
-        disabled={isDisabled}
-        aria-disabled={isDisabled}
-        {...props}
-      >
-        {hasLabel && label && (
-          <label className={styles.label} htmlFor={props.id}>
-            {label}
-          </label>
-        )}
-        {hasDescription && description && (
-          <p className={styles.description}>{description}</p>
-        )}
-        <div className={textareaWrapperClassNames}>
-          <div className={styles.textareaInner}>
-            <div className={styles.textContent}>
-              {showTitle && title && (
-                <p className={styles.title}>{title}</p>
-              )}
-              {showPlaceholder ? (
-                <span className={styles.placeholder}>{placeholder}</span>
-              ) : (
-                <span className={styles.body}>{displayValue}</span>
-              )}
-            </div>
-            {getIcon()}
-            {getDragIcon()}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={styles.cursor}>|</span>
-            )}
-          </div>
-        </div>
-        {hasError && error && (
-          <p className={styles.error}>{error}</p>
-        )}
-      </button>
-    );
-  }
+  const handleBlur = (e) => {
+    setIsFocused(false);
+    if (onBlur) onBlur(e);
+  };
 
-  return renderContent();
+  return (
+    <div className={containerClassNames}>
+      {hasLabel && label && (
+        <label className={styles.label}>
+          {label}
+        </label>
+      )}
+      {hasDescription && description && (
+        <p className={styles.description}>{description}</p>
+      )}
+      <div className={textareaWrapperClassNames}>
+        <div className={styles.textareaInner}>
+          <div className={styles.textContent}>
+            {showTitle && title && (
+              <p className={styles.title}>{title}</p>
+            )}
+            <textarea
+              className={styles.nativeTextarea}
+              value={value !== undefined ? value : body}
+              defaultValue={defaultValue}
+              placeholder={placeholder}
+              onChange={onChange}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+              disabled={isDisabled}
+              rows={rows}
+              {...props}
+            />
+          </div>
+          {getIcon()}
+          {getDragIcon()}
+        </div>
+      </div>
+      {(hasError || actualState === 'error') && error && (
+        <p className={styles.error}>{error}</p>
+      )}
+    </div>
+  );
 };
 
 export default TextArea;
-

@@ -92,11 +92,11 @@
 /* Row Dragging State */
 .rowDragging {
   opacity: 0.5;
-  background: var(--bg-gray-tertiary, #f1f3f4) !important;
+  background: var(--bg-neutral-tertiary) !important;
 }
 
 /* Hover effect on drag handle */
-.tableContainer .ant-table-tbody > tr:hover .dragHandle {
+.tableContainer .ant-table-tbody>tr:hover .dragHandle {
   color: var(--color-slate-600, #5e6a76);
 }
 
@@ -124,7 +124,8 @@
   gap: 6px;
   width: 100%;
   position: relative;
-  padding-right: 16px; /* Add padding to content instead of header cell */
+  padding-right: 16px;
+  /* Add padding to content instead of header cell */
   min-height: 20px;
 }
 
@@ -151,12 +152,14 @@
   flex-shrink: 0;
   width: 14px;
   height: 14px;
-  cursor: pointer; /* Make it clear the icon is clickable */
-  pointer-events: auto; /* Enable clicks on the icon */
+  cursor: pointer;
+  /* Make it clear the icon is clickable */
+  pointer-events: auto;
+  /* Enable clicks on the icon */
   user-select: none;
 }
 
-.tableContainer .ant-table-thead > tr > th:hover .sortIconLeft {
+.tableContainer .ant-table-thead>tr>th:hover .sortIconLeft {
   color: var(--color-slate-800, #2f353b);
 }
 
@@ -188,7 +191,8 @@
 
 .resizeHandleLine {
   width: 1px;
-  height: 1.6em; /* Match Ant Design's default ::before height */
+  height: 1.6em;
+  /* Match Ant Design's default ::before height */
   background-color: var(--color-slate-200, #c8ced4);
   transition: all 0.2s ease;
   opacity: 0.5;
@@ -216,13 +220,13 @@
 }
 
 /* Ensure column headers are positioned relatively for resize handles */
-.tableContainer .ant-table-thead > tr > th {
+.tableContainer .ant-table-thead>tr>th {
   position: relative;
   overflow: visible;
 }
 
 /* Also position body cells relatively so resize handle spans full height */
-.tableContainer .ant-table-tbody > tr > td {
+.tableContainer .ant-table-tbody>tr>td {
   position: relative;
 }
 
@@ -231,15 +235,14 @@
   pointer-events: auto;
 }
 
-.tableContainer .ant-table-thead > tr > th .columnHeaderContent {
+.tableContainer .ant-table-thead>tr>th .columnHeaderContent {
   pointer-events: none;
 }
 
-.tableContainer .ant-table-thead > tr > th .columnHeaderContent .columnHeaderLabel {
+.tableContainer .ant-table-thead>tr>th .columnHeaderContent .columnHeaderLabel {
   pointer-events: auto;
 }
 
-.tableContainer .ant-table-thead > tr > th .columnHeaderContent .resizeHandle {
+.tableContainer .ant-table-thead>tr>th .columnHeaderContent .resizeHandle {
   pointer-events: auto;
 }
-

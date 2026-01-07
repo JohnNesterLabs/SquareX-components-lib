@@ -1,5 +1,8 @@
 import React from 'react';
 import styles from './ItemRow.module.css';
+import Icon from '../Icon/Icon';
+import Checkbox from '../Checkbox/Checkbox';
+import Radio from '../Radio/Radio';
 
 const ItemRow = ({
   showLeftIcon = true,
@@ -40,6 +43,9 @@ const ItemRow = ({
     .filter(Boolean)
     .join(' ');
 
+  // Determine if the control should be checked
+  const isChecked = checked || actualType === 'selected';
+
   return (
     <Component
       className={containerClassNames}
@@ -50,24 +56,14 @@ const ItemRow = ({
     >
       {showInfo && (
         <div className={styles.infoIcon}>
-          <img 
-            src="/icons/Icon.svg" 
-            alt="Info" 
-            className={styles.infoIconImg}
-          />
+          <Icon name="Info" size={14} className={styles.infoIconImg} />
         </div>
       )}
       <div className={styles.content}>
         {showLeftIcon && (
           <div className={styles.iconWrapper}>
             {chooseLeftIcon || (
-              <div className={styles.fileIcon}>
-                <img 
-                  src="/icons/File.svg" 
-                  alt="File" 
-                  className={styles.fileIconImg}
-                />
-              </div>
+              <Icon name="File" size={14} className={styles.fileIconImg} />
             )}
           </div>
         )}
@@ -80,47 +76,29 @@ const ItemRow = ({
         {showRightIcon && (
           <div className={styles.iconWrapper}>
             {chooseRightIcon || (
-              <div className={styles.starIcon}>
-                <img 
-                  src="/icons/Star.svg" 
-                  alt="Star" 
-                  className={styles.starIconImg}
-                />
-              </div>
+              <Icon name="Star" size={14} className={styles.starIconImg} />
             )}
           </div>
         )}
       </div>
       {hasCheckbox && (
         <div className={styles.checkboxField}>
-          <div className={styles.checkboxFieldInner}>
-            <div className={styles.checkboxWrapper}>
-              {checked || actualType === 'selected' ? (
-                <div className={`${styles.checkbox} ${styles.checkboxChecked}`}>
-                  <div className={styles.checkboxCheck}>
-                    <div className={styles.checkIconWrapper}>
-                      <div className={styles.checkIconInner}>
-                        <img 
-                          src="/icons/check.svg" 
-                          alt="Check" 
-                          className={styles.checkIcon}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <div className={styles.checkbox}></div>
-              )}
-            </div>
-          </div>
+          <Checkbox
+            checked={isChecked}
+            disabled={isDisabled}
+            size={16}
+            readOnly={!onClick}
+          />
         </div>
       )}
       {hasRadio && (
         <div className={styles.radioField}>
-          <div className={styles.radioWrapper}>
-            <div className={styles.radio}></div>
-          </div>
+          <Radio
+            checked={isChecked}
+            disabled={isDisabled}
+            size={16}
+            readOnly={!onClick}
+          />
         </div>
       )}
     </Component>

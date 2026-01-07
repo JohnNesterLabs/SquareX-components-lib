@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Checkbox.module.css';
+import Icon from '../Icon/Icon';
 
 /**
  * Checkbox Component
@@ -40,8 +41,20 @@ const Checkbox = ({
   };
 
   const actualState = normalizeState(state);
-  const normalizedSize = size.toLowerCase();
+  const isNumericSize = typeof size === 'number';
+  const normalizedSize = isNumericSize ? 'custom' : size.toLowerCase();
   const isDisabled = disabled || actualState === 'disabled';
+
+  const getSizeStyle = () => {
+    if (isNumericSize) {
+      return {
+        width: `${size}px`,
+        height: `${size}px`,
+      };
+    }
+    return {};
+  };
+
 
   // Handle change
   const handleChange = (e) => {
@@ -89,16 +102,13 @@ const Checkbox = ({
         <label
           htmlFor={checkboxId}
           className={checkboxClassNames}
+          style={getSizeStyle()}
         >
           {checked && (
             <div className={styles.checkboxCheck}>
               <div className={styles.checkIconWrapper}>
                 <div className={styles.checkIconInner}>
-                  <img
-                    src="/icons/check.svg"
-                    alt="Check"
-                    className={styles.checkIcon}
-                  />
+                  <Icon name="Check" size={12} className={styles.checkIcon} />
                 </div>
               </div>
             </div>

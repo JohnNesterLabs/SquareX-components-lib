@@ -4,29 +4,24 @@ import Button from './ui/Button/Button';
 import ButtonDanger from './ui/ButtonDanger/ButtonDanger';
 import InputField from './ui/InputField/InputField';
 import InputFieldTest from './ui/InputField/InputFieldTest';
-import TextArea from './ui/TextArea/TextArea';
+import TextAreaTest from './ui/TextArea/TextAreaTest';
 import Dropdown from './ui/Dropdown/Dropdown';
-import Search from './ui/Search/Search';
-import ListSearch from './ui/ListSearch/ListSearch';
-import NestedSection from './ui/NestedSection/NestedSection';
-import Chip from './ui/Chip/Chip';
+import DropdownTest from './ui/Dropdown/DropdownTest';
+import SearchTest from './ui/Search/SearchTest';
 import ChipTest from './ui/Chip/ChipTest';
-import ChipList from './ui/ChipList/ChipList';
 import ChipListTest from './ui/ChipList/ChipListTest';
-import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
 import StatusIndicatorTest from './ui/StatusIndicator/StatusIndicatorTest';
 import BadgeTest from './ui/Badge/BadgeTest';
 import NotificationTest from './ui/Notification/NotificationTest';
 import TabTest from './ui/Tab/TabTest';
 import ModalTest from './ui/Modal/ModalTest';
 import ToastTest from './ui/Toast/ToastTest';
-import ItemRow from './ui/ItemRow/ItemRow';
+import ItemRowTest from './ui/ItemRow/ItemRowTest';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
 import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
 import CategoriesTest from './ui/Categories/CategoriesTest';
-import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 
 import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
@@ -36,6 +31,9 @@ import Toggle from './ui/Toggle/Toggle';
 import ToggleTest from './ui/Toggle/ToggleTest';
 import TableTest from './ui/Table/TableTest';
 import PaginationTest from './ui/Pagination/PaginationTest';
+import CellTest from './ui/Cell/CellTest';
+import BreadcrumbTest from './ui/Breadcrumb/BreadcrumbTest';
+import AvatarTest from './ui/Avatar/AvatarTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -51,17 +49,23 @@ const ComponentLibrary = () => {
     { id: 'iconbutton', label: 'IconButton' },
     { id: 'button', label: 'Button' },
     { id: 'buttondanger', label: 'ButtonDanger' },
-    // { id: 'inputfield', label: 'InputField' },
+    { id: 'inputfield', label: 'InputField' },
+    { id: 'search', label: 'Search' },
+    { id: 'textarea', label: 'TextArea' },
     // { id: 'nestedsection', label: 'NestedSection' },
-    // { id: 'itemrow', label: 'ItemRow' },
-    // { id: 'categories', label: 'Categories' },
+    { id: 'itemrow', label: 'ItemRow' },
+    { id: 'categories', label: 'Categories' },
     // { id: 'backgroundgradient', label: 'BackgroundGradient' },
     { id: 'icons', label: 'Icons' },
     { id: 'checkbox', label: 'Checkbox' },
     { id: 'radio', label: 'Radio' },
     { id: 'toggle', label: 'Toggle' },
+    { id: 'dropdown', label: 'Dropdown' },
     { id: 'table', label: 'Table' },
     { id: 'pagination', label: 'Pagination' },
+    { id: 'cell', label: 'Cell' },
+    { id: 'breadcrumb', label: 'Breadcrumb' },
+    { id: 'avatar', label: 'Avatar' },
     { id: 'badge', label: 'Badge' },
     { id: 'notification', label: 'Notification' },
     { id: 'tab', label: 'Tab' },
@@ -230,56 +234,13 @@ const ComponentLibrary = () => {
       { key: 'disabled', label: 'Disabled' },
     ];
 
-    const textAreaStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'typing', label: 'Typing' },
-      { key: 'filled', label: 'Filled' },
-      { key: 'filledHover', label: 'Filled in - Hover' },
-      { key: 'error', label: 'Error' },
-      { key: 'disabled', label: 'Disabled' },
-    ];
-
-    const dropdownStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'selected', label: 'Selected' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'error', label: 'Error' },
-      { key: 'disabled', label: 'Disabled' },
-    ];
-
-    const searchStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'typing', label: 'Typing' },
-      { key: 'filled', label: 'Filled' },
-      { key: 'filledHover', label: 'Filled in - Hover' },
-      { key: 'error', label: 'Error' },
-      { key: 'disabled', label: 'Disabled' },
-    ];
-
-    const listSearchStates = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'focused', label: 'Focused' },
-      { key: 'typing', label: 'Typing' },
-    ];
-
-    const sampleChips = [
-      { label: 'Label' },
-      { label: 'Label' },
-      { label: 'Label' },
-    ];
-
     return (
       <>
         {/* InputField Test Component */}
         <div className="component-section">
           <InputFieldTest />
         </div>
+
 
         {/* InputField Section */}
         <div className="component-section">
@@ -313,198 +274,21 @@ const ComponentLibrary = () => {
             </div>
           </div>
         </div>
+      </>
+    );
+  };
 
-        {/* TextArea Section */}
+  const renderSearchComponent = () => {
+    return (
+      <>
         <div className="component-section">
-          <h2 className="component-section-title">TextArea Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {textAreaStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <TextArea
-                      label="Label"
-                      description="Description"
-                      body={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Body'}
-                      placeholder="Body"
-                      error="Error"
-                      hasLabel={true}
-                      hasDescription={true}
-                      hasError={true}
-                      showIcon={false}
-                      showTitle={false}
-                      showDragIcon={true}
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dropdown Section - Medium */}
-        <div className="component-section">
-          <h2 className="component-section-title">Dropdown Component - Medium</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {dropdownStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <Dropdown
-                      label="Label"
-                      description="Description"
-                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
-                      placeholder="Value"
-                      error="Error"
-                      hasLabel={true}
-                      hasDescription={true}
-                      hasError={false}
-                      hasChips={false}
-                      type="medium"
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Dropdown Section - Small */}
-        <div className="component-section">
-          <h2 className="component-section-title">Dropdown Component - Small</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {dropdownStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <Dropdown
-                      label="Label"
-                      description="Description"
-                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
-                      placeholder="Value"
-                      error="Error"
-                      hasLabel={true}
-                      hasDescription={true}
-                      hasError={false}
-                      hasChips={false}
-                      type="small"
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Search Section */}
-        <div className="component-section">
-          <h2 className="component-section-title">Search Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {searchStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <Search
-                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Search'}
-                      placeholder="Search"
-                      error="Error"
-                      hasError={state.key === 'error'}
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ListSearch Section - Type 1 */}
-        <div className="component-section">
-          <h2 className="component-section-title">ListSearch Component - Type 1</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {listSearchStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <ListSearch
-                      label={state.key === 'default' || state.key === 'focused' ? 'Search' : state.key === 'typing' ? 'Search' : 'Search'}
-                      chipList={true}
-                      chips={sampleChips}
-                      type="type1"
-                      state={state.key}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* ListSearch Section - Type 2 */}
-        <div className="component-section">
-          <h2 className="component-section-title">ListSearch Component - Type 2</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {listSearchStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <ListSearch
-                      label={state.key === 'default' || state.key === 'focused' ? 'Search' : state.key === 'typing' ? 'Search' : 'Search'}
-                      chipList={true}
-                      chips={sampleChips}
-                      type="type2"
-                      state={state.key}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <SearchTest />
         </div>
       </>
     );
   };
 
   const renderItemRowComponent = () => {
-    const itemRowTypes = [
-      { key: 'default', label: 'Default' },
-      { key: 'hover', label: 'Hover' },
-      { key: 'selected', label: 'Selected' },
-      { key: 'disabled', label: 'Disabled' },
-      { key: 'danger', label: 'Danger' },
-    ];
-
     const listOfItemsTypes = [
       { key: 'default', label: 'Default (No Title)' },
       { key: 'variant2', label: 'Variant2 (With Title)' },
@@ -513,28 +297,7 @@ const ComponentLibrary = () => {
     return (
       <>
         <div className="component-section">
-          <h2 className="component-section-title">ItemRow Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {itemRowTypes.map((type) => (
-                  <div key={type.key} className="component-inputfield-cell">
-                    <div className="component-inputfield-state-label">{type.label}</div>
-                    <ItemRow
-                      label="Item"
-                      showLeftIcon={true}
-                      showRightIcon={false}
-                      showInfo={false}
-                      hasCheckbox={false}
-                      hasRadio={false}
-                      type={type.key}
-                      onClick={() => console.log(`ItemRow: ${type.key} clicked`)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <ItemRowTest />
         </div>
 
         <div className="component-section">
@@ -723,49 +486,80 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderNestedSectionComponent = () => {
+
+  const FunctionalCategoriesWrapper = ({ initialCategories, variant = 'single' }) => {
+    const [categories, setCategories] = React.useState(initialCategories);
+    const [chips, setChips] = React.useState([]);
+
+    const handleItemClick = (item, categoryIndex) => {
+      const newCategories = categories.map((cat, idx) => {
+        if (variant === 'single') {
+          return {
+            ...cat,
+            items: cat.items.map(i => ({
+              ...i,
+              checked: i.id === item.id ? !i.checked : false,
+              type: 'default'
+            }))
+          };
+        } else {
+          if (idx !== categoryIndex) return cat;
+          return {
+            ...cat,
+            items: cat.items.map(i => {
+              if (i.id !== item.id) return i;
+              return { ...i, checked: !i.checked, type: 'default' };
+            })
+          };
+        }
+      });
+      setCategories(newCategories);
+
+      const newChips = newCategories
+        .flatMap(cat => cat.items)
+        .filter(i => i.checked)
+        .map(i => ({ label: i.label, id: i.id }));
+      setChips(newChips);
+    };
+
+    const handleChipRemove = (chip) => {
+      const newCategories = categories.map(cat => ({
+        ...cat,
+        items: cat.items.map(item => {
+          if (item.id === chip.id) {
+            return { ...item, checked: false, type: 'default' };
+          }
+          return item;
+        })
+      }));
+      setCategories(newCategories);
+      setChips(chips.filter(c => c.id !== chip.id));
+    };
+
     return (
-      <>
-        {/* NestedSection Component */}
-        <div className="component-section">
-          <h2 className="component-section-title">NestedSection Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell">
-                  <div className="component-inputfield-state-label">Default</div>
-                  <NestedSection
-                    canDrag={true}
-                    onMoreClick={() => console.log('More clicked')}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
+      <Categories
+        variant={variant}
+        chips={chips}
+        categories={categories}
+        onChipRemove={handleChipRemove}
+        onItemClick={handleItemClick}
+        onCancel={() => console.log('Cancel clicked')}
+        onApply={() => console.log('Apply clicked')}
+      />
     );
   };
 
   const renderCategoriesComponent = () => {
-    const sampleChips = [
-      { label: 'Label', id: '1' },
-      { label: 'Label', id: '2' },
-      { label: 'Label', id: '3' },
-      { label: 'Label', id: '4' },
-      { label: 'Label', id: '5' },
-      { label: 'Label', id: '6' },
-    ];
-
     const sampleCategory = {
       title: 'Category',
       expanded: true,
       items: [
-        { label: 'Item', id: '1' },
-        { label: 'Item', id: '2' },
-        { label: 'Item', id: '3' },
-        { label: 'Item', id: '4' },
-        { label: 'Item', id: '5' },
+        { label: 'Item 1', id: '1' },
+        { label: 'Item 2', id: '2' },
+        { label: 'Item 3', id: '3' },
+        { label: 'Item 4', id: '4' },
+        { label: 'Item 5', id: '5' },
+        { label: 'Item 6', id: '6' },
       ],
     };
 
@@ -783,15 +577,9 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="single"
-                    chips={sampleChips}
-                    categories={[sampleCategory]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
+                    initialCategories={[sampleCategory]}
                   />
                 </div>
               </div>
@@ -806,15 +594,12 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[sampleCategory, { ...sampleCategory, title: 'Category' }]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) }
+                    ]}
                   />
                 </div>
               </div>
@@ -829,19 +614,13 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[
-                      sampleCategory,
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 3', items: sampleCategory.items.map(i => ({ ...i, id: `c3-${i.id}` })) }
                     ]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
                   />
                 </div>
               </div>
@@ -856,20 +635,14 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[
-                      sampleCategory,
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 3', items: sampleCategory.items.map(i => ({ ...i, id: `c3-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 4', items: sampleCategory.items.map(i => ({ ...i, id: `c4-${i.id}` })) }
                     ]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
                   />
                 </div>
               </div>
@@ -884,21 +657,15 @@ const ComponentLibrary = () => {
             <div className="component-inputfield-grid">
               <div className="component-inputfield-row">
                 <div className="component-inputfield-cell" style={{ minWidth: '357px', width: 'auto' }}>
-                  <Categories
+                  <FunctionalCategoriesWrapper
                     variant="multiple"
-                    chips={sampleChips}
-                    categories={[
-                      sampleCategory,
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
-                      { ...sampleCategory, title: 'Category' },
+                    initialCategories={[
+                      { ...sampleCategory, title: 'Category 1', items: sampleCategory.items.map(i => ({ ...i, id: `c1-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 2', items: sampleCategory.items.map(i => ({ ...i, id: `c2-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 3', items: sampleCategory.items.map(i => ({ ...i, id: `c3-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 4', items: sampleCategory.items.map(i => ({ ...i, id: `c4-${i.id}` })) },
+                      { ...sampleCategory, title: 'Category 5', items: sampleCategory.items.map(i => ({ ...i, id: `c5-${i.id}` })) }
                     ]}
-                    onChipRemove={(chip) => console.log('Chip removed:', chip)}
-                    onCategoryToggle={(index, expanded) => console.log('Category toggled:', index, expanded)}
-                    onItemClick={(item, categoryIndex) => console.log('Item clicked:', item, categoryIndex)}
-                    onCancel={() => console.log('Cancel clicked')}
-                    onApply={() => console.log('Apply clicked')}
                   />
                 </div>
               </div>
@@ -909,23 +676,6 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderBackgroundGradientComponent = () => (
-    <div className="component-section">
-      <h2 className="component-section-title">BackgroundGradient Component</h2>
-      <div className="component-inputfield-container">
-        <div className="component-inputfield-grid">
-          <div className="component-inputfield-row">
-            <div className="component-inputfield-cell">
-              <div className="component-inputfield-state-label">Light Mode BG</div>
-              <div style={{ width: '1440px', height: '900px', position: 'relative', border: '1px solid #e0e0e0', overflow: 'hidden' }}>
-                <BackgroundGradient mode="Light Mode BG" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
   const renderIconsComponent = () => {
     // Icon sizes to display (8 sizes matching first image: 48, 40, 32, 24, 20, 16, 14, 12)
@@ -1526,6 +1276,105 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderTextAreaComponent = () => {
+    return (
+      <div className="component-section">
+        <TextAreaTest />
+      </div>
+    );
+  };
+
+  const renderDropdownComponent = () => {
+    return (
+      <>
+        {/* Dropdown Test Component */}
+        <div className="component-section">
+          <DropdownTest />
+        </div>
+
+        {/* Dropdown Section - Medium */}
+        <div className="component-section">
+          <h2 className="component-section-title">Dropdown Component - Medium</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                {[
+                  { key: 'default', label: 'Default' },
+                  { key: 'hover', label: 'Hover' },
+                  { key: 'selected', label: 'Selected' },
+                  { key: 'focused', label: 'Focused' },
+                  { key: 'error', label: 'Error' },
+                  { key: 'disabled', label: 'Disabled' },
+                ].map((state) => (
+                  <div
+                    key={state.key}
+                    className="component-inputfield-cell"
+                  >
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <Dropdown
+                      label="Label"
+                      description="Description"
+                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
+                      placeholder="Value"
+                      error="Error"
+                      hasLabel={true}
+                      hasDescription={true}
+                      hasError={state.key === 'error'}
+                      hasChips={false}
+                      type="medium"
+                      state={state.key}
+                      disabled={state.key === 'disabled'}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Dropdown Section - Small */}
+        <div className="component-section">
+          <h2 className="component-section-title">Dropdown Component - Small</h2>
+          <div className="component-inputfield-container">
+            <div className="component-inputfield-grid">
+              <div className="component-inputfield-row">
+                {[
+                  { key: 'default', label: 'Default' },
+                  { key: 'hover', label: 'Hover' },
+                  { key: 'selected', label: 'Selected' },
+                  { key: 'focused', label: 'Focused' },
+                  { key: 'error', label: 'Error' },
+                  { key: 'disabled', label: 'Disabled' },
+                ].map((state) => (
+                  <div
+                    key={state.key}
+                    className="component-inputfield-cell"
+                  >
+                    <div className="component-inputfield-state-label">{state.label}</div>
+                    <Dropdown
+                      label="Label"
+                      description="Description"
+                      value={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Value'}
+                      placeholder="Value"
+                      error="Error"
+                      hasLabel={true}
+                      hasDescription={true}
+                      hasError={state.key === 'error'}
+                      hasChips={false}
+                      type="small"
+                      state={state.key}
+                      disabled={state.key === 'disabled'}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   const renderTableComponent = () => {
     return (
       <>
@@ -1607,16 +1456,20 @@ const ComponentLibrary = () => {
           {activeTab === 'iconbutton' && renderIconButtonComponent()}
           {activeTab === 'button' && renderButtonComponent()}
           {activeTab === 'buttondanger' && renderButtonDangerComponent()}
-          {/* {activeTab === 'inputfield' && renderInputFieldComponent()} */}
-          {/* {activeTab === 'nestedsection' && renderNestedSectionComponent()} */}
-          {/* {activeTab === 'itemrow' && renderItemRowComponent()} */}
-          {/* {activeTab === 'categories' && renderCategoriesComponent()} */}
-          {/* {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()} */}
+          {activeTab === 'inputfield' && renderInputFieldComponent()}
+          {activeTab === 'search' && renderSearchComponent()}
+          {activeTab === 'textarea' && renderTextAreaComponent()}
+          {activeTab === 'itemrow' && renderItemRowComponent()}
+          {activeTab === 'categories' && renderCategoriesComponent()}
           {activeTab === 'icons' && renderIconsComponent()}
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
           {activeTab === 'toggle' && renderToggleComponent()}
+          {activeTab === 'dropdown' && renderDropdownComponent()}
           {activeTab === 'table' && renderTableComponent()}
+          {activeTab === 'cell' && <CellTest />}
+          {activeTab === 'breadcrumb' && <BreadcrumbTest />}
+          {activeTab === 'avatar' && <AvatarTest />}
           {activeTab === 'pagination' && renderPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}
           {activeTab === 'notification' && renderNotificationComponent()}

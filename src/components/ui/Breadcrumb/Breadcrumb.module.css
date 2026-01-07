@@ -1,0 +1,39 @@
+.breadcrumbContainer {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.itemContent {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+}
+
+.itemIcon {
+    color: #768494;
+}
+
+.itemTitle {
+    font-family: 'Host Grotesk', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.separator {
+    color: #d1d5db;
+    font-size: 14px;
+    margin: 0 4px;
+    display: flex;
+    align-items: center;
+}
+
+/* Hover effects for links are handled by Ant Design, but we can refine them here if needed */
+:global(.ant-breadcrumb-link:hover) .itemTitle {
+    color: #4432bf;
+}
+
+:global(.ant-breadcrumb-link:hover) .itemIcon {
+    color: #4432bf;
+}

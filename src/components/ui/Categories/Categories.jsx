@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Categories.module.css';
 import ItemRow from '../ItemRow/ItemRow';
+import Icon from '../Icon/Icon';
 
 const Categories = ({
   variant = 'single', // 'single' (Categories=1) or 'multiple' (Categories=2)
@@ -75,7 +76,7 @@ const Categories = ({
   const getSearchIcon = () => {
     return (
       <div className={styles.searchIcon}>
-        <img src="/icons/search.svg" alt="Search" className={styles.searchIconImage} />
+        <Icon name="MagnifyingGlass" size={16} className={styles.searchIconImage} />
       </div>
     );
   };
@@ -83,34 +84,36 @@ const Categories = ({
   const renderChipList = () => {
     if (!chips || chips.length === 0) return null;
 
-    // Split chips into rows (3 per row)
-    const rows = [];
-    for (let i = 0; i < chips.length; i += 3) {
-      rows.push(chips.slice(i, i + 3));
+    const maxVisibleChips = 5;
+    const visibleChips = chips.slice(0, maxVisibleChips);
+    const remainingCount = chips.length - maxVisibleChips;
+
+    // Create a list of items to render (chips + optional "more" indicator)
+    const itemsToRender = [...visibleChips];
+    if (remainingCount > 0) {
+      itemsToRender.push({ isMore: true, label: `+${remainingCount}` });
     }
 
     return (
       <div className={styles.chipListContainer}>
-        {rows.map((row, rowIndex) => (
-          <div key={rowIndex} className={styles.chipListRow}>
-            {row.map((chip, chipIndex) => (
-              <div key={chipIndex} className={styles.chip}>
-                <p className={styles.chipLabel}>{chip.label || 'Label'}</p>
-                <button
-                  type="button"
-                  className={styles.chipRemove}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    if (onChipRemove) {
-                      onChipRemove(chip);
-                    }
-                  }}
-                  aria-label="Remove chip"
-                >
-                  <img src="/icons/X.svg" alt="Remove" className={styles.chipIcon} />
-                </button>
-              </div>
-            ))}
+        {itemsToRender.map((item, index) => (
+          <div key={index} className={styles.chip}>
+            <p className={styles.chipLabel}>{item.label || 'Label'}</p>
+            {!item.isMore && (
+              <button
+                type="button"
+                className={styles.chipRemove}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (onChipRemove) {
+                    onChipRemove(item);
+                  }
+                }}
+                aria-label="Remove chip"
+              >
+                <Icon name="X" size={14} className={styles.chipIcon} />
+              </button>
+            )}
           </div>
         ))}
       </div>
@@ -130,9 +133,9 @@ const Categories = ({
         >
           <p className={styles.categoryTitleText}>{category.title || 'Category'}</p>
           <div className={styles.chevronIcon}>
-            <img
-              src="/icons/chevron.svg"
-              alt={isExpanded ? 'Collapse' : 'Expand'}
+            <Icon
+              name="CaretDown"
+              size={14}
               className={`${styles.chevronImg} ${isExpanded ? styles.chevronUp : ''}`}
             />
           </div>

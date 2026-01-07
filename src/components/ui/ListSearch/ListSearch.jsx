@@ -16,9 +16,12 @@ const ListSearch = ({
   title = '',
   ...props
 }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
+
   // Normalize state name
   const normalizeState = (stateName) => {
-    if (!stateName) return 'default';
+    if (!stateName || stateName === 'default') return null;
     const normalized = stateName.toLowerCase().replace(/\s+/g, '').replace(/-/g, '');
     if (normalized === 'focused') return 'focused';
     if (normalized === 'typing') return 'typing';
@@ -35,8 +38,21 @@ const ListSearch = ({
   };
 
   // Determine actual state and type
-  const actualState = disabled ? 'disabled' : normalizeState(state);
+  const getActualState = () => {
+    if (disabled) return 'disabled';
+
+    const propState = normalizeState(state);
+    if (propState) return propState;
+
+    if (isFocused) return (label && label !== 'Search') ? 'typing' : 'focused';
+    if (isHovered) return 'hover';
+
+    return 'default';
+  };
+
+  const actualState = getActualState();
   const actualType = normalizeType(type);
+
 
   // Get search icon
   const getSearchIcon = () => {
@@ -121,21 +137,38 @@ const ListSearch = ({
     return null;
   };
 
-  // Render based on state
+  // Render content
   const renderContent = () => {
     return (
-      <div className={containerClassNames} title={title}>
+      <div
+        className={containerClassNames}
+        title={title}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {renderChipsAbove()}
         <div className={inputClassNames}>
           <div className={inputInnerClassNames}>
             {getSearchIcon()}
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{displayLabel}</span>
-            ) : (
-              <span className={styles.value}>{displayLabel}</span>
-            )}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={`${styles.cursor} ${isTyping ? styles.cursorTyping : ''}`}>|</span>
+            <input
+              type="text"
+              className={styles.realInput}
+              value={label === 'Search' ? '' : label}
+              placeholder="Search"
+              onChange={onChange}
+              onFocus={(e) => {
+                setIsFocused(true);
+                onFocus?.(e);
+              }}
+              onBlur={(e) => {
+                setIsFocused(false);
+                onBlur?.(e);
+              }}
+              disabled={isDisabled}
+              {...props}
+            />
+            {(actualState === 'focused' || actualState === 'typing') && !label && (
+              <span className={styles.cursor}>|</span>
             )}
           </div>
         </div>
@@ -144,36 +177,6 @@ const ListSearch = ({
     );
   };
 
-  // For interactive states, use button wrapper
-  if (actualState === 'hover' || actualState === 'typing' || (actualState === 'default' && !isDisabled) || actualState === 'focused') {
-    return (
-      <button
-        type="button"
-        className={containerClassNames}
-        onClick={onFocus}
-        disabled={isDisabled}
-        aria-disabled={isDisabled}
-        title={title}
-        {...props}
-      >
-        {renderChipsAbove()}
-        <div className={inputClassNames}>
-          <div className={inputInnerClassNames}>
-            {getSearchIcon()}
-            {showPlaceholder ? (
-              <span className={styles.placeholder}>{displayLabel}</span>
-            ) : (
-              <span className={styles.value}>{displayLabel}</span>
-            )}
-            {(actualState === 'focused' || actualState === 'typing') && (
-              <span className={`${styles.cursor} ${isTyping ? styles.cursorTyping : ''}`}>|</span>
-            )}
-          </div>
-        </div>
-        {renderChipsBelow()}
-      </button>
-    );
-  }
 
   return renderContent();
 };

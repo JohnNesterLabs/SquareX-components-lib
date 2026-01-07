@@ -115,7 +115,7 @@
 }
 
 .chip:not(.state_hover):not(.state_pressed):not(.state_active):active {
-  background-color: #f1f3f4;
+  background-color: var(--bg-neutral-tertiary);
   border-color: #4432bf;
   border-width: 1.5px;
 }
