@@ -1,0 +1,54 @@
+.avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #f0f2f5;
+    font-family: 'Host Grotesk', sans-serif;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.size_large {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+}
+
+.size_medium {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+}
+
+.size_small {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+}
+
+.shape_circle {
+    border-radius: 50%;
+}
+
+.shape_square {
+    border-radius: 8px;
+}
+
+.initialsBg {
+    background: #8e66d3;
+    /* Purple from image */
+    color: #ffffff;
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.initials {
+    text-transform: uppercase;
+}

@@ -1,0 +1,32 @@
+.group {
+    display: flex;
+    align-items: center;
+}
+
+.layout_spaced {
+    gap: 8px;
+}
+
+.layout_overlap {
+    gap: -8px;
+    /* Negative margin for overlap */
+}
+
+.layout_overlap .groupItem {
+    margin-left: -8px;
+    border: 2px solid #ffffff;
+    /* Border for overlap clarity */
+}
+
+.layout_overlap .groupItem:first-child {
+    margin-left: 0;
+}
+
+.groupItem {
+    transition: transform 0.2s ease;
+}
+
+.layout_overlap .groupItem:hover {
+    transform: translateY(-2px);
+    z-index: 100 !important;
+}

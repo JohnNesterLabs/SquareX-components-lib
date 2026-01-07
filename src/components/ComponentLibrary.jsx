@@ -33,6 +33,7 @@ import TableTest from './ui/Table/TableTest';
 import PaginationTest from './ui/Pagination/PaginationTest';
 import CellTest from './ui/Cell/CellTest';
 import BreadcrumbTest from './ui/Breadcrumb/BreadcrumbTest';
+import AvatarTest from './ui/Avatar/AvatarTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -64,6 +65,7 @@ const ComponentLibrary = () => {
     { id: 'pagination', label: 'Pagination' },
     { id: 'cell', label: 'Cell' },
     { id: 'breadcrumb', label: 'Breadcrumb' },
+    { id: 'avatar', label: 'Avatar' },
     { id: 'badge', label: 'Badge' },
     { id: 'notification', label: 'Notification' },
     { id: 'tab', label: 'Tab' },
@@ -1467,6 +1469,7 @@ const ComponentLibrary = () => {
           {activeTab === 'table' && renderTableComponent()}
           {activeTab === 'cell' && <CellTest />}
           {activeTab === 'breadcrumb' && <BreadcrumbTest />}
+          {activeTab === 'avatar' && <AvatarTest />}
           {activeTab === 'pagination' && renderPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}
           {activeTab === 'notification' && renderNotificationComponent()}
