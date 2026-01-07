@@ -1,0 +1,45 @@
+/* Ant Design Breadcrumb Overrides */
+
+.ant-breadcrumb {
+    font-family: 'Host Grotesk', sans-serif !important;
+    font-size: 14px !important;
+    color: #768494 !important;
+}
+
+.ant-breadcrumb ol {
+    display: flex;
+    align-items: center;
+}
+
+.ant-breadcrumb .ant-breadcrumb-link {
+    color: #768494;
+    transition: color 0.2s ease;
+}
+
+.ant-breadcrumb .ant-breadcrumb-link a {
+    color: #768494;
+    text-decoration: none;
+}
+
+.ant-breadcrumb .ant-breadcrumb-link a:hover {
+    color: #4432bf;
+    background: transparent;
+}
+
+.ant-breadcrumb li:last-child .ant-breadcrumb-link {
+    color: #2f353b;
+    font-weight: 600;
+}
+
+.ant-breadcrumb .ant-breadcrumb-separator {
+    margin-inline: 4px !important;
+    color: #d1d5db !important;
+}
+
+/* Dropdown menu styling if used in breadcrumbs */
+.ant-dropdown-menu {
+    border-radius: 8px !important;
+    padding: 4px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08) !important;
+    border: 1px solid #e9ecef !important;
+}

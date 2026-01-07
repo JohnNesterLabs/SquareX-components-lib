@@ -4,33 +4,24 @@ import Button from './ui/Button/Button';
 import ButtonDanger from './ui/ButtonDanger/ButtonDanger';
 import InputField from './ui/InputField/InputField';
 import InputFieldTest from './ui/InputField/InputFieldTest';
-import TextArea from './ui/TextArea/TextArea';
 import TextAreaTest from './ui/TextArea/TextAreaTest';
 import Dropdown from './ui/Dropdown/Dropdown';
 import DropdownTest from './ui/Dropdown/DropdownTest';
-import Search from './ui/Search/Search';
 import SearchTest from './ui/Search/SearchTest';
-import ListSearch from './ui/ListSearch/ListSearch';
-import NestedSection from './ui/NestedSection/NestedSection';
-import Chip from './ui/Chip/Chip';
 import ChipTest from './ui/Chip/ChipTest';
-import ChipList from './ui/ChipList/ChipList';
 import ChipListTest from './ui/ChipList/ChipListTest';
-import StatusIndicator from './ui/StatusIndicator/StatusIndicator';
 import StatusIndicatorTest from './ui/StatusIndicator/StatusIndicatorTest';
 import BadgeTest from './ui/Badge/BadgeTest';
 import NotificationTest from './ui/Notification/NotificationTest';
 import TabTest from './ui/Tab/TabTest';
 import ModalTest from './ui/Modal/ModalTest';
 import ToastTest from './ui/Toast/ToastTest';
-import ItemRow from './ui/ItemRow/ItemRow';
 import ItemRowTest from './ui/ItemRow/ItemRowTest';
 import ListOfItems from './ui/ListOfItems/ListOfItems';
 import DropdownNestedColumn from './ui/DropdownNestedColumn/DropdownNestedColumn';
 import DropdownNested from './ui/DropdownNested/DropdownNested';
 import Categories from './ui/Categories/Categories';
 import CategoriesTest from './ui/Categories/CategoriesTest';
-import BackgroundGradient from './ui/BackgroundGradient/BackgroundGradient';
 
 import Checkbox from './ui/Checkbox/Checkbox';
 import CheckboxTest from './ui/Checkbox/CheckboxTest';
@@ -41,6 +32,7 @@ import ToggleTest from './ui/Toggle/ToggleTest';
 import TableTest from './ui/Table/TableTest';
 import PaginationTest from './ui/Pagination/PaginationTest';
 import CellTest from './ui/Cell/CellTest';
+import BreadcrumbTest from './ui/Breadcrumb/BreadcrumbTest';
 import { allIcons as iconListData } from '../data/iconList';
 import './ComponentLibrary.css';
 
@@ -71,6 +63,7 @@ const ComponentLibrary = () => {
     { id: 'table', label: 'Table' },
     { id: 'pagination', label: 'Pagination' },
     { id: 'cell', label: 'Cell' },
+    { id: 'breadcrumb', label: 'Breadcrumb' },
     { id: 'badge', label: 'Badge' },
     { id: 'notification', label: 'Notification' },
     { id: 'tab', label: 'Tab' },
@@ -491,29 +484,6 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderNestedSectionComponent = () => {
-    return (
-      <>
-        {/* NestedSection Component */}
-        <div className="component-section">
-          <h2 className="component-section-title">NestedSection Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                <div className="component-inputfield-cell">
-                  <div className="component-inputfield-state-label">Default</div>
-                  <NestedSection
-                    canDrag={true}
-                    onMoreClick={() => console.log('More clicked')}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  };
 
   const FunctionalCategoriesWrapper = ({ initialCategories, variant = 'single' }) => {
     const [categories, setCategories] = React.useState(initialCategories);
@@ -704,23 +674,6 @@ const ComponentLibrary = () => {
     );
   };
 
-  const renderBackgroundGradientComponent = () => (
-    <div className="component-section">
-      <h2 className="component-section-title">BackgroundGradient Component</h2>
-      <div className="component-inputfield-container">
-        <div className="component-inputfield-grid">
-          <div className="component-inputfield-row">
-            <div className="component-inputfield-cell">
-              <div className="component-inputfield-state-label">Light Mode BG</div>
-              <div style={{ width: '1440px', height: '900px', position: 'relative', border: '1px solid #e0e0e0', overflow: 'hidden' }}>
-                <BackgroundGradient mode="Light Mode BG" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
 
   const renderIconsComponent = () => {
     // Icon sizes to display (8 sizes matching first image: 48, 40, 32, 24, 20, 16, 14, 12)
@@ -1504,10 +1457,8 @@ const ComponentLibrary = () => {
           {activeTab === 'inputfield' && renderInputFieldComponent()}
           {activeTab === 'search' && renderSearchComponent()}
           {activeTab === 'textarea' && renderTextAreaComponent()}
-          {/* {activeTab === 'nestedsection' && renderNestedSectionComponent()} */}
           {activeTab === 'itemrow' && renderItemRowComponent()}
           {activeTab === 'categories' && renderCategoriesComponent()}
-          {/* {activeTab === 'backgroundgradient' && renderBackgroundGradientComponent()} */}
           {activeTab === 'icons' && renderIconsComponent()}
           {activeTab === 'checkbox' && renderCheckboxComponent()}
           {activeTab === 'radio' && renderRadioComponent()}
@@ -1515,6 +1466,7 @@ const ComponentLibrary = () => {
           {activeTab === 'dropdown' && renderDropdownComponent()}
           {activeTab === 'table' && renderTableComponent()}
           {activeTab === 'cell' && <CellTest />}
+          {activeTab === 'breadcrumb' && <BreadcrumbTest />}
           {activeTab === 'pagination' && renderPaginationComponent()}
           {activeTab === 'badge' && renderBadgeComponent()}
           {activeTab === 'notification' && renderNotificationComponent()}
