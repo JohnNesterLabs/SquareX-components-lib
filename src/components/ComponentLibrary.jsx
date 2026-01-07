@@ -5,6 +5,7 @@ import ButtonDanger from './ui/ButtonDanger/ButtonDanger';
 import InputField from './ui/InputField/InputField';
 import InputFieldTest from './ui/InputField/InputFieldTest';
 import TextArea from './ui/TextArea/TextArea';
+import TextAreaTest from './ui/TextArea/TextAreaTest';
 import Dropdown from './ui/Dropdown/Dropdown';
 import DropdownTest from './ui/Dropdown/DropdownTest';
 import Search from './ui/Search/Search';
@@ -53,7 +54,8 @@ const ComponentLibrary = () => {
     { id: 'iconbutton', label: 'IconButton' },
     { id: 'button', label: 'Button' },
     { id: 'buttondanger', label: 'ButtonDanger' },
-    // { id: 'inputfield', label: 'InputField' },
+    { id: 'inputfield', label: 'InputField' },
+    { id: 'textarea', label: 'TextArea' },
     // { id: 'nestedsection', label: 'NestedSection' },
     { id: 'itemrow', label: 'ItemRow' },
     { id: 'categories', label: 'Categories' },
@@ -309,39 +311,6 @@ const ComponentLibrary = () => {
           </div>
         </div>
 
-        {/* TextArea Section */}
-        <div className="component-section">
-          <h2 className="component-section-title">TextArea Component</h2>
-          <div className="component-inputfield-container">
-            <div className="component-inputfield-grid">
-              <div className="component-inputfield-row">
-                {textAreaStates.map((state) => (
-                  <div
-                    key={state.key}
-                    className="component-inputfield-cell"
-                  >
-                    <div className="component-inputfield-state-label">{state.label}</div>
-                    <TextArea
-                      label="Label"
-                      description="Description"
-                      body={state.key === 'default' || state.key === 'hover' || state.key === 'focused' ? '' : 'Body'}
-                      placeholder="Body"
-                      error="Error"
-                      hasLabel={true}
-                      hasDescription={true}
-                      hasError={true}
-                      showIcon={false}
-                      showTitle={false}
-                      showDragIcon={true}
-                      state={state.key}
-                      disabled={state.key === 'disabled'}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Search Section */}
         <div className="component-section">
@@ -368,10 +337,10 @@ const ComponentLibrary = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div >
 
         {/* ListSearch Section - Type 1 */}
-        <div className="component-section">
+        < div className="component-section" >
           <h2 className="component-section-title">ListSearch Component - Type 1</h2>
           <div className="component-inputfield-container">
             <div className="component-inputfield-grid">
@@ -394,10 +363,10 @@ const ComponentLibrary = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div >
 
         {/* ListSearch Section - Type 2 */}
-        <div className="component-section">
+        < div className="component-section" >
           <h2 className="component-section-title">ListSearch Component - Type 2</h2>
           <div className="component-inputfield-container">
             <div className="component-inputfield-grid">
@@ -420,7 +389,7 @@ const ComponentLibrary = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div >
       </>
     );
   };
@@ -1453,6 +1422,14 @@ const ComponentLibrary = () => {
     );
   };
 
+  const renderTextAreaComponent = () => {
+    return (
+      <div className="component-section">
+        <TextAreaTest />
+      </div>
+    );
+  };
+
   const renderDropdownComponent = () => {
     return (
       <>
@@ -1625,7 +1602,8 @@ const ComponentLibrary = () => {
           {activeTab === 'iconbutton' && renderIconButtonComponent()}
           {activeTab === 'button' && renderButtonComponent()}
           {activeTab === 'buttondanger' && renderButtonDangerComponent()}
-          {/* {activeTab === 'inputfield' && renderInputFieldComponent()} */}
+          {activeTab === 'inputfield' && renderInputFieldComponent()}
+          {activeTab === 'textarea' && renderTextAreaComponent()}
           {/* {activeTab === 'nestedsection' && renderNestedSectionComponent()} */}
           {activeTab === 'itemrow' && renderItemRowComponent()}
           {activeTab === 'categories' && renderCategoriesComponent()}
