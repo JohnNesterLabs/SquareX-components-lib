@@ -37,6 +37,7 @@ import CellTest from './ui/Cell/CellTest';
 import BreadcrumbTest from './ui/Breadcrumb/BreadcrumbTest';
 import AvatarTest from './ui/Avatar/AvatarTest';
 import { allIcons as iconListData } from '../data/iconList';
+import Icon from './ui/Icon/Icon';
 import './ComponentLibrary.css';
 
 const ComponentLibrary = () => {
@@ -1388,14 +1389,59 @@ const ComponentLibrary = () => {
     );
   };
 
+  const [componentSearchQuery, setComponentSearchQuery] = useState('');
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
+
+  // ... (existing constants)
+
+  const filteredTabs = tabs.filter(tab =>
+    tab.label.toLowerCase().includes(componentSearchQuery.toLowerCase())
+  );
+
   return (
     <div className="component-library">
+      <div className="component-header">
+        <div className="component-header-left">
+          <div className="component-header-logo">
+            <Icon name="SquaresFour" size={24} />
+            SquareX
+          </div>
+        </div>
+        <div className="component-header-search-wrapper">
+          <div className="component-header-search">
+            <Icon name="MagnifyingGlass" size={16} />
+            <input
+              type="text"
+              placeholder="Search components..."
+              value={componentSearchQuery}
+              onChange={(e) => setComponentSearchQuery(e.target.value)}
+              onFocus={() => setIsSearchFocused(true)}
+              onBlur={() => setTimeout(() => setIsSearchFocused(false), 200)}
+            />
+            <span className="component-header-search-shortcut">⌘K</span>
+          </div>
+          {componentSearchQuery && isSearchFocused && filteredTabs.length > 0 && (
+            <div className="component-header-search-results">
+              {filteredTabs.map(tab => (
+                <div
+                  key={tab.id}
+                  className="component-header-search-item"
+                  onClick={() => {
+                    setActiveTab(tab.id);
+                    setComponentSearchQuery('');
+                  }}
+                >
+                  {tab.label}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+      </div>
+
       <div className="component-library-content">
         <div className="component-sidebar">
-          <div className="component-sidebar-header">
-            <h1>Component Library</h1>
-            <p>All Components - All Variants</p>
-          </div>
           <div className="component-sidebar-scroll">
             {tabs.map((tab) => (
               <button
