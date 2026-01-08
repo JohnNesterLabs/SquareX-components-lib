@@ -71,10 +71,10 @@ const GlassDemo = () => {
                             color: '#1a1a1a'
                         }}>
                             <div className="glass-noise-layer"></div>
-                            <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Base Layer</h3>
+                            {/* <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Base Layer</h3>
                             <p style={{ margin: 0, fontSize: '15px', lineHeight: '1.6', color: '#333' }}>
                                 Initial glass surface.
-                            </p>
+                            </p> */}
                         </div>
 
                         {/* Layer 2: On Glass Card (On Glass Light) - Overlapping */}
@@ -89,10 +89,10 @@ const GlassDemo = () => {
                             zIndex: 2
                         }}>
                             <div className="glass-noise-layer"></div>
-                            <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Layer 2</h3>
+                            {/* <h3 style={{ margin: '0 0 12px 0', fontSize: '20px', fontWeight: '600' }}>Layer 2</h3>
                             <p style={{ margin: 0, fontSize: '15px', lineHeight: '1.6', color: '#333' }}>
                                 Sits on top. Stronger blur & shadow.
-                            </p>
+                            </p> */}
                         </div>
                     </div>
 

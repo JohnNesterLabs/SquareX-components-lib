@@ -7,8 +7,8 @@
  */
 .glass-base {
     position: relative;
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.3);
     /* ~30% opacity */
 }
@@ -62,8 +62,8 @@
     overflow: hidden;
     border-radius: 12px;
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     background-color: rgba(255, 255, 255, 0.3);
 
     box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.06);
@@ -83,8 +83,8 @@
     border-radius: 12px;
 
     /* Stronger Blur */
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     background-color: rgba(255, 255, 255, 0.3);
 
     /* Stronger Shadow */
@@ -105,8 +105,8 @@
     overflow: hidden;
     border-radius: 12px;
 
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     background: var(--Background-Default-Glass, #FFFFFF0A);
 
     /* Approx for Dark Glass */
@@ -130,8 +130,8 @@
     border-radius: 12px;
 
     /* Stronger Blur */
-    backdrop-filter: blur(30px);
-    -webkit-backdrop-filter: blur(30px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
     background: var(--Background-Default-Glass, #FFFFFF0A);
 
     /* Higher Shadow Opacity */
