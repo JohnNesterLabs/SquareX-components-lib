@@ -38,6 +38,7 @@ import BreadcrumbTest from './ui/Breadcrumb/BreadcrumbTest';
 import AvatarTest from './ui/Avatar/AvatarTest';
 import { allIcons as iconListData } from '../data/iconList';
 import Icon from './ui/Icon/Icon';
+import GlassDemo from './GlassDemo';
 import './ComponentLibrary.css';
 
 const ComponentLibrary = () => {
@@ -99,6 +100,7 @@ const ComponentLibrary = () => {
     { id: 'textarea', label: 'TextArea' },
     { id: 'toast', label: 'Toast' },
     { id: 'toggle', label: 'Toggle' },
+    { id: 'glass', label: 'Glass Material' },
   ];
 
   const renderIconButtonComponent = () => (
@@ -1483,6 +1485,7 @@ const ComponentLibrary = () => {
           {activeTab === 'modal' && renderModalComponent()}
           {activeTab === 'toast' && renderToastComponent()}
           {activeTab === 'dropdownnested' && renderDropdownNestedComponent()}
+          {activeTab === 'glass' && <GlassDemo />}
         </div>
       </div>
     </div>
