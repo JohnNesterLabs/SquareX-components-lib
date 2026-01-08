@@ -18,7 +18,7 @@ const GlassDemo = () => {
                 paddingBottom: '16px',
                 borderBottom: '1px solid #e4e6ea'
             }}>
-                <h2 className="component-section-title" style={{ margin: 0, border: 'none', padding: 0 }}>Glass Material Demo</h2>
+                <h2 className="component-section-title" style={{ margin: 0, border: 'none', padding: 0 }}>Glass Light Demo</h2>
                 <Toggle
                     checked={isDarkMode}
                     onChange={(e) => setIsDarkMode(e.target.checked)}
