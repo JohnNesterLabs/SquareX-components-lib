@@ -43,7 +43,7 @@ import GlassDarkDemo from './GlassDarkDemo';
 import './ComponentLibrary.css';
 
 const ComponentLibrary = () => {
-  const [activeTab, setActiveTab] = useState('iconbutton');
+  const [activeTab, setActiveTab] = useState('glass');
   const [iconSearchQuery, setIconSearchQuery] = useState('');
   const styles = ['primary', 'secondary', 'neutral', 'subtle'];
   const dangerStyles = ['primary', 'neutral', 'subtle'];
@@ -74,34 +74,34 @@ const ComponentLibrary = () => {
   };
 
   const tabs = [
-    { id: 'avatar', label: 'Avatar' },
-    { id: 'backgroundgradient', label: 'BackgroundGradient' },
-    { id: 'badge', label: 'Badge' },
-    { id: 'breadcrumb', label: 'Breadcrumb' },
-    { id: 'button', label: 'Button' },
-    { id: 'buttondanger', label: 'ButtonDanger' },
-    { id: 'categories', label: 'Categories' },
-    { id: 'cell', label: 'Cell' },
-    { id: 'checkbox', label: 'Checkbox' },
-    { id: 'chips', label: 'Chips' },
-    { id: 'dropdown', label: 'Dropdown' },
-    { id: 'dropdownnested', label: 'DropdownNested' },
-    { id: 'iconbutton', label: 'IconButton' },
-    { id: 'icons', label: 'Icons' },
-    { id: 'inputfield', label: 'InputField' },
-    { id: 'itemrow', label: 'ItemRow' },
-    { id: 'modal', label: 'Modal' },
-    { id: 'notification', label: 'Notification' },
-    { id: 'pagination', label: 'Pagination' },
-    { id: 'radio', label: 'Radio' },
-    { id: 'search', label: 'Search' },
-    { id: 'statusindicator', label: 'StatusIndicator' },
-    { id: 'tab', label: 'Tab' },
-    { id: 'table', label: 'Table' },
-    { id: 'textarea', label: 'TextArea' },
-    { id: 'toast', label: 'Toast' },
-    { id: 'toggle', label: 'Toggle' },
-    { id: 'glass', label: 'Glass Material' },
+    // { id: 'avatar', label: 'Avatar' },
+    // { id: 'backgroundgradient', label: 'BackgroundGradient' },
+    // { id: 'badge', label: 'Badge' },
+    // { id: 'breadcrumb', label: 'Breadcrumb' },
+    // { id: 'button', label: 'Button' },
+    // { id: 'buttondanger', label: 'ButtonDanger' },
+    // { id: 'categories', label: 'Categories' },
+    // { id: 'cell', label: 'Cell' },
+    // { id: 'checkbox', label: 'Checkbox' },
+    // { id: 'chips', label: 'Chips' },
+    // { id: 'dropdown', label: 'Dropdown' },
+    // { id: 'dropdownnested', label: 'DropdownNested' },
+    // { id: 'iconbutton', label: 'IconButton' },
+    // { id: 'icons', label: 'Icons' },
+    // { id: 'inputfield', label: 'InputField' },
+    // { id: 'itemrow', label: 'ItemRow' },
+    // { id: 'modal', label: 'Modal' },
+    // { id: 'notification', label: 'Notification' },
+    // { id: 'pagination', label: 'Pagination' },
+    // { id: 'radio', label: 'Radio' },
+    // { id: 'search', label: 'Search' },
+    // { id: 'statusindicator', label: 'StatusIndicator' },
+    // { id: 'tab', label: 'Tab' },
+    // { id: 'table', label: 'Table' },
+    // { id: 'textarea', label: 'TextArea' },
+    // { id: 'toast', label: 'Toast' },
+    // { id: 'toggle', label: 'Toggle' },
+    { id: 'glass', label: 'Glass Light' },
     { id: 'glass-dark', label: 'Glass Dark' }
   ];
 
@@ -1460,7 +1460,7 @@ const ComponentLibrary = () => {
         </div>
 
         <div className="component-tab-content">
-          {activeTab === 'iconbutton' && renderIconButtonComponent()}
+          {/* {activeTab === 'iconbutton' && renderIconButtonComponent()}
           {activeTab === 'button' && renderButtonComponent()}
           {activeTab === 'buttondanger' && renderButtonDangerComponent()}
           {activeTab === 'inputfield' && renderInputFieldComponent()}
@@ -1486,7 +1486,7 @@ const ComponentLibrary = () => {
           {activeTab === 'statusindicator' && renderStatusIndicatorComponent()}
           {activeTab === 'modal' && renderModalComponent()}
           {activeTab === 'toast' && renderToastComponent()}
-          {activeTab === 'dropdownnested' && renderDropdownNestedComponent()}
+          {activeTab === 'dropdownnested' && renderDropdownNestedComponent()} */}
           {activeTab === 'glass' && <GlassDemo />}
           {activeTab === 'glass-dark' && <GlassDarkDemo />}
         </div>
