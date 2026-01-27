@@ -865,7 +865,9 @@ const ComponentLibrary = () => {
             <>
                 {/* Tab Test Component */}
                 <div className="component-section">
-                    <TabTest />
+                    <React.Suspense fallback={<div>Loading...</div>}>
+                        <TabTest />
+                    </React.Suspense>
                 </div>
             </>
         );
@@ -962,13 +964,17 @@ const ComponentLibrary = () => {
                     {activeTab === 'badge' && <BadgeTest />}
                     {activeTab === 'notification' && renderNotificationComponent()}
                     {activeTab === 'tab' && renderTabComponent()}
-                    {activeTab === 'chips' && renderChipComponent()}
                     {activeTab === 'statusindicator' && renderStatusIndicatorComponent()}
                     {activeTab === 'modal' && renderModalComponent()}
                     {activeTab === 'toast' && renderToastComponent()}
                     {activeTab === 'dropdownnested' && <DropdownNestedTest />}
                     {activeTab === 'glass' && <GlassDemo />}
                     {activeTab === 'glass-dark' && <GlassDarkDemo />}
+                    {!['iconbutton', 'button', 'buttondanger', 'inputfield', 'search', 'textarea', 'itemrow', 'categories', 'backgroundgradient', 'icons', 'checkbox', 'radio', 'toggle', 'dropdown', 'table', 'cell', 'chip', 'chips', 'breadcrumb', 'avatar', 'pagination', 'badge', 'notification', 'tab', 'statusindicator', 'modal', 'toast', 'dropdownnested', 'glass', 'glass-dark'].includes(activeTab) && (
+                        <div className="component-section">
+                            <p>Component not found for tab: {activeTab}</p>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
