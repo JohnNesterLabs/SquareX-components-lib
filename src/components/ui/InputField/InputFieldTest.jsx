@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputField from './InputField';
+import { InputField } from 'squarex-ui-component-lib';
 import styles from './InputFieldTest.module.css';
 
 /**

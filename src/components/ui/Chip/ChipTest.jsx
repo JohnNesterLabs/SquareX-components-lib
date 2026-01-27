@@ -1,5 +1,5 @@
 import React from 'react';
-import Chip from './Chip';
+import { Chip } from 'squarex-ui-component-lib';
 import styles from './ChipTest.module.css';
 
 const ChipTest = () => {

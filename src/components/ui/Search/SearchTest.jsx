@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Search from './Search';
+import { Search } from 'squarex-ui-component-lib';
 import ListSearch from '../ListSearch/ListSearch';
 import styles from './SearchTest.module.css';
 

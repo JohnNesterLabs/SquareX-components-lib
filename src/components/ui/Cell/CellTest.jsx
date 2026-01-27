@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Cell from './Cell';
-import CellHeader from './CellHeader';
+import { Cell, CellHeader } from 'squarex-ui-component-lib';
 import styles from './CellTest.module.css';
 
 const CellTest = () => {

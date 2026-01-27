@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import DropdownNested from './DropdownNested';
+import { DropdownNested } from 'squarex-ui-component-lib';
 import styles from './DropdownNestedTest.module.css';
 
 const DropdownNestedTest = () => {

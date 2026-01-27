@@ -1,5 +1,5 @@
 import React from 'react';
-import StatusIndicator from './StatusIndicator';
+import { StatusIndicator } from 'squarex-ui-component-lib';
 import styles from './StatusIndicatorTest.module.css';
 
 const StatusIndicatorTest = () => {

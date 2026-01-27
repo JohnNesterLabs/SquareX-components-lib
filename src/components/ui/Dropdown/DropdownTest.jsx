@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Dropdown from './Dropdown';
+import { Dropdown, Icon } from 'squarex-ui-component-lib';
 import ListOfItems from '../ListOfItems/ListOfItems';
-import Icon from '../Icon/Icon';
 import styles from './DropdownTest.module.css';
 
 /**

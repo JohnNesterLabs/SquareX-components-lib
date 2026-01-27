@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import Toast from './Toast';
-import Button from '../Button/Button';
+import { Toast, Button } from 'squarex-ui-component-lib';
 import styles from './ToastTest.module.css';
 
 const ToastTest = () => {

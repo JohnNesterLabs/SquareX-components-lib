@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Radio from './Radio';
+import { Radio } from 'squarex-ui-component-lib';
 import styles from './RadioTest.module.css';
 
 /**

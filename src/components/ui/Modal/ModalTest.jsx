@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
-import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import { Modal, Button, Icon } from 'squarex-ui-component-lib';
 import styles from './ModalTest.module.css';
 
 const ModalTest = () => {

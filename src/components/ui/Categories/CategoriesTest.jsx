@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Categories from './Categories';
+import { Categories } from 'squarex-ui-component-lib';
 import styles from './CategoriesTest.module.css';
 
 const MOCK_CATEGORIES = [

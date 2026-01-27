@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TabList from './TabList';
+import { TabList } from 'squarex-ui-component-lib';
 import styles from './TabTest.module.css';
 
 const TabTest = () => {
