@@ -1,5 +1,5 @@
 import React from 'react';
-import Notification from './Notification';
+import { Notification } from 'squarex-ui-component-lib';
 import styles from './NotificationTest.module.css';
 
 /**

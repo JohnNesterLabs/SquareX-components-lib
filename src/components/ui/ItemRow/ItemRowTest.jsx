@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import ItemRow from './ItemRow';
+import { ItemRow, Icon } from 'squarex-ui-component-lib';
 import styles from './ItemRowTest.module.css';
-import Icon from '../Icon/Icon';
 
 const ItemRowTest = () => {
     const [checkedItems, setCheckedItems] = useState({

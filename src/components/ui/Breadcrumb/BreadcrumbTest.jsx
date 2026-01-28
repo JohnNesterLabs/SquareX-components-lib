@@ -1,7 +1,6 @@
 import React from 'react';
-import Breadcrumb from './Breadcrumb';
+import { Breadcrumb, Icon } from 'squarex-ui-component-lib';
 import styles from './BreadcrumbTest.module.css';
-import Icon from '../Icon/Icon';
 
 const BreadcrumbTest = () => {
     const basicItems = [

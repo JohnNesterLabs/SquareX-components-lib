@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Toggle from './Toggle';
+import { Toggle } from 'squarex-ui-component-lib';
 import styles from './ToggleTest.module.css';
 
 /**

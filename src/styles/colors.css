@@ -252,6 +252,15 @@
   /* Tertiary Hover: Purple/200 */
   --brand-purple-subtle: var(--color-purple-alpha-100);
   /* Subtle: Alphas/Purple/100 */
+  
+  /* Library compatibility aliases - squarex-ui-component-lib expects --background- prefix */
+  --background-brand-purple-default: var(--brand-purple-default);
+  --background-brand-purple-default-hover: var(--brand-purple-default-hover);
+  --background-brand-purple-secondary: var(--brand-purple-secondary);
+  --background-brand-purple-secondary-hover: var(--brand-purple-secondary-hover);
+  --background-brand-purple-tertiary: var(--brand-purple-tertiary);
+  --background-brand-purple-tertiary-hover: var(--brand-purple-tertiary-hover);
+  --background-brand-purple-subtle: var(--brand-purple-subtle);
 
   /* Action Violet (Background / Action Violet - Light) */
   --action-violet-default: var(--color-violet-500);
@@ -305,6 +314,10 @@
   --text-success: #084625;
   --text-neutral-default: #2f353b;
   --text-inverse: #ffffff;
+  
+  /* Library compatibility aliases */
+  --white: var(--color-white-1000);
+  --white-1000: var(--color-white-1000);
 
   /* Border */
   --border-default: var(--color-slate-200);
@@ -358,6 +371,15 @@
   /* Tertiary Hover: Purple/700 */
   --brand-purple-subtle: var(--color-purple-alpha-100);
   /* Subtle: Alphas/Purple/100 */
+  
+  /* Library compatibility aliases - squarex-ui-component-lib expects --background- prefix */
+  --background-brand-purple-default: var(--brand-purple-default);
+  --background-brand-purple-default-hover: var(--brand-purple-default-hover);
+  --background-brand-purple-secondary: var(--brand-purple-secondary);
+  --background-brand-purple-secondary-hover: var(--brand-purple-secondary-hover);
+  --background-brand-purple-tertiary: var(--brand-purple-tertiary);
+  --background-brand-purple-tertiary-hover: var(--brand-purple-tertiary-hover);
+  --background-brand-purple-subtle: var(--brand-purple-subtle);
 
   /* Action Violet (Background / Action Violet - Dark) */
   --action-violet-default: var(--color-violet-300);
@@ -409,6 +431,10 @@
   --text-secondary: var(--color-gray-300);
   --text-muted: var(--color-gray-400);
   --text-inverse: var(--color-gray-950);
+  
+  /* Library compatibility aliases */
+  --white: var(--color-white-1000);
+  --white-1000: var(--color-white-1000);
 
   /* Border */
   --border-default: var(--color-gray-700);

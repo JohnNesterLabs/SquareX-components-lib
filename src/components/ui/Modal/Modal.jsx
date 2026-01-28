@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
 import styles from './Modal.module.css';
 

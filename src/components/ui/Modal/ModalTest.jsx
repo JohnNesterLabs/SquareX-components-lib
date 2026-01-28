@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
-import Modal from './Modal';
-import Button from '../Button/Button';
-import Icon from '../Icon/Icon';
+import { Modal, Button, Icon } from 'squarex-ui-component-lib';
 import styles from './ModalTest.module.css';
 
 const ModalTest = () => {
@@ -19,6 +17,7 @@ const ModalTest = () => {
                     <p>Matches the "New Category Created" design.</p>
                     <Button
                         label="Open Success Modal"
+                        // eslint-disable-next-line react/style-prop-object
                         style="primary"
                         onClick={() => setShowSuccessModal(true)}
                     />
@@ -30,6 +29,7 @@ const ModalTest = () => {
                     <p>Basic title and description.</p>
                     <Button
                         label="Open Simple Modal"
+                        // eslint-disable-next-line react/style-prop-object
                         style="neutral"
                         onClick={() => setShowSimpleModal(true)}
                     />
@@ -49,6 +49,7 @@ const ModalTest = () => {
                     <Button
                         key="details"
                         label="View details"
+                        // eslint-disable-next-line react/style-prop-object
                         style="neutral"
                         size="medium"
                         showLeadingIcon={false}
@@ -59,6 +60,7 @@ const ModalTest = () => {
                     <Button
                         key="create"
                         label="Create new list now"
+                        // eslint-disable-next-line react/style-prop-object
                         style="primary"
                         size="medium"
                         showLeadingIcon={true}
@@ -78,6 +80,7 @@ const ModalTest = () => {
                 actions={
                     <Button
                         label="Close"
+                        // eslint-disable-next-line react/style-prop-object
                         style="neutral"
                         onClick={() => setShowSimpleModal(false)}
                     />

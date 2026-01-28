@@ -32,7 +32,6 @@ const Chip = ({
     if (!showLeftIcon) return null;
     if (chooseLeftIcon) return chooseLeftIcon;
 
-    const iconColor = actualState === 'active' ? '#eceaf9' : '#768494';
     return (
       <div className={styles.iconWrapper}>
         <div
@@ -51,7 +50,6 @@ const Chip = ({
     if (!showRightIcon) return null;
     if (chooseRightIcon) return chooseRightIcon;
 
-    const iconColor = actualState === 'active' ? '#eceaf9' : '#768494';
     return (
       <div className={styles.iconWrapper}>
         <div

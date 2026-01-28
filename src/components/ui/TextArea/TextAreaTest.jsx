@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TextArea from './TextArea';
+import { TextArea } from 'squarex-ui-component-lib';
 import styles from './TextAreaTest.module.css';
 
 /**

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Checkbox from './Checkbox';
+import { Checkbox } from 'squarex-ui-component-lib';
 import styles from './CheckboxTest.module.css';
 
 /**

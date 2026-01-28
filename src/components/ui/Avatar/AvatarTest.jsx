@@ -1,7 +1,5 @@
 import React from 'react';
-import Avatar from './Avatar';
-import AvatarGroup from './AvatarGroup';
-import AvatarBlock from './AvatarBlock';
+import { Avatar, AvatarGroup, AvatarBlock } from 'squarex-ui-component-lib';
 import styles from './AvatarTest.module.css';
 
 const AvatarTest = () => {

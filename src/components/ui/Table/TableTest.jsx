@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import Table from './Table';
-import Toggle from '../Toggle/Toggle';
-import Icon from '../Icon/Icon';
+import Table from './Table'; // Custom Table with drag-and-drop functionality
+import { Toggle, Icon } from 'squarex-ui-component-lib';
 import styles from './TableTest.module.css';
 
 /**

@@ -67,6 +67,7 @@ const DropdownNested = ({
       <div className={styles.ctas}>
         <ButtonDanger
           label="Cancel"
+          // eslint-disable-next-line react/style-prop-object
           style="neutral"
           size="medium"
           showLeadingIcon={false}
@@ -75,6 +76,7 @@ const DropdownNested = ({
         />
         <Button
           label="Apply"
+          // eslint-disable-next-line react/style-prop-object
           style="primary"
           size="medium"
           showLeadingIcon={false}

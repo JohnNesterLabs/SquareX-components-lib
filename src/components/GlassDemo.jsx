@@ -6,7 +6,6 @@ import Toggle from './ui/Toggle/Toggle';
 const GlassDemo = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const mode = isDarkMode ? 'Dark Mode BG' : 'Light Mode BG';
-    const textColor = isDarkMode ? '#f5f5f5' : '#1a1a1a';
 
     return (
         <div className="component-section">

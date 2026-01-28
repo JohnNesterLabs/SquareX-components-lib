@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Pagination from './Pagination';
+import { Pagination } from 'squarex-ui-component-lib';
 import styles from './PaginationTest.module.css';
 
 const PaginationTest = () => {

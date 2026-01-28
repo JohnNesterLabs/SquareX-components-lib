@@ -1,5 +1,5 @@
 import React from 'react';
-import Badge from './Badge';
+import { Badge } from 'squarex-ui-component-lib';
 import styles from './BadgeTest.module.css';
 
 /**
